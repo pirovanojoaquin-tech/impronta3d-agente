@@ -1,0 +1,151 @@
+name: Mercado Libre
+
+# - proponer: arma el pack que conviene y las fotos de ML, y lo propone por Telegram (lo lanza publicar.yml
+#   cuando un producto sale por primera vez en Instagram).
+# - publicar: publica lo aprobado con "ML SI <código>" (lo lanza telegram.yml).
+# - evento: venta, pregunta o cambio en un aviso (lo lanza el Apps Script al instante).
+# - revisar: cada hora, renueva el permiso y repasa ventas y preguntas por si se perdió un aviso.
+# - autorizar: la primera vez, cuando el dueño autoriza la app (lo lanza el Apps Script).
+# El repo es público: los datos de compradores nunca se imprimen ni se guardan acá.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+    - cron: "7 11 * * 1"   # lunes 8:07 (Argentina): reporte semanal de visitas, preguntas y ventas
+  workflow_dispatch:
+    inputs:
+      accion:
+        description: "proponer | publicar | rechazar | evento | revisar | autorizar | link | diagnostico | calidad | titulos | entrada | reporte"
+        required: true
+        default: revisar
+      producto:
+        description: "Carpeta de productos/ (proponer, publicar)"
+        required: false
+      topic:
+        description: "Tema de la notificación (evento)"
+        required: false
+      recurso:
+        description: "Recurso de la notificación (evento)"
+        required: false
+      codigo:
+        description: "Código de autorización (autorizar)"
+        required: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  ml:
+    runs-on: ubuntu-24.04
+    env:
+      ACCION: ${{ inputs.accion || (github.event.schedule == '7 11 * * 1' && 'reporte') || 'revisar' }}
+      PRODUCTO: ${{ inputs.producto }}
+      ML_APP_ID: ${{ secrets.ML_APP_ID }}
+      ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+      ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+      ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
+      DRIVE_WEBAPP_URL: ${{ secrets.DRIVE_WEBAPP_URL }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_PAT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Configurar git
+        run: |
+          git config user.name "impronta3d-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Instalar Blender (fotos de ML)
+        if: env.ACCION == 'proponer'
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends prusa-slicer blender
+
+      - name: Proponer
+        if: env.ACCION == 'proponer'
+        run: |
+          python -m agente.renders "$PRODUCTO" --solo-ml
+          python -m agente.mercadolibre proponer "$PRODUCTO"
+          SHA=$(python -m agente.mercadolibre subir "Mercado Libre: propuesta de $PRODUCTO" "productos/$PRODUCTO" | tail -1)
+          python -m agente.mercadolibre avisar "$PRODUCTO" --sha "$SHA"
+
+      - name: Publicar
+        if: env.ACCION == 'publicar'
+        run: python -m agente.mercadolibre publicar "$PRODUCTO"
+
+      - name: Rechazar
+        if: env.ACCION == 'rechazar'
+        run: python -m agente.mercadolibre rechazar "$PRODUCTO"
+
+      - name: Evento
+        if: env.ACCION == 'evento'
+        env:
+          TOPIC: ${{ inputs.topic }}
+          RECURSO: ${{ inputs.recurso }}
+        run: python -m agente.mercadolibre evento "$TOPIC" "$RECURSO"
+
+      - name: Revisar
+        if: env.ACCION == 'revisar'
+        run: python -m agente.mercadolibre revisar
+
+      - name: Diagnóstico
+        if: env.ACCION == 'diagnostico'
+        run: python -m agente.mercadolibre diagnostico
+
+      - name: Calidad, títulos, pack de entrada, mayoristas y reporte
+        env:
+          ML_DEBUG: "1"
+        if: contains(fromJSON('["calidad","mejorar_calidad","mayoristas_todos","titulos","reporte","entrada"]'), env.ACCION)
+        run: |
+          if [ "$ACCION" = entrada ]; then python -m agente.mercadolibre entrada "${PRODUCTO:-todos}"
+          else python -m agente.mercadolibre "$ACCION"; fi
+
+      - name: Probar aviso (solo valida)
+        if: env.ACCION == 'probar'
+        env:
+          ML_DEBUG: "1"  # muestra la respuesta completa de ML (sin datos de compradores: solo valida avisos)
+        run: python -m agente.mercadolibre probar "$PRODUCTO"
+
+      - name: Link para autorizar
+        if: env.ACCION == 'link'
+        run: python -m agente.mercadolibre link
+
+      - name: Autorizar
+        if: env.ACCION == 'autorizar'
+        env:
+          CODIGO: ${{ inputs.codigo }}
+        run: python -m agente.mercadolibre autorizar "$CODIGO"
+
+      - name: Marcar propuesta fallida
+        if: failure() && env.ACCION == 'proponer'
+        run: python -m agente.mercadolibre fallo "$PRODUCTO"
+
+      - name: Guardar estado
+        if: always()
+        run: |
+          python -m agente.mercadolibre subir "Mercado Libre - estado ($ACCION)" contenido/ml-reporte.json contenido/ml-calidad.json
+
+      - name: Actualizar la tienda web
+        if: success() && (env.ACCION == 'publicar' || env.ACCION == 'evento')
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}  # el GH_PAT no tiene permiso para lanzar workflows
+        run: gh workflow run tienda.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+      - name: Avisar si falló
+        if: failure()
+        run: |
+          # la revisión horaria avisa una sola vez por día para no llenar el chat
+          # publicar ya manda su propio aviso con el motivo; la revisión horaria avisa una sola vez por día
+          if [ "$ACCION" = publicar ] || [ "$ACCION" = probar ]; then exit 0; fi
+          if [ "$ACCION" != revisar ] || [ "$(date -u +%H)" = 13 ]; then
+            python -m agente.telegram enviar --texto "⚠️ Falló el workflow de Mercado Libre (${ACCION}). Lo reviso en la rutina semanal." || true
+          fi

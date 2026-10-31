@@ -1,0 +1,104 @@
+name: Publicar en Instagram
+
+on:
+  schedule:
+    # Cada 15 minutos publica lo pendiente de hoy cuya hora (config.yaml > horarios) ya pasó.
+    # Así, si GitHub atrasa o se saltea una ejecución (pasa seguido en cuentas gratis), la siguiente la cubre.
+    - cron: "4,19,34,49 * * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Qué hacer"
+        type: choice
+        options: [publicar, simular, verificar]
+        default: publicar
+      id:
+        description: "(Opcional) id de una entrada a publicar ya, ej: 2026-10-20-post"
+        required: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Productos que ya salieron en Instagram (antes)
+        id: antes
+        run: echo "ig=$(python -m agente.tienda --en-ig)" >> "$GITHUB_OUTPUT"
+
+      - name: Publicar
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MODO: ${{ inputs.modo || 'publicar' }}
+          ID: ${{ inputs.id }}
+        run: |
+          ARGS=()
+          [ "$MODO" = "simular" ] && ARGS+=(--simular)
+          [ "$MODO" = "verificar" ] && ARGS+=(--verificar)
+          [ -n "$ID" ] && ARGS+=(--id "$ID")
+          python -m agente.publicar "${ARGS[@]}"
+
+      - name: Proponer en Mercado Libre los productos que salen por primera vez
+        continue-on-error: true  # nunca frena la publicación en Instagram
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m agente.mercadolibre pendientes
+
+      - name: Productos que ya salieron en Instagram (después)
+        id: despues
+        if: always()
+        run: echo "ig=$(python -m agente.tienda --en-ig)" >> "$GITHUB_OUTPUT"
+
+      - name: Leer Telegram una vez por hora
+        # el cron de telegram.yml en GitHub gratis a veces se saltea horas; el despertador de Apps Script
+        # corre este workflow cada 15 min, así que de paso lanzamos la lectura de Telegram (aprobaciones,
+        # "ML SI n" y archivos de MakerWorld) en el primer cuarto de cada hora
+        if: always() && github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ "$(date -u +%M)" -lt 15 ] && gh workflow run telegram.yml --repo "$GITHUB_REPOSITORY" --ref main || true
+
+      - name: Avisar por Telegram si algo falló
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -z "$TELEGRAM_BOT_TOKEN" ] && exit 0
+          python -m agente.telegram enviar --texto "⚠️ <b>Falló una publicación en Instagram.</b> Se reintenta en el próximo horario. Detalle: <a href=\"$URL\">ver en GitHub</a>" || true
+
+      - name: Guardar estado del calendario
+        if: always()
+        run: |
+          git config user.name "impronta3d-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contenido/calendario.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Estado de publicaciones $(date -u +'%F %H:%M') UTC"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Sumar a la tienda web el producto que se estrenó
+        # la web muestra cada producto recién cuando sale en Instagram; impronta3d.github.io la copia sola
+        if: always() && steps.antes.outputs.ig != steps.despues.outputs.ig
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run tienda.yml --repo "$GITHUB_REPOSITORY" --ref main

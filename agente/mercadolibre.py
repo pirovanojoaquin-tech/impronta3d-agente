@@ -1,0 +1,1080 @@
+"""Mercado Libre: propone, publica y vigila las ventas (corre en GitHub Actions, workflow mercadolibre.yml).
+
+Uso:
+    python -m agente.mercadolibre pendientes            # productos ya publicados en Instagram que faltan en ML -> proponer
+    python -m agente.mercadolibre proponer <slug>       # calcula el pack que conviene y genera las fotos
+    python -m agente.mercadolibre avisar <slug> --sha X # manda la propuesta por Telegram y la anota en la planilla
+    python -m agente.mercadolibre aprobaciones          # lee "ML SI 4" / "ML NO 4" de Telegram y lanza la publicación
+    python -m agente.mercadolibre publicar <slug>       # valida y publica el aviso aprobado
+    python -m agente.mercadolibre evento <topic> <recurso>  # notificación de ML (venta, pregunta, aviso, reclamo)
+    python -m agente.mercadolibre revisar               # cada hora: renueva el permiso y repasa ventas y preguntas
+    python -m agente.mercadolibre autorizar <code>      # primera vez: canjea el código de autorización
+
+Secretos (variables de entorno): ML_APP_ID, ML_CLIENT_SECRET, ML_REFRESH_TOKEN, ML_ACCESS_TOKEN,
+DRIVE_WEBAPP_URL (planilla y redirect de la autorización), TELEGRAM_BOT_TOKEN, GH_TOKEN (para guardar secretos
+y lanzar workflows).
+
+IMPORTANTE: el repo es público. Nada de datos de compradores (nombres, direcciones, mensajes) se imprime en
+los logs ni se guarda en el repo: van solo a la planilla privada de Drive y a Telegram.
+"""
+import argparse
+import json
+import math
+import os
+import re
+import statistics
+import subprocess
+import sys
+import time
+from datetime import datetime, timedelta, timezone
+
+import requests
+import yaml
+
+from . import calendario, telegram
+from .calendario import RAIZ
+
+CONFIG = yaml.safe_load((RAIZ / "config.yaml").read_text(encoding="utf-8"))
+CFG = CONFIG["mercadolibre"]
+CONFIG_MARCA = yaml.safe_load((RAIZ / "config.yaml").read_text(encoding="utf-8"))["marca"]["nombre"]
+API = "https://api.mercadolibre.com"
+ESTADO = RAIZ / "contenido" / "mercadolibre.json"
+REPO = os.environ.get("GITHUB_REPOSITORY", "pirovanojoaquin-tech/impronta3d-agente")
+ARG = timezone(timedelta(hours=-3))
+GTIN_SIN_CODIGO, GTIN_PACK = "17055160", "17055159"
+ENVIO_ESTIMADO = set()  # packs cuyo envío no se pudo cotizar (falta activar Mercado Envíos)
+
+
+class ErrorML(Exception):
+    def __init__(self, mensaje, causas=()):
+        super().__init__(mensaje)
+        self.causas = list(causas)
+
+
+# ---------- estado (solo datos de publicaciones) ----------
+
+def cargar():
+    if ESTADO.exists():
+        return json.loads(ESTADO.read_text(encoding="utf-8"))
+    return {"user_id": None, "siguiente": 1, "productos": {}}
+
+
+def guardar(estado):
+    ESTADO.write_text(json.dumps(estado, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _git(*args, check=True):
+    return subprocess.run(["git", *args], capture_output=True, text=True, check=check).stdout
+
+
+def subir(mensaje, rutas=()):
+    """Guarda el estado en el repo sin chocar con otros workflows que corren a la vez.
+
+    Toma lo último de GitHub, le aplica solo los productos que cambió esta corrida y reintenta si alguien
+    subió algo justo antes. Devuelve el commit (para armar links a las fotos).
+    """
+    vacio = {"user_id": None, "siguiente": 1, "productos": {}}
+    rel = ESTADO.relative_to(RAIZ).as_posix()
+
+    def leer(ref):
+        try:
+            return json.loads(_git("show", f"{ref}:{rel}"))
+        except (subprocess.CalledProcessError, ValueError):
+            return dict(vacio)
+
+    base, mio = leer("HEAD"), cargar()
+    cambiados = {s for s in set(base["productos"]) | set(mio["productos"])
+                 if base["productos"].get(s) != mio["productos"].get(s)}
+    for intento in range(6):
+        _git("fetch", "-q", "origin", "main")
+        suyo = leer("origin/main")
+        for s in cambiados:
+            if s in mio["productos"]:
+                suyo["productos"][s] = mio["productos"][s]
+            else:
+                suyo["productos"].pop(s, None)
+        if mio.get("user_id") != base.get("user_id"):
+            suyo["user_id"] = mio.get("user_id")
+        suyo["siguiente"] = max(suyo.get("siguiente", 1), mio.get("siguiente", 1))
+        _git("reset", "-q", "--mixed", "origin/main")
+        guardar(suyo)
+        _git("add", "-A", rel, *[r for r in rutas if (RAIZ / r).exists()])
+        if subprocess.run(["git", "diff", "--cached", "--quiet"]).returncode == 0:
+            return _git("rev-parse", "HEAD").strip()
+        _git("commit", "-q", "-m", mensaje)
+        if subprocess.run(["git", "push", "-q", "origin", "HEAD:main"], capture_output=True).returncode == 0:
+            return _git("rev-parse", "HEAD").strip()
+        time.sleep(3 * (intento + 1))
+    raise ErrorML("No se pudo guardar el estado en GitHub después de 6 intentos")
+
+
+def fallo(slug):
+    """Marca una propuesta fallida: se reintenta sola más tarde (hasta 3 veces)."""
+    estado = cargar()
+    p = estado["productos"].get(slug, {})
+    if p.get("estado") in (None, "preparando", "error"):
+        estado["productos"][slug] = {**p, "estado": "error", "intentos": p.get("intentos", 0) + 1,
+                                     "desde": int(time.time())}
+        guardar(estado)
+
+
+def rechazar(slug):
+    estado = cargar()
+    if slug in estado["productos"]:
+        estado["productos"][slug]["estado"] = "rechazado"
+        guardar(estado)
+
+
+def info_producto(slug):
+    return yaml.safe_load((RAIZ / "productos" / slug / "info.yaml").read_text(encoding="utf-8"))
+
+
+# ---------- credenciales ----------
+
+def _guardar_secreto(nombre, valor):
+    r = subprocess.run(["gh", "secret", "set", nombre, "--body", valor, "--repo", REPO],
+                       capture_output=True, text=True)
+    if r.returncode:
+        raise ErrorML(f"No se pudo guardar el secreto {nombre} (revisá GH_PAT)")
+
+
+def app_id():
+    """El App ID no es secreto (va en el link de autorización): está en config.yaml o en el secreto ML_APP_ID."""
+    return os.environ.get("ML_APP_ID") or str(CFG.get("app_id") or "")
+
+
+def _oauth(**datos):
+    r = requests.post(f"{API}/oauth/token", data={"client_id": app_id(),
+                                                 "client_secret": os.environ["ML_CLIENT_SECRET"], **datos}, timeout=60)
+    if r.status_code != 200:
+        raise ErrorML(f"oauth {datos['grant_type']} -> {r.status_code}: {r.json().get('message', '')}")
+    t = r.json()
+    if "refresh_token" not in t:
+        # diagnóstico (sin claves): qué scopes dio ML y cuáles tiene registrados la app
+        print(f"scope del token: {t.get('scope')!r}")
+        app = requests.get(f"{API}/applications/{app_id()}", timeout=60,
+                           headers={"Authorization": f"Bearer {t['access_token']}"})
+        if app.status_code == 200:
+            datos_app = app.json()
+            print(f"scopes de la app: {datos_app.get('scopes')!r}")
+            print("campos de la app:", sorted(datos_app))
+        else:
+            print(f"GET applications -> {app.status_code}")
+        if datos["grant_type"] == "authorization_code" and t.get("user_id"):
+            # ML reusó una autorización vieja sin offline_access: la revocamos para que la próxima vez
+            # muestre la pantalla de permisos completa
+            rev = requests.delete(f"{API}/users/{t['user_id']}/applications/{app_id()}",
+                                  headers={"Authorization": f"Bearer {t['access_token']}"}, timeout=60)
+            print(f"revocar autorización -> {rev.status_code} {rev.text[:150]}")
+            link_autorizacion("Casi: Mercado Libre usó la autorización vieja (sin acceso offline). Ya la borré. "
+                              "Tocá este link <b>una vez más</b> y aceptá todos los permisos:")
+        else:
+            telegram.enviar("⚠️ <b>Falta un permiso en la app de Mercado Libre</b>: activá <b>offline access</b> "
+                            "(acceso sin conexión) en la configuración de la app y volvé a autorizar.")
+        raise ErrorML("La app de ML no tiene el permiso offline_access: no devolvió refresh_token")
+    if os.environ.get("GITHUB_ACTIONS"):  # que nunca aparezcan en los logs públicos
+        print(f"::add-mask::{t['access_token']}")
+        print(f"::add-mask::{t['refresh_token']}")
+    # el refresh token es de un solo uso: se guarda el nuevo enseguida
+    _guardar_secreto("ML_REFRESH_TOKEN", t["refresh_token"])
+    _guardar_secreto("ML_ACCESS_TOKEN", f"{t['access_token']}|{int(time.time()) + t['expires_in']}")
+    os.environ["ML_REFRESH_TOKEN"] = t["refresh_token"]
+    os.environ["ML_ACCESS_TOKEN"] = f"{t['access_token']}|{int(time.time()) + t['expires_in']}"
+    return t
+
+
+def autorizar(codigo):
+    t = _oauth(grant_type="authorization_code", code=codigo, redirect_uri=os.environ["DRIVE_WEBAPP_URL"])
+    estado = cargar()
+    estado["user_id"] = t["user_id"]
+    guardar(estado)
+    yo = api("GET", "/users/me")
+    telegram.enviar(f"✅ <b>Mercado Libre conectado</b> con la cuenta <b>{yo.get('nickname', '')}</b>.\n"
+                    "Desde ahora, cada producto nuevo que salga en Instagram te lo propongo para ML por acá.")
+
+
+def link_autorizacion(texto=None):
+    """Manda por Telegram el link para que el dueño autorice la app (la URL de vuelta es el Apps Script)."""
+    from urllib.parse import urlencode
+    url = "https://auth.mercadolibre.com.ar/authorization?" + urlencode(
+        {"response_type": "code", "client_id": app_id(), "redirect_uri": os.environ["DRIVE_WEBAPP_URL"],
+         "scope": "offline_access read write"})
+    texto = texto or ("Tocá este link (con tu cuenta de vendedor abierta), aceptá con <b>Permitir</b> "
+                      "y en un minuto te confirmo por acá:")
+    telegram.enviar(f"🔗 <b>Conectar Mercado Libre</b>\n{texto}\n<a href=\"{url}\">Autorizar {CONFIG_MARCA} Agente</a>")
+    print("link enviado por Telegram")
+
+
+def token(margen=1800):
+    """Access token vigente; lo renueva si vence en menos de `margen` segundos."""
+    actual = os.environ.get("ML_ACCESS_TOKEN", "")
+    if "|" in actual:
+        tok, vence = actual.rsplit("|", 1)
+        if int(vence) - time.time() > margen:
+            return tok
+    return _oauth(grant_type="refresh_token", refresh_token=os.environ["ML_REFRESH_TOKEN"])["access_token"]
+
+
+def api(metodo, ruta, auth=True, **kw):
+    cab = {"Authorization": f"Bearer {token()}"} if auth else {}
+    r = requests.request(metodo, API + ruta, headers=cab, timeout=60, **kw)
+    if r.status_code >= 400:
+        d = {}
+        try:
+            d = r.json()
+            # cada causa con su tipo (error/warning) y código: ML mezcla advertencias con el error que bloquea
+            causas = "; ".join(f"{c.get('message', '')} [{c.get('type', '?')} {c.get('code', '')}]"
+                               for c in (d.get("cause") if isinstance(d.get("cause"), list) else []) if isinstance(c, dict))
+            msg = d.get("message", "") + (f" ({causas})" if causas else "")
+        except ValueError:
+            msg = r.text[:200]
+        if os.environ.get("ML_DEBUG"):
+            print("respuesta de ML:", r.text[:1500])
+        causas = [c for c in d["cause"] if isinstance(c, dict)] if isinstance(d, dict) and isinstance(d.get("cause"), list) else []
+        raise ErrorML(f"{metodo} {ruta.split('?')[0]} -> {r.status_code}: {msg}", causas)
+    return r.json() if r.content else {}
+
+
+# ---------- planilla de Drive (vía el Apps Script) ----------
+
+COLUMNAS = {
+    "Publicaciones": ["Código", "Producto", "Pack", "Precio", "Comisión ML", "Envío a cargo", "Filamento",
+                      "Ganancia", "Categoría", "Estado", "Link", "Actualizado"],
+    "Ventas": ["Orden", "Fecha", "Producto", "Unidades", "Color", "Cobrado", "Comisión ML", "Ganancia aprox.",
+               "Comprador", "Despachar antes de", "Estado"],
+    "Preguntas": ["Id", "Fecha", "Producto", "Pregunta", "Estado"],
+}
+
+
+def planilla(pestania, clave, fila):
+    """Agrega o actualiza la fila con esa clave. Devuelve True si la fila es nueva (None si falló)."""
+    url = os.environ.get("DRIVE_WEBAPP_URL")
+    if not url:
+        return None
+    try:
+        r = requests.post(url, json={"accion": "planilla", "pestania": pestania, "columnas": COLUMNAS[pestania],
+                                     "clave": str(clave), "fila": fila}, timeout=90)
+        d = r.json()
+        if not d.get("ok"):
+            print(f"Planilla: {d.get('error')}")
+            return None
+        return d.get("nuevo")
+    except (requests.RequestException, ValueError) as e:
+        print(f"Planilla no disponible: {type(e).__name__}")
+        return None
+
+
+# ---------- cálculo del pack ----------
+
+def redondear(x, paso=100):
+    return int(math.ceil(x / paso) * paso)
+
+
+def plata(x):
+    return "$" + f"{round(x):,}".replace(",", ".")
+
+
+def costo_filamento(info):
+    return info["gramos"] * CONFIG["produccion"]["precio_kg_filamento"] / 1000
+
+
+def dimensiones(info, n):
+    """Paquete para el envío: 'LxAxH,gramos' en cm (unidades apiladas + embalaje)."""
+    m = info.get("medidas_mm") or {"largo": 100, "ancho": 60, "alto": 30}
+    lados = [math.ceil((m["largo"] + 20) / 10), math.ceil((m["ancho"] + 20) / 10),
+             math.ceil((m["alto"] * n + 20) / 10)]
+    return f"{lados[0]}x{lados[1]}x{lados[2]},{math.ceil(info['gramos'] * n + CFG['embalaje_g'])}"
+
+
+def comision(precio, categoria):
+    datos = api("GET", f"/sites/{CFG['sitio']}/listing_prices", params={
+        "price": precio, "listing_type_id": CFG["tipo_publicacion"], "category_id": categoria})
+    if isinstance(datos, list):
+        datos = datos[0]
+    det = datos.get("sale_fee_details") or {}
+    # se toma lo mayor por si la comisión informada no incluye el cargo fijo
+    return max(datos.get("sale_fee_amount", 0), det.get("gross_amount", 0) + det.get("fixed_fee", 0))
+
+
+def a_convenir(info):
+    """info.yaml > ml_envio: a_convenir — para categorías sin Mercado Envíos (ej: Golf > Otros)."""
+    return info.get("ml_envio") == "a_convenir"
+
+
+def envio_a_cargo(precio, info, n, user_id):
+    if precio < CFG["umbral_envio_gratis"] or a_convenir(info):
+        return 0  # lo paga el comprador
+    try:
+        d = api("GET", f"/users/{user_id}/shipping_options/free", params={"dimensions": dimensiones(info, n)})
+        return d.get("coverage", {}).get("all_country", {}).get("list_cost", 0)
+    except ErrorML as e:
+        # sin Mercado Envíos activado ML no cotiza: usamos un estimado y lo avisamos en la propuesta
+        print(f"Envío no cotizado ({e}); se usa el estimado de config.yaml")
+        ENVIO_ESTIMADO.add(n)
+        return CFG.get("envio_estimado", 9000)
+
+
+def categoria(info):
+    if info.get("ml_categoria"):
+        cat = info["ml_categoria"]
+    else:
+        cat = CFG["categoria_defecto"]
+        candidatos = api("GET", f"/sites/{CFG['sitio']}/domain_discovery/search", auth=False,
+                         params={"q": info["nombre"], "limit": 5})
+        for c in candidatos:
+            ruta = [p["id"] for p in api("GET", f"/categories/{c['category_id']}", auth=False)["path_from_root"]]
+            if not CFG.get("categoria_golf") or CFG["categoria_golf"] in ruta:
+                cat = c["category_id"]
+                break
+    datos = api("GET", f"/categories/{cat}", auth=False)
+    return cat, " > ".join(p["name"] for p in datos["path_from_root"][1:])
+
+
+def referencia_mercado(info):
+    """Mediana de precios de avisos parecidos (solo como referencia para el dueño)."""
+    try:
+        res = api("GET", f"/sites/{CFG['sitio']}/search", params={"q": info["nombre"], "limit": 20})
+        precios = [r["price"] for r in res.get("results", []) if r.get("price")]
+        return statistics.median(precios) if len(precios) >= 3 else None
+    except ErrorML:
+        return None
+
+
+def calcular(info, user_id):
+    cat, cat_nombre = categoria(info)
+    unidad = max(info["precio"] * CFG["multiplicador_precio"], CFG.get("precio_minimo_unidad", 0))
+    filas = []
+    for n in CFG["packs"]:
+        precio = redondear(unidad * n * (1 - CFG["descuento_pack"].get(n, 0)))
+        com = comision(precio, cat)
+        env = envio_a_cargo(precio, info, n, user_id)
+        fil = costo_filamento(info) * n
+        filas.append({"pack": n, "precio": precio, "comision": round(com), "envio": round(env),
+                      "filamento": round(fil), "ganancia": round(precio - com - env - fil)})
+    ok = [f for f in filas if f["ganancia"] >= CFG["ganancia_minima"]]
+    return {"categoria": cat, "categoria_nombre": cat_nombre, "filas": filas,
+            "elegido": ok[0] if ok else None, "referencia": referencia_mercado(info)}
+
+
+# ---------- propuesta ----------
+
+def pendientes():
+    """Productos que ya salieron en un post de Instagram y todavía no se propusieron en ML.
+
+    Lo corre el publicador de Instagram: lanza de a UNA propuesta por vez y no escribe nada (así nunca puede
+    trabar una publicación). Si hay un workflow de ML en curso, espera a la próxima corrida. Las propuestas
+    que fallaron se reintentan a las 6 horas, hasta 3 veces.
+    """
+    estado = cargar()
+    if not CFG["activo"] or not estado.get("user_id"):
+        print("Mercado Libre todavía no está conectado (o está apagado en config.yaml)")
+        return
+    en_curso = json.loads(subprocess.run(
+        ["gh", "run", "list", "--workflow", "mercadolibre.yml", "--repo", REPO, "--limit", "10", "--json", "status"],
+        capture_output=True, text=True, check=True).stdout)
+    if any(r["status"] in ("queued", "in_progress", "waiting", "pending", "requested") for r in en_curso):
+        print("Hay un workflow de Mercado Libre en curso; la próxima propuesta sale en la siguiente corrida")
+        return
+    ahora = time.time()
+    publicados = {i["producto"] for i in calendario.cargar()
+                  if i["estado"] == "publicado" and i["tipo"] != "STORY" and i.get("producto")}
+    reintentar = {s for s, p in estado["productos"].items()
+                  if p.get("estado") in ("error", "preparando") and p.get("intentos", 0) < 3
+                  and ahora - p.get("desde", 0) > 6 * 3600}
+    candidatos = sorted((publicados - set(estado["productos"])) | reintentar)
+    candidatos = [s for s in candidatos if (RAIZ / "productos" / s / "info.yaml").exists()]
+    if not candidatos:
+        print("Nada nuevo para proponer")
+        return
+    subprocess.run(["gh", "workflow", "run", "mercadolibre.yml", "--repo", REPO, "--ref", "main",
+                    "-f", "accion=proponer", "-f", f"producto={candidatos[0]}"], check=True)
+    print(f"{candidatos[0]}: propuesta en preparación ({len(candidatos) - 1} más en cola)")
+
+
+def proponer(slug):
+    from . import fotos_ml
+    estado = cargar()
+    info = info_producto(slug)
+    calc = calcular(info, estado["user_id"])
+    pack = (calc["elegido"] or calc["filas"][-1])["pack"]
+    fotos_ml.generar(slug, pack)
+    p = estado["productos"].get(slug, {})
+    p.update({"codigo": p.get("codigo") or estado["siguiente"], "estado": "propuesto" if calc["elegido"] else "no_conviene",
+              "pack": pack, "categoria": calc["categoria"], "categoria_nombre": calc["categoria_nombre"],
+              "calculo": calc["filas"], "referencia": calc["referencia"],
+              "envio_estimado": sorted(ENVIO_ESTIMADO),
+              "fecha": datetime.now(ARG).strftime("%Y-%m-%d")})
+    if p["codigo"] == estado["siguiente"]:
+        estado["siguiente"] += 1
+    estado["productos"][slug] = p
+    guardar(estado)
+    print(f"{slug}: pack x{pack} ({p['estado']})")
+
+
+def url_foto(slug, nombre, sha, carpeta="ml"):
+    return f"https://raw.githubusercontent.com/{REPO}/{sha}/productos/{slug}/fotos/{carpeta}/{nombre}"
+
+
+def avisar(slug, sha):
+    estado = cargar()
+    p = estado["productos"][slug]
+    info = info_producto(slug)
+    f = next(x for x in p["calculo"] if x["pack"] == p["pack"])
+    envio = plata(f["envio"]) if f["envio"] else "$0 (lo paga el comprador)"
+    if f["pack"] in p.get("envio_estimado", []):
+        envio += " (estimado: activá Mercado Envíos para el valor real)"
+    otras = "\n".join(f"• x{x['pack']}: {plata(x['precio'])} → te quedan {plata(x['ganancia'])}"
+                      for x in p["calculo"] if x["pack"] != p["pack"])
+    ref = f" (avisos parecidos en ML: ~{plata(p['referencia'])})" if p.get("referencia") else ""
+    if p["estado"] == "propuesto":
+        cabeza = f"🛒 <b>Mercado Libre · propuesta #{p['codigo']}</b>"
+        pie = f"Respondé <b>ML SI {p['codigo']}</b> para publicarlo o <b>ML NO {p['codigo']}</b>."
+    else:
+        cabeza = f"⚠️ <b>Mercado Libre · #{p['codigo']}: no llega a la ganancia mínima</b>"
+        pie = (f"Ni el pack más grande deja {plata(CFG['ganancia_minima'])}. Si igual lo querés publicar en x{p['pack']}, "
+               f"respondé <b>ML SI {p['codigo']}</b>; si no, <b>ML NO {p['codigo']}</b>.")
+    texto = (f"{cabeza}\n<b>{info['nombre']}</b> · pack x{p['pack']}\n"
+             f"Categoría: {p['categoria_nombre']}\n\n"
+             f"Precio: <b>{plata(f['precio'])}</b>{ref}\n"
+             f"Comisión + cargo fijo ML: −{plata(f['comision'])}\n"
+             f"Envío a tu cargo: {envio}\n"
+             f"Filamento: −{plata(f['filamento'])}\n"
+             f"<b>Te queda: {plata(f['ganancia'])} por venta</b>\n\n"
+             f"Otras opciones:\n{otras}\n\n{pie}")
+    fotos = [url_foto(slug, n, sha) for n in ("1-portada.jpg", "6-medidas.jpg", "7-colores.jpg")
+             if (RAIZ / "productos" / slug / "fotos" / "ml" / n).exists()]
+    telegram.enviar(texto, fotos)
+    p["sha_fotos"] = sha
+    guardar(estado)
+    planilla("Publicaciones", p["codigo"], fila_publicacion(slug, p, f))
+
+
+def fila_publicacion(slug, p, f):
+    return {"Código": p["codigo"], "Producto": info_producto(slug)["nombre"], "Pack": f"x{f['pack']}",
+            "Precio": f["precio"], "Comisión ML": f["comision"], "Envío a cargo": f["envio"],
+            "Filamento": f["filamento"], "Ganancia": f["ganancia"], "Categoría": p["categoria_nombre"],
+            "Estado": p["estado"], "Link": p.get("link", ""), "Actualizado": datetime.now(ARG).strftime("%Y-%m-%d %H:%M")}
+
+
+def aprobaciones():
+    """Lee 'ML SI 4, 5' / 'ML NO 4' en los mensajes de Telegram y lanza la publicación."""
+    estado, tg = cargar(), telegram.cargar()
+    por_codigo = {p.get("codigo"): s for s, p in estado["productos"].items()}
+    for m in tg["mensajes"]:
+        # acepta "ML SI 3", "SI ML 3", "si ml3", "ML NO 2, 4"
+        r = re.match(r"\s*(?:ML\s*(SI|SÍ|NO)|(SI|SÍ|NO)\s*ML)\s*([\d,\sy]+)$", m["texto"], re.I)
+        if m["procesado"] or not r:
+            continue
+        si = (r.group(1) or r.group(2)).upper() != "NO"
+        for codigo in map(int, re.findall(r"\d+", r.group(3))):
+            slug = por_codigo.get(codigo)
+            if not slug or estado["productos"][slug]["estado"] not in ("propuesto", "no_conviene", "error"):
+                continue
+            accion = "publicar" if si else "rechazar"
+            subprocess.run(["gh", "workflow", "run", "mercadolibre.yml", "--repo", REPO, "--ref", "main",
+                            "-f", f"accion={accion}", "-f", f"producto={slug}"], check=True)
+            print(f"#{codigo} {slug}: {accion}")
+        m["procesado"] = True
+    telegram.guardar(tg)
+
+
+# ---------- publicación ----------
+
+def titulo(info, n):
+    base = info.get("ml_titulo") or info["nombre"]
+    t = f"{base} Pack x{n}" if n > 1 else base
+    return (t + " Impreso 3D" if len(t) <= 49 else t)[:60]
+
+
+def descripcion(info, n, colores, con_variantes):
+    m = info.get("medidas_mm")
+    lineas = [info["nombre"].upper(), "", info.get("descripcion", "").strip(), ""]
+    if n > 1:
+        lineas.append(f"Pack de {n} unidades.")
+    lineas += [f"Material: {CONFIG['produccion']['material']} (impreso en 3D).", f"Peso por unidad: {round(info['gramos'])} g."]
+    if m and len(info.get("piezas", [])) == 1:
+        lineas.append(f"Medidas aproximadas: {m['largo']} x {m['ancho']} x {m['alto']} mm.")
+    lineas.append("")
+    if con_variantes:
+        lineas.append("Elegí el color al comprar.")
+    else:
+        lineas.append(f"Colores disponibles: {', '.join(c.capitalize() for c in colores)} y más. "
+                      "Después de la compra indicanos por mensaje el color que querés.")
+    if a_convenir(info):
+        lineas += ["", "Envío a convenir: después de la compra coordinamos por mensaje el envío (correo o moto) "
+                   "o el retiro en persona."]
+    lineas += ["", f"Se fabrica a pedido: se despacha dentro de los {CFG['dias_preparacion']} días hábiles."
+               if CFG["dias_preparacion"] else "Stock disponible: se despacha en 24 horas hábiles.",
+               f"Diseños {CONFIG_MARCA}."]
+    if info.get("autor") and info.get("licencia"):
+        lineas.append(f"Diseño original: {info['autor']} (licencia {info['licencia']}).")
+    return "\n".join(lineas)
+
+
+SIN_MERCADO_ENVIOS = "shipping.lost_me2_by_catalog"
+
+
+def validar(item):
+    """Valida un aviso. ML responde 400 aunque solo haya advertencias (ej: "User has not mode me1", que es
+    normal en cuentas con Mercado Envíos 2): esas se ignoran. Frena si hay errores o si la categoría
+    no tiene Mercado Envíos (el aviso quedaría sin envío)."""
+    try:
+        api("POST", "/items/validate", json=item)
+        return []
+    except ErrorML as e:
+        con_me2 = (item.get("shipping") or {}).get("mode") == "me2"
+        if not e.causas or any(c.get("type") != "warning" or (con_me2 and c.get("code") == SIN_MERCADO_ENVIOS)
+                               for c in e.causas):
+            if any(c.get("code") == SIN_MERCADO_ENVIOS for c in e.causas):
+                raise ErrorML(f"La categoría {item.get('category_id')} no tiene Mercado Envíos: habría que "
+                              "publicarlo en otra categoría o con envío a convenir (info.yaml > ml_envio: "
+                              "a_convenir).", e.causas) from e
+            raise
+        return [c.get("message") for c in e.causas]
+
+
+COLORES_ML = {"negro": "Negro", "blanco": "Blanco", "rojo": "Rojo", "azul": "Azul", "verde": "Verde",
+              "amarillo": "Amarillo", "cian": "Celeste", "gris": "Gris", "piel": "Beige", "marroncito": "Marrón"}
+
+
+def atributos_principales(info, n, atributos, ya):
+    """Completa las características principales (relevance 1) de la categoría que todavía no tienen valor.
+    Lo que no aplica al producto va como "No aplica" (value_id -1), que ML cuenta como completo."""
+    m = info.get("medidas_mm") or {}
+    color = (info.get("colores") or ["verde"])[0]
+    conocidos = {
+        "COLOR": COLORES_ML.get(color, color.capitalize()), "MAIN_COLOR": COLORES_ML.get(color),
+        "MATERIAL": "Plástico", "MATERIALS": "Plástico", "SHAPE": "Sin forma", "WITH_LED_LIGHT": "No",
+        "SALE_FORMAT": "Pack" if n > 1 else "Unidad", "PACKS_NUMBER": "1",
+        "UNITS_PER_PACK": str(n), "UNITS_PER_PACKAGE": str(n),
+        "LENGTH": f"{m['largo']} mm" if m.get("largo") else None,
+        "WIDTH": f"{m['ancho']} mm" if m.get("ancho") else None,
+        "HEIGHT": f"{m['alto']} mm" if m.get("alto") else None,
+        "WEIGHT": f"{round(info['gramos'])} g" if info.get("gramos") else None,
+    }
+    extra = []
+    for a in atributos.values():
+        tags = a.get("tags") or {}
+        if a.get("relevance") != 1 or a["id"] in ya or tags.get("read_only") or tags.get("hidden") \
+                or a["id"] in ("GTIN", "VALUE_ADDED_TAX", "IMPORT_DUTY"):
+            continue
+        valor = conocidos.get(a["id"])
+        if valor and a.get("values") and a.get("value_type") == "list" and \
+                valor not in [v["name"] for v in a["values"]]:
+            valor = None
+        if valor:
+            extra.append({"id": a["id"], "value_name": valor})
+        elif a.get("value_type") == "boolean":
+            extra.append({"id": a["id"], "value_name": "No"})
+        else:
+            extra.append({"id": a["id"], "value_id": "-1", "value_name": None})  # no aplica
+    return extra
+
+
+def armar_item(slug, p, info, up=False):
+    """up=True: cuentas en el modelo "productos de usuario" de ML (piden family_name y no aceptan variantes)."""
+    sha = p["sha_fotos"]
+    f = next(x for x in p["calculo"] if x["pack"] == p["pack"])
+    n, precio = p["pack"], f["precio"]
+    dir_fotos = p.get("carpeta_fotos", "ml")
+    carpeta = RAIZ / "productos" / slug / "fotos" / dir_fotos
+    fotos = sorted(x.name for x in carpeta.glob("[0-9]*-*.jpg"))
+    colores = info.get("colores_png") or info.get("colores") or []
+    atributos = {a["id"]: a for a in api("GET", f"/categories/{p['categoria']}/attributes", auth=False)}
+    con_variantes = not up and "COLOR" in atributos and atributos["COLOR"].get("tags", {}).get("allow_variations")
+    gtin = {"id": "EMPTY_GTIN_REASON", "value_id": GTIN_PACK if n > 1 else GTIN_SIN_CODIGO}
+    item = {
+        "title": titulo(info, n), "category_id": p["categoria"], "price": precio, "currency_id": "ARS",
+        "available_quantity": CFG["stock"], "buying_mode": "buy_it_now", "condition": "new",
+        "listing_type_id": CFG["tipo_publicacion"],
+        # sin "tiempo de disponibilidad" (ML lo pide para la calidad): las piezas se imprimen en menos de un día
+        "sale_terms": ([{"id": "MANUFACTURING_TIME", "value_name": f"{CFG['dias_preparacion']} días"}]
+                       if CFG["dias_preparacion"] else []),
+        "shipping": ({"mode": "not_specified", "local_pick_up": True, "free_shipping": False} if a_convenir(info) else
+                     {"mode": "me2", "local_pick_up": False, "free_shipping": precio >= CFG["umbral_envio_gratis"]}),
+        "attributes": [{"id": "BRAND", "value_name": CONFIG_MARCA}, {"id": "MODEL", "value_name": info["nombre"][:60]}],
+    }
+    if con_variantes:
+        variantes = [url_foto(slug, f"color-{c}.jpg", sha, dir_fotos) for c in colores]
+        item["pictures"] = [{"source": u} for u in [url_foto(slug, x, sha, dir_fotos) for x in fotos][:12 - len(variantes)] + variantes]
+        item["variations"] = [{"attribute_combinations": [{"id": "COLOR", "value_name": c.capitalize()}],
+                               "price": precio, "available_quantity": CFG["stock"], "picture_ids": [u],
+                               "attributes": [gtin]} for c, u in zip(colores, variantes)]
+    else:
+        item["pictures"] = [{"source": url_foto(slug, x, sha, dir_fotos)} for x in fotos][:12]
+        item["attributes"].append(gtin)
+    # medidas y peso del paquete: sin esto ML no habilita Mercado Envíos (me2) para la publicación
+    medidas, peso = dimensiones(info, n).split(",")
+    largo, ancho, alto = medidas.split("x")
+    item["attributes"] += [{"id": "SELLER_PACKAGE_LENGTH", "value_name": f"{largo} cm"},
+                           {"id": "SELLER_PACKAGE_WIDTH", "value_name": f"{ancho} cm"},
+                           {"id": "SELLER_PACKAGE_HEIGHT", "value_name": f"{alto} cm"},
+                           {"id": "SELLER_PACKAGE_WEIGHT", "value_name": f"{peso} g"}]
+    # características principales de la categoría (suben la calidad del aviso)
+    item["attributes"] += atributos_principales(info, n, atributos, {a["id"] for a in item["attributes"]})
+    # datos fiscales que ML pide en algunas categorías
+    for attr, valor in (("VALUE_ADDED_TAX", CFG.get("iva")), ("IMPORT_DUTY", CFG.get("impuesto_interno"))):
+        if attr in atributos and valor:
+            item["attributes"].append({"id": attr, "value_name": valor})
+    if up:
+        item["family_name"] = item.pop("title")
+    return item, descripcion(info, n, colores, con_variantes)
+
+
+def publicar(slug):
+    estado = cargar()
+    p = estado["productos"][slug]
+    if p.get("item_id"):
+        print(f"{slug} ya está publicado ({p['item_id']})")
+        return
+    info = info_producto(slug)
+    item, texto = armar_item(slug, p, info)
+    try:
+        try:
+            validar(item)
+        except ErrorML as e:
+            if "family_name" not in str(e):
+                raise
+            # la cuenta usa el modelo "productos de usuario": nombre de familia y sin variantes de color
+            item, texto = armar_item(slug, p, info, up=True)
+            validar(item)
+        nuevo = api("POST", "/items", json=item)
+    except ErrorML as e:
+        p["estado"] = "error"
+        guardar(estado)
+        telegram.enviar(f"⚠️ <b>Mercado Libre no aceptó #{p['codigo']} {info['nombre']}</b>\n{e}\n\n"
+                        "No se publicó nada. Lo reviso en la rutina de la semana.")
+        raise
+    api("POST", f"/items/{nuevo['id']}/description", json={"plain_text": texto})
+    p.update({"estado": "publicado", "item_id": nuevo["id"], "link": nuevo.get("permalink", ""),
+              "status_ml": nuevo.get("status")})
+    guardar(estado)
+    f = next(x for x in p["calculo"] if x["pack"] == p["pack"])
+    planilla("Publicaciones", p["codigo"], fila_publicacion(slug, p, f))
+    telegram.enviar(f"✅ <b>Publicado en Mercado Libre</b>: {item.get('title') or item.get('family_name')}\n{plata(item['price'])} · "
+                    f"te quedan ~{plata(f['ganancia'])} por venta\n<a href=\"{p['link']}\">Ver publicación</a>")
+    try:
+        mayoristas(nuevo["id"])
+        entrada(slug)
+    except Exception as e:  # el aviso principal ya quedó publicado: esto no lo frena
+        print(f"Pack de entrada de {slug}: {e}")
+
+
+def entrada(slug):
+    """Segundo aviso con un pack chico (más barato) para que sea fácil la primera compra.
+
+    Elige el pack más chico, menor al principal, que deje al menos `ganancia_minima_entrada` (config.yaml).
+    Las primeras ventas y calificaciones son las que hacen que ML muestre más los avisos."""
+    from . import fotos_ml
+    estado = cargar()
+    p = estado["productos"].get(slug) or {}
+    if p.get("estado") != "publicado" or (p.get("entrada") or {}).get("item_id"):
+        print(f"{slug}: no publicado o ya tiene pack de entrada")
+        return
+    filas = [f for f in p["calculo"] if f["pack"] < p["pack"] and f["ganancia"] >= CFG.get("ganancia_minima_entrada", 2000)]
+    if not filas:
+        print(f"{slug}: ningún pack chico deja la ganancia mínima de entrada")
+        return
+    f = filas[0]
+    n, carpeta = f["pack"], f"ml-x{f['pack']}"
+    fotos_ml.generar(slug, n, carpeta)
+    sha = subir(f"Mercado Libre: fotos del pack x{n} de {slug}", [f"productos/{slug}/fotos/{carpeta}"])
+    info = info_producto(slug)
+    item, texto = armar_item(slug, {**p, "pack": n, "sha_fotos": sha, "carpeta_fotos": carpeta}, info, up=True)
+    validar(item)
+    nuevo = api("POST", "/items", json=item)
+    api("POST", f"/items/{nuevo['id']}/description", json={"plain_text": texto})
+    try:
+        mayoristas(nuevo["id"])
+    except ErrorML as e:
+        print(f"Precios mayoristas del pack de entrada: {e}")
+    estado = cargar()
+    estado["productos"][slug]["entrada"] = {"pack": n, "item_id": nuevo["id"], "link": nuevo.get("permalink", ""),
+                                             "precio": f["precio"], "ganancia": f["ganancia"]}
+    guardar(estado)
+    telegram.enviar(f"🆕 <b>Pack de entrada en Mercado Libre</b>: {info['nombre']} x{n} a {plata(f['precio'])} "
+                    f"(te quedan ~{plata(f['ganancia'])})\n<a href=\"{nuevo.get('permalink', '')}\">Ver publicación</a>")
+
+
+def avisos_publicados(estado):
+    """(slug, etiqueta, item_id) de todos los avisos: el principal y el pack de entrada."""
+    for slug, p in estado["productos"].items():
+        if p.get("estado") == "publicado" and p.get("item_id"):
+            yield slug, f"x{p['pack']}", p["item_id"], p["pack"]
+            if (p.get("entrada") or {}).get("item_id"):
+                yield slug, f"x{p['entrada']['pack']}", p["entrada"]["item_id"], p["entrada"]["pack"]
+
+
+def calidad():
+    """Puntaje de calidad de cada aviso (el "53 · 3 objetivos" de la web de ML) y qué objetivos faltan."""
+    estado = cargar()
+    salida = []
+    for slug, etiqueta, item_id, n in avisos_publicados(estado):
+        try:
+            d = api("GET", f"/item/{item_id}/performance")
+        except ErrorML as e:
+            print(f"{slug} {etiqueta}: {e}")
+            continue
+        salida.append({"producto": slug, "pack": etiqueta, "item_id": item_id, "performance": d})
+        print(f"\n== {slug} {etiqueta} ({item_id}): puntaje {d.get('score')} nivel {d.get('level_wording') or d.get('level')}")
+        for b in d.get("buckets") or []:
+            for v in b.get("variables") or []:
+                for r in v.get("rules") or []:
+                    if r.get("status") != "COMPLETED":
+                        w = r.get("wordings") or {}
+                        print(f"  [{b.get('key')}/{v.get('key')}] {r.get('key')} {r.get('status')}: {w.get('title')} — {w.get('label')}")
+    (RAIZ / "contenido" / "ml-calidad.json").write_text(json.dumps(salida, ensure_ascii=False, indent=1) + "\n",
+                                                       encoding="utf-8")
+
+
+def mejorar_calidad():
+    """Aplica a los avisos ya publicados lo que ML pide para la calidad y se puede hacer gratis:
+    completar las características principales y sacar el tiempo de disponibilidad."""
+    estado = cargar()
+    for slug, etiqueta, item_id, n in avisos_publicados(estado):
+        it = api("GET", f"/items/{item_id}")
+        atributos = {a["id"]: a for a in api("GET", f"/categories/{it['category_id']}/attributes", auth=False)}
+        ya = {a["id"] for a in it.get("attributes") or [] if a.get("value_name") or a.get("value_id")}
+        cambios = {}
+        extra = atributos_principales(info_producto(slug), n, atributos, ya)
+        if extra:
+            cambios["attributes"] = extra
+        if any(t["id"] == "MANUFACTURING_TIME" for t in it.get("sale_terms") or []) and not CFG["dias_preparacion"]:
+            cambios["sale_terms"] = [{"id": "MANUFACTURING_TIME", "value_name": None}]
+        for clave, valor in cambios.items():
+            try:
+                api("PUT", f"/items/{item_id}", json={clave: valor})
+                print(f"{slug} {etiqueta}: {clave} OK ({[a['id'] for a in valor] if clave == 'attributes' else 'sin tiempo'})")
+            except ErrorML as e:
+                print(f"{slug} {etiqueta}: {clave} no se pudo ({e})")
+        if (RAIZ / "productos" / slug / "info.yaml").exists():
+            texto = descripcion(info_producto(slug), n, info_producto(slug).get("colores_png") or [], False)
+            try:
+                api("PUT", f"/items/{item_id}/description", json={"plain_text": texto})
+            except ErrorML as e:
+                print(f"{slug} {etiqueta}: descripción no se pudo ({e})")
+
+
+def mayoristas(item_id):
+    """Precios mayoristas ("Precio por cantidad" de ML, para compradores empresa): descuento si compran varias unidades.
+    ML lo cuenta para la calidad. Escalas en config.yaml > descuento_mayorista ({unidades: descuento})."""
+    escalas = CFG.get("descuento_mayorista") or {}
+    precios = api("GET", f"/items/{item_id}/prices").get("prices") or []
+    std = next((x for x in precios if x.get("type") == "standard"
+                and not (x.get("conditions") or {}).get("min_purchase_unit")), None)
+    if not std or not escalas:
+        return
+    lista = [{"id": std["id"], "amount": std["amount"], "currency_id": std["currency_id"],
+              "conditions": {"context_restrictions": ["channel_marketplace"]}}]
+    for unidades, desc in sorted(escalas.items()):
+        lista.append({"amount": redondear(std["amount"] * (1 - desc)), "currency_id": std["currency_id"],
+                      # B2B: en MLA el precio por cantidad para todos (B2C) es solo para cubiertas de auto
+                      "conditions": {"context_restrictions": ["channel_marketplace", "user_type_business"],
+                                     "min_purchase_unit": int(unidades)}})
+    api("POST", f"/items/{item_id}/prices/standard/quantity", json={"prices": lista})
+    return [(x["conditions"].get("min_purchase_unit", 1), x["amount"]) for x in lista]
+
+
+def mayoristas_todos():
+    for slug, etiqueta, item_id, n in avisos_publicados(cargar()):
+        try:
+            print(f"{slug} {etiqueta}: {mayoristas(item_id)}")
+        except ErrorML as e:
+            print(f"{slug} {etiqueta}: precios mayoristas no se pudo ({e})")
+
+
+def titulos():
+    """Actualiza el título de los avisos con `ml_titulo` (palabras que más se buscan) si cambió."""
+    estado = cargar()
+    for slug, etiqueta, item_id, n in avisos_publicados(estado):
+        nuevo = titulo(info_producto(slug), n)
+        actual = api("GET", f"/items/{item_id}").get("title")
+        if (actual or "").lower() == nuevo.lower():  # ML capitaliza cada palabra
+            continue
+        for campo in ("title", "family_name"):  # en los "productos de usuario" el título sale de family_name
+            try:
+                api("PUT", f"/items/{item_id}", json={campo: nuevo})
+                print(f"{slug} {etiqueta}: {actual} -> {nuevo} ({campo})")
+                break
+            except ErrorML as e:
+                error = e
+        else:
+            print(f"{slug} {etiqueta}: ML no dejó cambiar el título ({error})")
+
+
+def reporte():
+    """Visitas (7 días), preguntas y ventas de cada aviso: va al Telegram y a contenido/ml-reporte.json
+    (lo usa el resumen de los lunes). Solo números, sin datos de compradores."""
+    estado = cargar()
+    filas = []
+    for slug, etiqueta, item_id, n in avisos_publicados(estado):
+        fila = {"producto": slug, "pack": etiqueta, "item_id": item_id}
+        try:
+            it = api("GET", f"/items/{item_id}")
+            fila.update(estado_ml=it.get("status"), precio=it.get("price"), vendidos=it.get("sold_quantity", 0))
+            fila["visitas_7d"] = api("GET", f"/items/{item_id}/visits/time_window",
+                                     params={"last": 7, "unit": "day"}).get("total_visits", 0)
+            fila["preguntas"] = api("GET", "/questions/search", params={"item": item_id, "api_version": 4}).get("total", 0)
+        except ErrorML as e:
+            fila["error"] = str(e)[-120:]
+        filas.append(fila)
+    (RAIZ / "contenido" / "ml-reporte.json").write_text(json.dumps(
+        {"fecha": datetime.now(ARG).strftime("%Y-%m-%d"), "avisos": filas}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8")
+    lineas = [f"• {info_producto(f['producto'])['nombre']} {f['pack']}: {f.get('visitas_7d', '?')} visitas, "
+              f"{f.get('preguntas', '?')} preguntas, {f.get('vendidos', '?')} vendidos" for f in filas]
+    total = sum(f.get("visitas_7d") or 0 for f in filas)
+    telegram.enviar("📊 <b>Mercado Libre, últimos 7 días</b>\n" + "\n".join(lineas) + f"\n\nTotal: {total} visitas")
+
+
+# ---------- ventas, preguntas y avisos ----------
+
+def dias_habiles(desde, n):
+    d = desde
+    while n > 0:
+        d += timedelta(days=1)
+        if d.weekday() < 5:
+            n -= 1
+    return d
+
+
+def slug_de_item(estado, item_id):
+    return next((s for s, p in estado["productos"].items() if p.get("item_id") == item_id), None)
+
+
+def procesar_orden(orden_id, avisar_nueva=True):
+    estado = cargar()
+    o = api("GET", f"/orders/{orden_id}")
+    if o.get("status") not in ("paid", "confirmed"):
+        return
+    fecha = datetime.fromisoformat(o["date_created"]).astimezone(ARG)
+    limite = dias_habiles(fecha, max(CFG["dias_preparacion"], 1))
+    lineas, productos, colores = [], [], []
+    comision_total = filamento = 0
+    for it in o.get("order_items", []):
+        slug = slug_de_item(estado, it["item"]["id"])
+        p = estado["productos"].get(slug, {})
+        color = ", ".join(v.get("value_name", "") for v in it["item"].get("variation_attributes", [])
+                          if v.get("id") == "COLOR") or "a confirmar por mensaje"
+        unidades = it["quantity"] * p.get("pack", 1)
+        comision_total += (it.get("sale_fee") or 0) * it["quantity"]
+        if slug:
+            filamento += costo_filamento(info_producto(slug)) * unidades
+        productos.append(it["item"]["title"])
+        colores.append(color)
+        lineas.append(f"• {it['item']['title']} · {it['quantity']} × pack = <b>{unidades} unidades</b> · Color: <b>{color}</b>")
+    ganancia = o["total_amount"] - comision_total - filamento
+    nueva = planilla("Ventas", o["id"], {
+        "Orden": o["id"], "Fecha": fecha.strftime("%Y-%m-%d %H:%M"), "Producto": " + ".join(productos),
+        "Unidades": sum(it["quantity"] for it in o.get("order_items", [])), "Color": " / ".join(colores),
+        "Cobrado": o["total_amount"], "Comisión ML": round(comision_total), "Ganancia aprox.": round(ganancia),
+        "Comprador": (o.get("buyer") or {}).get("nickname", ""), "Despachar antes de": limite.strftime("%Y-%m-%d"),
+        "Estado": o["status"]})
+    if nueva or (nueva is None and avisar_nueva):
+        telegram.enviar("🛒 <b>¡Venta en Mercado Libre!</b>\n" + "\n".join(lineas) +
+                        f"\nCobrado: {plata(o['total_amount'])} · te quedan aprox. {plata(ganancia)}\n\n"
+                        f"<b>Imprimí y despachá antes del {limite.strftime('%d/%m')}</b>.\n"
+                        "La etiqueta está en la app de Mercado Libre > Ventas.")
+    print("orden procesada")
+
+
+def procesar_pregunta(pregunta_id, avisar_nueva=True):
+    q = api("GET", f"/questions/{pregunta_id}")
+    if q.get("status") != "UNANSWERED":
+        return
+    item = api("GET", f"/items/{q['item_id']}")
+    nueva = planilla("Preguntas", q["id"], {"Id": q["id"], "Fecha": q.get("date_created", "")[:16].replace("T", " "),
+                                           "Producto": item.get("title", ""), "Pregunta": q.get("text", ""),
+                                           "Estado": "sin responder"})
+    if nueva or (nueva is None and avisar_nueva):
+        telegram.enviar(f"❓ <b>Pregunta en Mercado Libre</b> sobre <i>{item.get('title', '')}</i>:\n"
+                        f"«{q.get('text', '')}»\n\nRespondela desde la app de Mercado Libre > Preguntas "
+                        "(responder rápido mejora tu reputación).")
+    print("pregunta procesada")
+
+
+def procesar_aviso(item_id):
+    estado = cargar()
+    slug = slug_de_item(estado, item_id)
+    if not slug:
+        return
+    item = api("GET", f"/items/{item_id}")
+    p = estado["productos"][slug]
+    if item.get("status") != p.get("status_ml"):
+        if item.get("status") in ("paused", "closed", "under_review", "inactive"):
+            motivo = ", ".join(item.get("sub_status") or []) or "sin detalle"
+            telegram.enviar(f"⚠️ <b>Tu publicación cambió a «{item['status']}»</b>: {item.get('title', '')}\n"
+                            f"Motivo: {motivo}\n<a href=\"{item.get('permalink', '')}\">Ver publicación</a>")
+        p["status_ml"] = item.get("status")
+        guardar(estado)
+    print("aviso procesado")
+
+
+def evento(topic, recurso):
+    rid = recurso.rstrip("/").split("/")[-1]
+    if topic in ("orders_v2", "orders"):
+        procesar_orden(rid)
+    elif topic == "questions":
+        procesar_pregunta(rid)
+    elif topic == "items":
+        procesar_aviso(rid)
+    elif topic in ("claims", "post_purchase"):
+        telegram.enviar("🚨 <b>Se abrió un reclamo en una venta de Mercado Libre.</b>\n"
+                        "Revisalo hoy en la app (Ventas > Reclamos): responder rápido evita que afecte tu reputación.")
+    elif topic == "messages":
+        telegram.enviar("💬 <b>Un comprador te escribió en Mercado Libre.</b> Respondelo desde la app > Ventas.")
+    print(f"evento {topic} ok")
+
+
+def revisar():
+    """Red de seguridad por si se pierde una notificación: renueva el permiso y repasa ventas y preguntas."""
+    if not CFG["activo"] or not os.environ.get("ML_REFRESH_TOKEN") or not cargar().get("user_id"):
+        print("Mercado Libre no está activo")
+        return
+    token(margen=3 * 3600)
+    estado = cargar()
+    desde = (datetime.now(ARG) - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%S.000-03:00")
+    ordenes = api("GET", "/orders/search", params={"seller": estado["user_id"], "order.status": "paid",
+                                                   "order.date_created.from": desde, "sort": "date_desc"})
+    for o in ordenes.get("results", []):
+        procesar_orden(o["id"], avisar_nueva=False)
+    preguntas = api("GET", "/questions/search", params={"seller_id": estado["user_id"], "status": "UNANSWERED",
+                                                         "api_version": 4})
+    for q in preguntas.get("questions", []):
+        procesar_pregunta(q["id"], avisar_nueva=False)
+    for p in estado["productos"].values():
+        if p.get("item_id"):
+            procesar_aviso(p["item_id"])
+    print("revisión ok")
+
+
+def copia_de_aviso(item_id):
+    """Un aviso existente de la cuenta convertido en algo que se puede volver a validar."""
+    it = api("GET", f"/items/{item_id}")
+    return {
+        "family_name": it.get("family_name") or it["title"], "category_id": it["category_id"],
+        "price": it["price"], "currency_id": it["currency_id"], "available_quantity": 1,
+        "buying_mode": it["buying_mode"], "condition": it["condition"], "listing_type_id": it["listing_type_id"],
+        "pictures": [{"source": f["secure_url"]} for f in it.get("pictures") or []][:6],
+        "attributes": [{"id": a["id"], "value_name": a["value_name"]} for a in it.get("attributes") or []
+                       if a.get("value_name")],
+        "sale_terms": [{"id": t["id"], "value_name": t["value_name"]} for t in it.get("sale_terms") or []
+                       if t.get("value_name")],
+        "shipping": {k: it["shipping"][k] for k in ("mode", "local_pick_up", "free_shipping", "logistic_type")
+                     if k in it["shipping"]},
+    }
+
+
+def probar(slug):
+    """Valida el aviso con distintas variantes, sin publicar nada (para diagnosticar errores de ML).
+
+    Compara contra un aviso que ya está activo en la cuenta (publicado a mano en la web) cambiando una cosa
+    por vez, para encontrar qué hace que ML no acepte el envío."""
+    import copy
+    estado = cargar()
+    p, info = estado["productos"][slug], info_producto(slug)
+    ids = api("GET", f"/users/{estado['user_id']}/items/search", params={"status": "active"}).get("results") or []
+    nuestro, _ = armar_item(slug, p, info, up=True)
+    pruebas = {"nuestro (up)": nuestro}
+    if ids:
+        ref = copia_de_aviso(ids[0])
+        ajenos = {"BRAND", "MODEL", "GTIN", "EMPTY_GTIN_REASON", "SELLER_PACKAGE_LENGTH", "SELLER_PACKAGE_WIDTH",
+                  "SELLER_PACKAGE_HEIGHT", "SELLER_PACKAGE_WEIGHT", "VALUE_ADDED_TAX", "IMPORT_DUTY"}
+        paquete = [a for a in ref["attributes"] if a["id"].startswith("SELLER_PACKAGE")]
+        pruebas.update({
+            f"aviso de la web ({ids[0]}) tal cual": ref,
+            "aviso de la web en nuestra categoría": {**ref, "category_id": p["categoria"],
+                                                     "attributes": [a for a in ref["attributes"] if a["id"] in ajenos]},
+            "nuestro + envío del aviso web": {**nuestro, "shipping": ref["shipping"]},
+            "nuestro + tipo del aviso web": {**nuestro, "listing_type_id": ref["listing_type_id"]},
+            "nuestro + paquete del aviso web": {**nuestro, "attributes": [a for a in nuestro["attributes"]
+                                                if not a["id"].startswith("SELLER_PACKAGE")] + paquete},
+            "nuestro + envío, tipo y paquete del web": {**nuestro, "shipping": ref["shipping"],
+                                                        "listing_type_id": ref["listing_type_id"],
+                                                        "attributes": [a for a in nuestro["attributes"]
+                                                                       if not a["id"].startswith("SELLER_PACKAGE")] + paquete},
+            "nuestro en categoría Golf > Otros (MLA1347)": {**nuestro, "category_id": "MLA1347"},
+        })
+    for nombre, item in pruebas.items():
+        try:
+            avisos = validar(copy.deepcopy(item))
+            print(f"OK    {nombre}" + (f" (advertencias: {'; '.join(avisos)})" if avisos else ""))
+        except ErrorML as e:
+            print(f"FALLA {nombre}: {str(e)[-220:]}")
+    print("envío nuestro:", nuestro["shipping"], "| paquete:", [a for a in nuestro["attributes"]
+                                                                 if a["id"].startswith("SELLER_PACKAGE")])
+
+
+def diagnostico():
+    """Datos técnicos de la cuenta (sin datos personales) para ver qué falta habilitar."""
+    estado = cargar()
+    uid = estado["user_id"]
+    yo = api("GET", "/users/me")
+    print("site_status:", yo.get("status", {}).get("site_status"),
+          "| sell:", (yo.get("status", {}).get("sell") or {}).get("allow"),
+          "| codes:", (yo.get("status", {}).get("sell") or {}).get("codes"))
+    print("shipping_modes:", yo.get("shipping_modes"))
+    try:
+        pref = api("GET", f"/users/{uid}/shipping_preferences")
+        print("modos de envío:", pref.get("modes"))
+        print("logísticas:", [(l.get("mode"), [t.get("type") for t in l.get("types", [])]) for l in pref.get("logistics", [])])
+        print("preferencias completas:", json.dumps({k: v for k, v in pref.items() if k != "logistics"}, ensure_ascii=False))
+    except ErrorML as e:
+        print("shipping_preferences:", e)
+    # avisos de la cuenta (ej: uno publicado a mano en la web): cómo quedó su envío, para copiarlo
+    ids = api("GET", f"/users/{uid}/items/search", params={"limit": 20}).get("results") or []
+    print("avisos en la cuenta:", len(ids))
+    for item_id in ids:
+        it = api("GET", f"/items/{item_id}")
+        print(f"- {item_id} [{it.get('status')} {it.get('sub_status')}] {it.get('title')} | {it.get('category_id')} {it.get('listing_type_id')}"
+              f" | ${it.get('price')} | family_name: {it.get('family_name')} | user_product: {it.get('user_product_id')}")
+        print("  shipping:", json.dumps(it.get("shipping"), ensure_ascii=False))
+        print("  tags:", it.get("tags"), "| salud:", it.get("health"), "| channels:", it.get("channels"))
+        print("  atributos:", [(a["id"], a.get("value_name")) for a in it.get("attributes") or []])
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    for c in ("pendientes", "aprobaciones", "revisar", "link", "diagnostico", "titulos", "reporte", "calidad", "mejorar_calidad", "mayoristas_todos"):
+        sub.add_parser(c)
+    for c in ("proponer", "publicar", "fallo", "rechazar", "probar", "entrada"):
+        sub.add_parser(c).add_argument("slug")
+    sb = sub.add_parser("subir")
+    sb.add_argument("mensaje")
+    sb.add_argument("rutas", nargs="*")
+    a_ = sub.add_parser("avisar")
+    a_.add_argument("slug")
+    a_.add_argument("--sha", required=True)
+    e = sub.add_parser("evento")
+    e.add_argument("topic")
+    e.add_argument("recurso")
+    sub.add_parser("autorizar").add_argument("codigo")
+    a = ap.parse_args()
+    if a.cmd == "link":
+        link_autorizacion()
+    elif a.cmd == "diagnostico":
+        diagnostico()
+    elif a.cmd in ("pendientes", "aprobaciones", "revisar", "titulos", "reporte", "calidad", "mejorar_calidad",
+                   "mayoristas_todos"):
+        globals()[a.cmd]()
+    elif a.cmd == "entrada" and a.slug == "todos":
+        for slug in [s for s, p in cargar()["productos"].items() if p.get("estado") == "publicado"]:
+            try:
+                entrada(slug)
+            except ErrorML as e:
+                print(f"{slug}: {e}")
+    elif a.cmd in ("proponer", "publicar", "fallo", "rechazar", "probar", "entrada"):
+        globals()[a.cmd](a.slug)
+    elif a.cmd == "subir":
+        print(subir(a.mensaje, a.rutas))
+    elif a.cmd == "avisar":
+        avisar(a.slug, a.sha)
+    elif a.cmd == "evento":
+        evento(a.topic, a.recurso)
+    else:
+        autorizar(a.codigo)
+
+
+if __name__ == "__main__":
+    main()

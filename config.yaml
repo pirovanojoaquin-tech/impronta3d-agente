@@ -1,0 +1,76 @@
+# Configuración general del agente de Impronta 3D
+
+marca:
+  nombre: Impronta 3D
+  usuario: "@impronta__3d"
+  color_principal: "#0048FD"   # azul del logo
+  color_claro: "#F4F2EE"       # crema de fondo
+  color_texto: "#121417"
+  emoji: "🎄"                  # va adelante de los avisos de Telegram
+  cta: "Escribinos por DM"
+
+# Hora (Argentina) de cada publicación del día.
+# El workflow de GitHub corre unos minutos después de cada horario
+# y publica todo lo que esté pendiente para hoy con hora <= ahora.
+horarios:
+  historia-1: "10:00"
+  post: "12:30"
+  historia-2: "16:00"
+  historia-3: "20:30"
+
+zona_horaria: America/Argentina/Buenos_Aires
+
+# Hashtags fijos que se agregan al final de cada post (el agente suma 3-5 específicos)
+hashtags_base:
+  - "#navidad"
+  - "#decoracion"
+  - "#impresion3d"
+  - "#impronta3d"
+
+instagram:
+  api_version: v23.0
+
+# Producción
+produccion:
+  precio_kg_filamento: 40000   # ARS
+  multiplicador: 3             # precio final = costo de filamento x 3
+  redondeo: 100                # se redondea hacia arriba a la centena
+  impresoras: ["Bambu Lab P2S (con AMS)", "Bambu Lab A2L"]
+  material: PLA
+
+# Colores de PLA en stock (nombre: color para los renders)
+colores:
+  negro: "#1E1E1E"
+  blanco: "#F2F2F2"
+  rojo: "#C62828"
+  azul: "#1E4FBF"
+  verde: "#1B7A3E"
+  cian: "#00A3C4"
+  amarillo: "#F2C200"
+  piel: "#E8C4A0"
+  marroncito: "#A0784A"
+  gris: "#8A8D91"
+
+# Mercado Libre (ver agente/mercadolibre.py). Cada producto que sale por primera vez en Instagram
+# se propone por Telegram para publicarlo en ML; se publica cuando el dueño responde "ML SI <código>".
+mercadolibre:
+  activo: false                  # se prende cuando esté conectada la app de ML de Impronta 3D
+  app_id: ""                     # App ID de la app de ML de Impronta 3D (no es secreto; la clave va en ML_CLIENT_SECRET)
+  sitio: MLA
+  tipo_publicacion: gold_special # Clásica
+  ganancia_minima: 5000          # ARS limpios por venta (después de comisión, cargo fijo, envío y filamento)
+  ganancia_minima_entrada: 2000  # pack chico de entrada (2do aviso) para conseguir las primeras ventas
+  multiplicador_precio: 2        # precio por unidad en ML = precio de Instagram x esto...
+  precio_minimo_unidad: 1500     # ...pero nunca menos que esto por unidad
+  packs: [1, 2, 3, 5, 10]        # se elige el más chico que deje la ganancia mínima
+  descuento_mayorista: {2: 0.05, 4: 0.10}   # precio por cantidad en cada aviso (llevando 2+ o 4+ unidades)
+  descuento_pack: {3: 0.05, 5: 0.10, 10: 0.15}
+  envio_estimado: 9000           # ARS, si ML no puede cotizar el envío gratis (sin Mercado Envíos)
+  umbral_envio_gratis: 33000     # desde este precio el envío gratis es obligatorio y lo paga el vendedor (verificar)
+  stock: 5                       # unidades a la venta por publicación (se imprime a pedido)
+  dias_preparacion: 0            # 0 = sin "tiempo de disponibilidad" (ML baja la calidad del aviso si lo tiene); se despacha en 24 h
+  embalaje_g: 30                 # peso extra del sobre/caja
+  iva: "21 %"                    # IVA del producto para ML (dueño monotributista: 21 %, decidido el 22/10/2026)
+  impuesto_interno: "0 %"        # impuestos internos: no aplican a estos productos
+  categoria_defecto: MLA116629   # Hogar > Adornos Navideños > Adornos para el Árbol
+  categoria_golf: null           # sin restricción: se usa la categoría que sugiere ML para el nombre
