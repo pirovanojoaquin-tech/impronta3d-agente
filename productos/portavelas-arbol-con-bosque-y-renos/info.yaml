@@ -19,5 +19,7 @@ makerworld_id: 2092407
 url: https://makerworld.com/es/models/2092407-christmas-tree-tealight-holder
 autor: 3d project
 licencia: CC0
-piezas: []
-archivo_pendiente: true
+piezas:
+- archivo: choinka+jelonki.3mf
+  telegram_file_id: BQACAgEAAxkBAAMPauji4Di473hbUG5cKoZq5qAHtjYAAkEIAAIszkhH-RT_JUXdLdk9BA
+archivo_pendiente: false
