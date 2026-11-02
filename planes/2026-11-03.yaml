@@ -1,0 +1,147 @@
+# Primera semana de Impronta 3D (3 al 9/11/2026): un producto navideño por día, estilo catálogo.
+dias:
+  - fecha: 2026-11-03
+    post:
+      producto: adorno-de-arbol-con-nombre
+      caption: |
+        Este año, que cada uno tenga su adorno en el arbolito 🎄
+
+        Lo hacemos con el nombre que quieras, un copo calado y el año. Ideal para regalar, para los chicos o para tener uno por cada integrante de la familia.
+
+        Contanos el nombre y el color, y te lo preparamos ✨
+        #adornonavideño #navidad2026 #regalopersonalizado #arbolitodenavidad
+      slides:
+        - {tipo: "hero", titulo: "Tu nombre en el arbolito", subtitulo: "Adorno de árbol personalizado", etiqueta: "Nuevo", sellos: ["Con tu nombre", "10 colores", "A pedido"]}
+        - {tipo: "pasos", titulo: "Así lo pedís", pasos: ["Elegí el nombre (y el año)", "Elegí el color", "Lo imprimimos y listo para colgar"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el adorno con tu nombre", png: "blanco.png"}
+    historias:
+      - {tipo: "hero", producto: "adorno-de-arbol-con-nombre", etiqueta: "Nuevo", titulo: "Con tu nombre", subtitulo: "Adorno para el árbol"}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Uno para cada uno", texto: "Un adorno con el nombre de cada integrante de la familia: el arbolito queda único y se guarda de recuerdo año tras año."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Hecho a pedido", texto: "Cada pieza se imprime en 3D para vos, en el color que elijas. Escribinos por DM."}
+
+  - fecha: 2026-11-04
+    post:
+      producto: arbolito-de-mesa-en-capas
+      caption: |
+        Un toque de Navidad para la mesa, el escritorio o la biblioteca 🌲
+
+        Este arbolito está hecho de capas en forma de estrella que van girando hacia arriba, con su estrella en la punta. Diseño exclusivo Impronta 3D.
+
+        Elegí tu color y escribinos por DM ✨
+        #decoracionnavideña #centrodemesa #navidad #diseñopropio
+      slides:
+        - {tipo: "hero", titulo: "Navidad en tu escritorio", subtitulo: "Arbolito de mesa en capas", etiqueta: "Nuevo", sellos: ["Diseño propio", "10 colores", "A pedido"]}
+        - {tipo: "pasos", titulo: "Ideas para usarlo", pasos: ["Centro de mesa navideño", "Adorno de escritorio o repisa", "Regalo chiquito para el amigo invisible"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el arbolito de mesa", png: "blanco.png"}
+    historias:
+      - {tipo: "hero", producto: "arbolito-de-mesa-en-capas", etiqueta: "Nuevo", titulo: "Capa por capa", subtitulo: "Arbolito de mesa"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Mesa de Navidad", texto: "Combiná dos o tres colores en la mesa: por ejemplo blanco y dorado, o rojo y verde clásico. Menos es más."}
+      - {tipo: "texto", etiqueta: "Impresión 3D", titulo: "¿Cómo se hace?", texto: "La impresora va armando la pieza capa por capa con plástico PLA. Por eso podemos hacerla en el color que quieras."}
+
+  - fecha: 2026-11-05
+    post:
+      producto: estrella-para-la-punta-del-arbol
+      caption: |
+        Ningún arbolito está completo sin su estrella ⭐
+
+        Estrella facetada de 12 cm con un tubo atrás que se encastra en la punta del árbol y queda firme. Con las luces, las facetas brillan. Diseño exclusivo Impronta 3D.
+
+        Dorada, blanca o roja: vos elegís ✨
+        #estrellanavideña #arbolitodenavidad #navidad2026 #diseñopropio
+      slides:
+        - {tipo: "hero", titulo: "La estrella de tu arbolito", subtitulo: "Estrella para la punta del árbol", etiqueta: "Nuevo", png: "detalle.png", sellos: ["Diseño propio", "12 cm", "A pedido"]}
+        - {tipo: "pasos", titulo: "Cómo se pone", pasos: ["Metés el tubo en la punta del árbol", "Queda firme, sin cintas", "Prendés las luces y brilla"], tono: "crema", png: "detalle.png"}
+        - {tipo: "colores"}
+        - {tipo: "cta_producto", nombre_corto: "la estrella para tu árbol", png: "detalle.png"}
+    historias:
+      - {tipo: "hero", producto: "estrella-para-la-punta-del-arbol", png: "detalle.png", etiqueta: "Nuevo", titulo: "Brilla arriba de todo", subtitulo: "Estrella para el árbol"}
+      - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "8 de diciembre", texto: "En Argentina el arbolito se arma tradicionalmente el 8 de diciembre. Pedí tus adornos con tiempo: se hacen a pedido."}
+      - {tipo: "texto", etiqueta: "Personalizados", titulo: "¿Tenés una idea?", texto: "Hacemos adornos a medida: con nombres, fechas o el diseño que imagines. Escribinos por DM."}
+
+  - fecha: 2026-11-06
+    post:
+      producto: copo-de-nieve-colgante
+      caption: |
+        Nieve en Navidad… aunque haga 35 grados ❄️
+
+        Copos de 8 cm para colgar en el arbolito, en la ventana o armar una guirnalda. Livianos, en blanco, celeste, dorado o el color que quieras. Diseño exclusivo Impronta 3D.
+
+        Pedí tu pack por DM ✨
+        #coposdenieve #decoracionnavideña #navidad #diseñopropio
+      slides:
+        - {tipo: "hero", titulo: "Nieve en tu arbolito", subtitulo: "Copo de nieve colgante", etiqueta: "Nuevo", sellos: ["Diseño propio", "8 cm", "En pack"]}
+        - {tipo: "pasos", titulo: "Ideas para usarlos", pasos: ["Colgados en el arbolito", "En la ventana con hilo", "Una guirnalda con varios"], tono: "verde", png: "blanco.png"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "tus copos de nieve", png: "blanco.png"}
+    historias:
+      - {tipo: "hero", producto: "copo-de-nieve-colgante", etiqueta: "Nuevo", titulo: "Copos para colgar", subtitulo: "Blancos, celestes o dorados"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Guirnalda de copos", texto: "Pasá un hilo blanco por 6 o 12 copos y colgalos en la ventana o la puerta: queda una cortina de nieve."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Hecho a pedido", texto: "Elegís cantidad y colores y los imprimimos para vos. Escribinos por DM."}
+
+  - fecha: 2026-11-07
+    post:
+      producto: portavelas-arbol-con-bosque-y-renos
+      caption: |
+        Prendé una velita y mirá cómo se ilumina el bosque 🕯️✨
+
+        Portavelas con forma de árbol y una escena calada de bosque con renos, estrellas y luna. Con una velita de té (o mejor, una LED) adentro, toda la escena brilla.
+
+        Ideal para la mesa de Nochebuena. Pedilo por DM 🎄
+        #portavelas #decoracionnavideña #nochebuena #navidad2026
+      slides:
+        - {tipo: "hero", titulo: "Un bosque que se ilumina", subtitulo: "Portavelas árbol con renos", etiqueta: "Nuevo", png: "detalle.png"}
+        - {tipo: "pasos", titulo: "Cómo se usa", pasos: ["Poné una velita de té o LED adentro", "Apagá la luz del ambiente", "Mirá cómo brilla el bosque"], tono: "crema", png: "detalle.png"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el portavelas de renos", png: "detalle.png"}
+    historias:
+      - {tipo: "hero", producto: "portavelas-arbol-con-bosque-y-renos", png: "detalle.png", etiqueta: "Nuevo", titulo: "Luz de Navidad", subtitulo: "Portavelas con renos"}
+      - {tipo: "texto", etiqueta: "Tip", titulo: "Mejor con LED", texto: "Usá velitas LED a pilas: iluminan igual, no se calientan y son más seguras en la mesa y con chicos."}
+      - {tipo: "texto", etiqueta: "Personalizados", titulo: "¿Lo querés distinto?", texto: "Recreamos productos y diseñamos a tu medida: otros tamaños, colores o tu propio diseño. Escribinos por DM."}
+
+  - fecha: 2026-11-08
+    post:
+      producto: arbol-de-navidad-espiral
+      caption: |
+        Un arbolito distinto, de líneas modernas 🌲
+
+        Este árbol espiral con estrella en la punta queda genial en la mesa, una repisa o como centro de mesa. Verde clásico, blanco nieve o dorado para darle brillo.
+
+        Elegí tu color y escribinos por DM ✨
+        #arbolitodenavidad #decoracionnavideña #navidadmoderna #navidad2026
+      slides:
+        - {tipo: "hero", titulo: "Un arbolito moderno", subtitulo: "Árbol de Navidad espiral", etiqueta: "Nuevo"}
+        - {tipo: "pasos", titulo: "Dónde ponerlo", pasos: ["Centro de mesa navideño", "Repisa o biblioteca", "Escritorio de la oficina"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el árbol espiral", png: "blanco.png"}
+    historias:
+      - {tipo: "hero", producto: "arbol-de-navidad-espiral", etiqueta: "Nuevo", titulo: "Espiral navideña", subtitulo: "Árbol moderno"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Un rincón navideño", texto: "Juntá dos o tres arbolitos de distintos tamaños con unas luces cálidas: con poco armás un rincón de Navidad."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Pedí con tiempo", texto: "Todo se hace a pedido. Para llegar tranquilo a las fiestas, encargá tus adornos desde ahora por DM."}
+
+  - fecha: 2026-11-09
+    post:
+      producto: esfera-navidena-espiral-encastrable
+      caption: |
+        La esfera que todos van a preguntar dónde la compraste 🔴⚪
+
+        Dos espirales que encastran una dentro de la otra, sin pegamento. Combiná dos colores (rojo y blanco, verde y dorado…) y queda una esfera grande y llamativa para el árbol.
+
+        Escribinos por DM y elegí tu combinación ✨
+        #esferanavideña #adornonavideño #arbolitodenavidad #navidad2026
+      slides:
+        - {tipo: "hero", titulo: "Dos colores, una esfera", subtitulo: "Esfera navideña espiral", etiqueta: "Nuevo", sellos: ["Encastrable", "Sin pegamento", "A pedido"]}
+        - {tipo: "pasos", titulo: "Cómo se arma", pasos: ["Elegí dos colores", "Encastrá una espiral en la otra", "Colgala en el arbolito"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "la esfera espiral", png: "blanco.png"}
+    historias:
+      - {tipo: "hero", producto: "esfera-navidena-espiral-encastrable", etiqueta: "Nuevo", titulo: "Combiná colores", subtitulo: "Esfera espiral"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Paleta del árbol", texto: "Elegí 2 o 3 colores para todo el árbol y repetilos en esferas, estrella y cintas: queda prolijo y elegante."}
+      - {tipo: "texto", etiqueta: "Personalizados", titulo: "Lo hacemos a tu medida", texto: "¿Otro tamaño, tu nombre o un diseño especial? Recreamos productos y diseñamos a tu medida. Escribinos por DM."}
