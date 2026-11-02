@@ -16,7 +16,8 @@ function estrella(r, k) = [for (i = [0 : 9]) let(a = 90 + i * 36, rr = (i % 2 ==
 difference() {
     union() {
         // estrella facetada: cada triángulo sube hacia el centro
-        hull() { linear_extrude(1.2) polygon(estrella(radio, interior)); translate([0, 0, alto - 0.01]) cylinder(r = 0.5, h = 0.01); }
+        linear_extrude(1.2) polygon(estrella(radio, interior));
+        translate([0, 0, 1.2]) linear_extrude(alto - 1.2, scale = 0.02) polygon(estrella(radio, interior));
         // tubo hacia abajo, acostado sobre la cama
         translate([0, -radio * interior * 0.8, 0]) rotate([90, 0, 0])
             translate([0, tubo_ext / 2, 0]) difference() {
