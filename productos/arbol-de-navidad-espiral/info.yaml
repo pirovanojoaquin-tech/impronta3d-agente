@@ -1,0 +1,24 @@
+nombre: Árbol de Navidad espiral
+descripcion: Arbolito espiral con estrella en la punta, de líneas modernas. Queda
+  lindo en la mesa, una repisa o como centro de mesa navideño.
+personalizable: Color a elección (10 colores de PLA)
+precio: 7400
+gramos: 60.9
+tiempo: 2 h 47 min
+colores:
+- verde
+- blanco
+- amarillo
+destacado: false
+notas: null
+origen: printables
+diseno: null
+inspiracion: null
+printables_id: '655419'
+url: https://www.printables.com/model/655419-ultimate-vase-mode-christmas-tree-collection
+autor: Triple G Workshop
+licencia: CC-BY-SA
+piezas:
+- archivo: christmas tree with star vase mode.stl
+  printables_file_id: '2761418'
+  gramos: 60.9

@@ -1,0 +1,24 @@
+nombre: Copo de nieve colgante
+descripcion: 'Copo de nieve de 8 cm para colgar en el árbol, la ventana o armar una
+  guirnalda. Liviano y barato: ideal para vender por pack. Diseño propio.'
+personalizable: Color a elección (10 colores de PLA)
+precio: 700
+gramos: 5.2
+tiempo: 15 min
+colores:
+- blanco
+- cian
+- amarillo
+destacado: false
+notas: null
+origen: propio
+diseno: copo-de-nieve-colgante
+inspiracion: Los copos de nieve de papel calado. Diseño propio.
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: modelo.stl
+  ruta: disenos/copo-de-nieve-colgante/modelo.stl
+  gramos: 5.2

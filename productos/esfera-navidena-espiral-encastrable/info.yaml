@@ -1,0 +1,27 @@
+nombre: Esfera navideña espiral encastrable
+descripcion: 'Esfera grande para el árbol hecha de dos espirales que encastran una
+  dentro de la otra, sin pegamento. Combina dos colores (ej: rojo y blanco).'
+personalizable: Color a elección (10 colores de PLA)
+precio: 14600
+gramos: 121.0
+tiempo: 4 h 36 min
+colores:
+- rojo
+- blanco
+- verde
+destacado: false
+notas: null
+origen: printables
+diseno: null
+inspiracion: null
+printables_id: '1507468'
+url: https://www.printables.com/model/1507468-interlocking-spiral-christmas-ornament-no-supports
+autor: Chad Birchem
+licencia: CC-BY
+piezas:
+- archivo: outside-snappable-ornament-large.stl
+  printables_file_id: '6342773'
+  gramos: 61.7
+- archivo: inside-snappable-ornament-large.stl
+  printables_file_id: '6342772'
+  gramos: 59.3

@@ -1,0 +1,24 @@
+nombre: Estrella para la punta del árbol
+descripcion: Estrella facetada de 12 cm con un tubo atrás que se encastra en la punta
+  del arbolito. Diseño propio.
+personalizable: Color a elección (10 colores de PLA)
+precio: 3200
+gramos: 26.1
+tiempo: 49 min
+colores:
+- amarillo
+- blanco
+- rojo
+destacado: false
+notas: null
+origen: propio
+diseno: estrella-punta-de-arbol
+inspiracion: Las estrellas clásicas de punta de árbol. Diseño propio, geométrico.
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: modelo.stl
+  ruta: disenos/estrella-punta-de-arbol/modelo.stl
+  gramos: 26.1

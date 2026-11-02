@@ -1,0 +1,25 @@
+nombre: Arbolito de mesa en capas
+descripcion: Árbol de 11 cm hecho de capas estrelladas que giran hacia arriba, con
+  estrella en la punta. Centro de mesa, adorno de escritorio o regalo chiquito. Diseño
+  propio.
+personalizable: Color a elección (10 colores de PLA)
+precio: 8900
+gramos: 74.2
+tiempo: 2 h 45 min
+colores:
+- verde
+- blanco
+- rojo
+destacado: false
+notas: null
+origen: propio
+diseno: arbolito-de-mesa-en-capas
+inspiracion: Los árboles de Navidad geométricos de escritorio. Diseño propio.
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: modelo.stl
+  ruta: disenos/arbolito-de-mesa-en-capas/modelo.stl
+  gramos: 74.2
