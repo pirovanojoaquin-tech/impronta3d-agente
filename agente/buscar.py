@@ -50,7 +50,7 @@ MW_LICENCIAS_OK = {"BY", "BY-SA", "CC0"}
 NO_GOLF = re.compile(r"\b(gun|rifle|pistol|weapon|knife|nsfw|nude|sexy|grinch|star ?wars|stormtrooper|x-?wing|"
                      r"millennium falcon|mandalorian|yoda|darth|disney|mickey|minnie|frozen|elsa|olaf|marvel|"
                      r"spider-?man|batman|pokemon|pikachu|harry potter|hogwarts|mario|zelda|minecraft|"
-                     r"hello kitty|snoopy|stitch|baby yoda|grogu)\b", re.I)
+                     r"hello kitty|snoopy|stitch|baby yoda|grogu|deadpool|jack skellington|nightmare before|lego|bluey|paw patrol|sonic)\b", re.I)
 SI_GOLF = re.compile(r"christmas|xmas|navidad|ornament|santa|reindeer|snow|nativity|advent|gingerbread|noel|elf|"
                      r"wreath|holiday|decor|vase|planter|candle|lamp|lantern|wall art|lithophane|coaster|frame|"
                      r"bookend|key holder|organizer|shelf", re.I)
