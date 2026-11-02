@@ -3,8 +3,8 @@ descripcion: 'Portavelas con forma de árbol y un bosque calado con renos, estre
   y luna: con una velita de té (o LED) adentro se ilumina toda la escena.'
 personalizable: Color a elección (10 colores de PLA)
 precio: 9400
-gramos: 78.0
-tiempo: 2 h 27 min
+gramos: 102.4
+tiempo: 3 h 18 min
 colores:
 - blanco
 - verde
@@ -22,4 +22,17 @@ licencia: CC0
 piezas:
 - archivo: choinka+jelonki.3mf
   telegram_file_id: BQACAgEAAxkBAAMPauji4Di473hbUG5cKoZq5qAHtjYAAkEIAAIszkhH-RT_JUXdLdk9BA
+  gramos: 102.4
 archivo_pendiente: false
+gramos_verificados: true
+medidas_mm:
+  largo: 222
+  ancho: 174
+  alto: 43
+colores_png:
+- blanco
+- verde
+- amarillo
+- negro
+- rojo
+- azul
