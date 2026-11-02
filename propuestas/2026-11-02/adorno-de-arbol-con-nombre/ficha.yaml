@@ -1,0 +1,36 @@
+nombre: Adorno de árbol con nombre
+descripcion: Esfera plana para el arbolito con el nombre en relieve, un copo calado
+  y el año. Se hace con el nombre que quieras; ideal para regalar o para tener uno
+  por cada integrante de la familia.
+inspiracion: Los adornos personalizados con nombre, un clásico de regalo navideño.
+  Diseño propio.
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: adorno-con-nombre
+piezas:
+- archivo: modelo.stl
+  ruta: disenos/adorno-con-nombre/modelo.stl
+  gramos: 14.0
+gramos: 14.0
+tiempo_min: 27
+tiempo: 27 min
+costo_filamento: 558
+precio: 1700
+material: PLA
+colores_render:
+- rojo
+- blanco
+- verde
+fotos:
+- archivo: 1.jpg
+  color: rojo
+- archivo: 2.jpg
+  color: blanco
+- archivo: 3.jpg
+  color: verde
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

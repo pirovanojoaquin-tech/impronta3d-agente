@@ -1,0 +1,35 @@
+nombre: Esfera navideña espiral encastrable
+nombre_original: Interlocking Spiral Christmas Ornament - No Supports!
+descripcion: Prints fast, no supports, no filament swaps!
+origen: printables
+printables_id: '1507468'
+url: https://www.printables.com/model/1507468-interlocking-spiral-christmas-ornament-no-supports
+autor: Chad Birchem
+licencia: CC-BY
+licencia_nombre: Creative Commons — Attribution
+piezas:
+- archivo: outside-snappable-ornament-large.stl
+  printables_file_id: '6342773'
+  gramos: 61.7
+- archivo: inside-snappable-ornament-large.stl
+  printables_file_id: '6342772'
+  gramos: 59.3
+gramos: 121.0
+tiempo_min: 276
+tiempo: 4 h 36 min
+costo_filamento: 4840
+precio: 14600
+material: PLA
+colores_render:
+- rojo
+- blanco
+- verde
+fotos:
+- archivo: 1.jpg
+  color: rojo
+- archivo: 2.jpg
+  color: blanco
+- archivo: 3.jpg
+  color: verde
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

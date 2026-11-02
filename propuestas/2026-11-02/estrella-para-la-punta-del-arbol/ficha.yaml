@@ -1,0 +1,34 @@
+nombre: Estrella para la punta del árbol
+descripcion: Estrella de 5 puntas facetada (12 cm) con un tubo atrás que se encastra
+  en la punta del arbolito. Queda firme y brilla con las luces.
+inspiracion: Las estrellas clásicas de punta de árbol. Diseño propio, geométrico.
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: estrella-punta-de-arbol
+piezas:
+- archivo: modelo.stl
+  ruta: disenos/estrella-punta-de-arbol/modelo.stl
+  gramos: 38.0
+gramos: 38.0
+tiempo_min: 70
+tiempo: 1 h 10 min
+costo_filamento: 1519
+precio: 4600
+material: PLA
+colores_render:
+- amarillo
+- blanco
+- rojo
+fotos:
+- archivo: 1.jpg
+  color: amarillo
+- archivo: 2.jpg
+  color: blanco
+- archivo: 3.jpg
+  color: rojo
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

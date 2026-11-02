@@ -1,0 +1,33 @@
+nombre: Árbol de Navidad espiral
+nombre_original: ⍋ Ultimate Vase Mode Christmas Tree Collection ⍋
+descripcion: All my most popular xmas trees in one place! Small updates where needed.
+  Scale to desired size! Merry Christmas!!
+origen: printables
+printables_id: '655419'
+url: https://www.printables.com/model/655419-ultimate-vase-mode-christmas-tree-collection
+autor: Triple G Workshop
+licencia: CC-BY-SA
+licencia_nombre: Creative Commons — Attribution  — Share Alike
+piezas:
+- archivo: christmas tree with star vase mode.stl
+  printables_file_id: '2761418'
+  gramos: 60.9
+gramos: 60.9
+tiempo_min: 167
+tiempo: 2 h 47 min
+costo_filamento: 2434
+precio: 7400
+material: PLA
+colores_render:
+- verde
+- blanco
+- amarillo
+fotos:
+- archivo: 1.jpg
+  color: verde
+- archivo: 2.jpg
+  color: blanco
+- archivo: 3.jpg
+  color: amarillo
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
