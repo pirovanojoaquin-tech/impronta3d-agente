@@ -24,3 +24,14 @@ piezas:
 - archivo: modelo.stl
   ruta: disenos/adorno-con-nombre/modelo.stl
   gramos: 14.0
+medidas_mm:
+  largo: 84
+  ancho: 76
+  alto: 6
+colores_png:
+- rojo
+- blanco
+- verde
+- negro
+- azul
+- amarillo

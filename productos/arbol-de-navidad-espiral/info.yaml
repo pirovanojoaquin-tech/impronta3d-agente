@@ -22,3 +22,14 @@ piezas:
 - archivo: christmas tree with star vase mode.stl
   printables_file_id: '2761418'
   gramos: 60.9
+medidas_mm:
+  largo: 90
+  ancho: 88
+  alto: 112
+colores_png:
+- verde
+- blanco
+- amarillo
+- negro
+- rojo
+- azul

@@ -23,3 +23,14 @@ piezas:
 - archivo: modelo.stl
   ruta: disenos/arbolito-de-mesa-en-capas/modelo.stl
   gramos: 74.2
+medidas_mm:
+  largo: 116
+  ancho: 116
+  alto: 110
+colores_png:
+- verde
+- blanco
+- rojo
+- negro
+- azul
+- amarillo

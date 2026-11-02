@@ -22,3 +22,14 @@ piezas:
 - archivo: modelo.stl
   ruta: disenos/copo-de-nieve-colgante/modelo.stl
   gramos: 5.2
+medidas_mm:
+  largo: 82
+  ancho: 72
+  alto: 3
+colores_png:
+- blanco
+- cian
+- amarillo
+- negro
+- rojo
+- azul

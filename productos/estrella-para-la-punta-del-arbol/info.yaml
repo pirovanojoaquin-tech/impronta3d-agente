@@ -22,3 +22,14 @@ piezas:
 - archivo: modelo.stl
   ruta: disenos/estrella-punta-de-arbol/modelo.stl
   gramos: 26.1
+medidas_mm:
+  largo: 139
+  ancho: 118
+  alto: 30
+colores_png:
+- amarillo
+- blanco
+- rojo
+- negro
+- azul
+- verde

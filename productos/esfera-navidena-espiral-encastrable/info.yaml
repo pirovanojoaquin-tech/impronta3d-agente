@@ -25,3 +25,14 @@ piezas:
 - archivo: inside-snappable-ornament-large.stl
   printables_file_id: '6342772'
   gramos: 59.3
+medidas_mm:
+  largo: 75
+  ancho: 75
+  alto: 67
+colores_png:
+- rojo
+- blanco
+- verde
+- negro
+- azul
+- amarillo
