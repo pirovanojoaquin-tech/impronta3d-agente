@@ -14,7 +14,8 @@ import yaml
 from .calendario import RAIZ
 
 REPO = "pirovanojoaquin-tech/impronta3d-agente"
-VERDE, CREMA = "#016040", "#F4F1EA"
+_MARCA = yaml.safe_load((RAIZ / "config.yaml").read_text(encoding="utf-8"))["marca"]
+VERDE, CREMA = _MARCA["color_principal"], _MARCA["color_claro"]
 
 
 def miles(n):
