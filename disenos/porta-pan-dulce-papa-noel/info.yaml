@@ -1,0 +1,8 @@
+nombre: Porta pan dulce Papá Noel
+descripcion: Metés el pan dulce adentro y queda vestido de Papá Noel, con cinturón, hebilla dorada, botas y borde de piel. El centro de mesa de Nochebuena y el regalo empresarial ideal (pan dulce + porta). Entra un pan dulce de 500 g o un panettone de hasta 16 cm.
+inspiracion: Los porta panettone de Papá Noel que se venden en Europa para regalar en las fiestas. Diseño propio en 4 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: negro}
+  - {archivo: acento2.scad, color: dorado}
+  - {archivo: acento3.scad, color: blanco}

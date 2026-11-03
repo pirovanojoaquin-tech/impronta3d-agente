@@ -50,6 +50,8 @@ colores:
   piel: "#E8C4A0"
   marroncito: "#A0784A"
   gris: "#8A8D91"
+  crema: "#EDE3CF"
+  dorado: "#C9A227"
 
 # Mercado Libre (ver agente/mercadolibre.py). Cada producto que sale por primera vez en Instagram
 # se propone por Telegram para publicarlo en ML; se publica cuando el dueño responde "ML SI <código>".

@@ -1,0 +1,6 @@
+nombre: Arbolito tejido
+descripcion: Arbolito de 20 cm con textura de punto, como si fuera de lana tejida, y estrella dorada en la punta. Se ve cálido y artesanal en la mesa, la repisa o al lado del pesebre. Queda hermoso en trío de alturas.
+inspiracion: La tendencia "cozy" de decoración navideña tejida (renos, gnomos y árboles con textura de sweater). Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: dorado}

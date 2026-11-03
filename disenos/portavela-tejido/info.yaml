@@ -1,0 +1,5 @@
+nombre: Portavela tejido
+descripcion: Portavela de 9 cm con textura de punto y puño elastizado, como un sweater. Lleva una vela LED (o de té dentro de un vasito de vidrio) y da una luz cálida en la mesa de Navidad. Se vende de a uno o en trío de colores.
+inspiracion: La tendencia "cozy" de decoración navideña tejida. Diseño propio.
+piezas:
+  - cuerpo.scad
