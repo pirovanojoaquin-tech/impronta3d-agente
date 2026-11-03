@@ -1,0 +1,40 @@
+nombre: Galletita de jengibre con nombre
+descripcion: Adorno de 12 cm en forma de galletita de jengibre con "glaseado" blanco
+  (borde, carita y botones) y el nombre que quieras. El adorno personalizado que más
+  se regala esta temporada.
+inspiracion: Los adornos de jengibre personalizados, tendencia fuerte de las fiestas
+  2025-2026. Diseño propio en 2 colores.
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: galletita-de-jengibre-con-nombre
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/galletita-de-jengibre-con-nombre/cuerpo.stl
+  gramos: 14.0
+- archivo: acento.stl
+  ruta: disenos/galletita-de-jengibre-con-nombre/acento.stl
+  gramos: 1.0
+  color: blanco
+gramos: 15.0
+tiempo_min: 27
+tiempo: 27 min
+costo_filamento: 602
+precio: 1900
+material: PLA
+colores_render:
+- marroncito
+- piel
+- rojo
+fotos:
+- archivo: 1.jpg
+  color: marroncito
+- archivo: 2.jpg
+  color: piel
+- archivo: 3.jpg
+  color: rojo
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

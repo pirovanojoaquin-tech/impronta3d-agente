@@ -1,0 +1,32 @@
+nombre: Pueblito navideño iluminado
+nombre_original: Christmas snow ball town
+descripcion: Christmas snowball town holes modelled to allow micro led string lights
+  to be inserted into the house of the town, space in the base of the model for a
+  battery pack
+origen: makerworld
+printables_id: null
+makerworld_id: 28234
+url: https://makerworld.com/es/models/28234-christmas-snow-ball-town
+autor: davidkelly021
+licencia: BY
+licencia_nombre: BY
+piezas: []
+archivo_pendiente: true
+gramos: 275.0
+tiempo_min: 482
+tiempo: 8 h 02 min
+costo_filamento: 11000
+precio: 33000
+material: PLA
+colores_render:
+- blanco
+- azul
+- amarillo
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: azul
+estimacion: 'Gramos y tiempo del perfil publicado en MakerWorld (0.2mm layer, 2 walls,
+  15% infill). Las fotos son del autor: si se aprueba, se rehacen con nuestros renders
+  cuando llegue el archivo.'

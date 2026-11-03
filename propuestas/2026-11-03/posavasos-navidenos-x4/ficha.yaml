@@ -1,0 +1,39 @@
+nombre: Posavasos navideños (x4)
+descripcion: Set de 4 posavasos de 9,5 cm con dibujo incrustado al ras (copo, arbolito,
+  estrella y regalo). Lindos para la mesa navideña y para regalar.
+inspiracion: Los sets de posavasos temáticos. Diseño propio en 2 colores (dibujo incrustado,
+  no se despega).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: posavasos-navidenos-x4
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/posavasos-navidenos-x4/cuerpo.stl
+  gramos: 81.7
+- archivo: acento.stl
+  ruta: disenos/posavasos-navidenos-x4/acento.stl
+  gramos: 6.3
+  color: blanco
+gramos: 88.0
+tiempo_min: 155
+tiempo: 2 h 35 min
+costo_filamento: 3520
+precio: 10600
+material: PLA
+colores_render:
+- verde
+- rojo
+- azul
+fotos:
+- archivo: 1.jpg
+  color: verde
+- archivo: 2.jpg
+  color: rojo
+- archivo: 3.jpg
+  color: azul
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

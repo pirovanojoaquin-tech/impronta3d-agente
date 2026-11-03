@@ -1,0 +1,39 @@
+nombre: Cartel "Feliz Navidad" de mesa
+descripcion: Letras de 24 cm paradas sobre una base con dos arbolitos. Para la mesa
+  de Nochebuena, una repisa o la entrada de casa.
+inspiracion: Los carteles de letras para decorar en las fiestas. Diseño propio en
+  2 colores.
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: cartel-feliz-navidad
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/cartel-feliz-navidad/cuerpo.stl
+  gramos: 25.5
+- archivo: acento.stl
+  ruta: disenos/cartel-feliz-navidad/acento.stl
+  gramos: 11.8
+  color: rojo
+gramos: 37.3
+tiempo_min: 83
+tiempo: 1 h 23 min
+costo_filamento: 1492
+precio: 4500
+material: PLA
+colores_render:
+- verde
+- blanco
+- negro
+fotos:
+- archivo: 1.jpg
+  color: verde
+- archivo: 2.jpg
+  color: blanco
+- archivo: 3.jpg
+  color: negro
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

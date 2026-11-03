@@ -1,0 +1,33 @@
+nombre: Aldea navideña
+nombre_original: Christmas Village
+descripcion: https://youtu.be/OCQRINvCvgU Small version that fits in your hand can
+  be found…
+origen: printables
+printables_id: '636423'
+url: https://www.printables.com/model/636423-christmas-village
+autor: Medelis3D
+licencia: CC-BY-SA
+licencia_nombre: Creative Commons — Attribution  — Share Alike
+piezas:
+- archivo: Christmas_Village.stl
+  printables_file_id: '2683686'
+  gramos: 213.1
+gramos: 213.1
+tiempo_min: 585
+tiempo: 9 h 45 min
+costo_filamento: 8524
+precio: 25600
+material: PLA
+colores_render:
+- blanco
+- gris
+- rojo
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: gris
+- archivo: 3.jpg
+  color: rojo
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
