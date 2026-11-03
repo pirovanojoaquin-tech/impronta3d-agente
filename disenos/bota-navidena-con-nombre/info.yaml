@@ -1,0 +1,6 @@
+nombre: Bota navideña con nombre
+descripcion: Bota de 9 cm para colgar en el árbol, con puño blanco "de peluche", copo y el nombre de cada uno. Ideal para tener una por integrante de la familia.
+inspiracion: Las botas navideñas personalizadas. Diseño propio en 2 colores.
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: blanco}

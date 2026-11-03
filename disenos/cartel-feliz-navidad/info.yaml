@@ -1,0 +1,6 @@
+nombre: Cartel "Feliz Navidad" de mesa
+descripcion: Letras de 24 cm paradas sobre una base con dos arbolitos. Para la mesa de Nochebuena, una repisa o la entrada de casa.
+inspiracion: Los carteles de letras para decorar en las fiestas. Diseño propio en 2 colores.
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: rojo}

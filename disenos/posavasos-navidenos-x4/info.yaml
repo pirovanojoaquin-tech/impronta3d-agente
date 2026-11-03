@@ -1,0 +1,6 @@
+nombre: Posavasos navideños (x4)
+descripcion: Set de 4 posavasos de 9,5 cm con dibujo incrustado al ras (copo, arbolito, estrella y regalo). Lindos para la mesa navideña y para regalar.
+inspiracion: Los sets de posavasos temáticos. Diseño propio en 2 colores (dibujo incrustado, no se despega).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: blanco}
