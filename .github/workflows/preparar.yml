@@ -11,7 +11,7 @@ on:
         description: "Fecha de la propuesta (AAAA-MM-DD)"
         required: true
       productos:
-        description: 'JSON: [{"id":"320193","nombre":"Tee","archivos":"golf tee.stl","colores":"verde,blanco"}] (diseño propio: "id":"propio:<carpeta de disenos/>"; MakerWorld: "id":"makerworld:<id>")'
+        description: 'JSON: [{"id":"320193","nombre":"Tee","archivos":"golf tee.stl","colores":"verde,blanco"}] ("alto": mm opcional para escalar; archivos separados por |; diseño propio: "id":"propio:<carpeta de disenos/>"; MakerWorld: "id":"makerworld:<id>")'
         required: true
 
 permissions:
@@ -44,12 +44,14 @@ jobs:
           NOMBRE: ${{ matrix.p.nombre }}
           ARCHIVOS: ${{ matrix.p.archivos }}
           COLORES: ${{ matrix.p.colores }}
+          ALTO: ${{ matrix.p.alto }}
           FECHA: ${{ inputs.fecha }}
         run: |
           ARGS=(--fecha "$FECHA")
           [ -n "$NOMBRE" ] && ARGS+=(--nombre "$NOMBRE")
           [ -n "$ARCHIVOS" ] && ARGS+=(--archivos "$ARCHIVOS")
           [ -n "$COLORES" ] && ARGS+=(--colores "$COLORES")
+          [ -n "$ALTO" ] && ARGS+=(--alto "$ALTO")
           python -m agente.preparar "$ID" "${ARGS[@]}"
 
       - uses: actions/upload-artifact@v4
