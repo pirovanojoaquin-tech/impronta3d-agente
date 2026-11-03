@@ -1,0 +1,32 @@
+nombre: Gnomo tejido con regalo
+nombre_original: Gnome Christmas Present Figures - Knitted Textures - 3 Styles
+descripcion: I created 3 little Holiday Gnomes ready for Christmas
+origen: printables
+printables_id: '1487973'
+url: https://www.printables.com/model/1487973-gnome-christmas-present-figures-knitted-textures-3
+autor: Spearman Workshop
+licencia: CC-BY
+licencia_nombre: Creative Commons — Attribution
+piezas:
+- archivo: Knitted Gnome.stl
+  printables_file_id: '6262294'
+  gramos: 0.0
+gramos: 0.0
+tiempo_min: 0
+tiempo: 0 min
+costo_filamento: 0
+precio: 0
+material: PLA
+colores_render:
+- crema
+- rojo
+- gris
+fotos:
+- archivo: 1.jpg
+  color: crema
+- archivo: 2.jpg
+  color: rojo
+- archivo: 3.jpg
+  color: gris
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

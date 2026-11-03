@@ -1,0 +1,37 @@
+nombre: Farol árbol con estrellas
+descripcion: Arbolito farol de 19 cm, hueco y con estrellitas caladas. Le ponés una
+  vela LED adentro y proyecta estrellas de luz en la mesa y la pared. Estrella dorada
+  en la punta.
+inspiracion: Los faroles de árbol calados que se venden en tiendas de deco para las
+  fiestas. Diseño propio en 2 colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: farol-arbol-con-estrellas
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/farol-arbol-con-estrellas/cuerpo.stl
+  gramos: 147.2
+- archivo: acento.stl
+  ruta: disenos/farol-arbol-con-estrellas/acento.stl
+  gramos: 2.6
+  color: dorado
+gramos: 149.8
+tiempo_min: 224
+tiempo: 3 h 44 min
+costo_filamento: 5991
+precio: 18000
+material: PLA
+colores_render:
+- blanco
+- crema
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: crema
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

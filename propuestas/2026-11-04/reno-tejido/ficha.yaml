@@ -1,0 +1,33 @@
+nombre: Reno tejido
+nombre_original: Winter Reindeer - Christmas Holiday Decoration - 4 Knitted Styles
+descripcion: I created some cute holiday Reindeer that each have their own knitted
+  textured style.
+origen: printables
+printables_id: '1479711'
+url: https://www.printables.com/model/1479711-winter-reindeer-christmas-holiday-decoration-4-kni
+autor: Spearman Workshop
+licencia: CC-BY
+licencia_nombre: Creative Commons — Attribution
+piezas:
+- archivo: Rainedeer Knitted.stl
+  printables_file_id: '6225564'
+  gramos: 0.0
+gramos: 0.0
+tiempo_min: 0
+tiempo: 0 min
+costo_filamento: 0
+precio: 0
+material: PLA
+colores_render:
+- crema
+- marroncito
+- blanco
+fotos:
+- archivo: 1.jpg
+  color: crema
+- archivo: 2.jpg
+  color: marroncito
+- archivo: 3.jpg
+  color: blanco
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
