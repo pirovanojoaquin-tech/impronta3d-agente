@@ -144,6 +144,20 @@ aplica porque vender modelos con licencia que lo prohíbe es usar el trabajo de 
 si un modelo con "Standard Digital File License" vale mucho la pena, proponelo aparte como "pedir permiso /
 comprar licencia comercial al autor" (muchos creadores la venden), o hacé nuestra versión propia de la idea.
 
+### Estilo de Impronta 3D (lo que el dueño quiere, 3/11/2026)
+El dueño mandó fotos de referencia: reno y pesebre **tejidos**, Sagrada Familia esculpida, porta pan dulce de
+Papá Noel en rojo/negro/dorado y farol de árbol blanco con estrellas caladas. El estilo es:
+- **Cálido, artesanal, "cozy"**: texturas de punto/lana (`disenos/arbolito-tejido/comun.scad` tiene el módulo
+  `tejido()` para darle esa textura a cualquier forma redonda), formas esculpidas y suaves, nada "de juguete".
+- **Colores sobrios**: crema, blanco, marrón, gris; rojo/negro/dorado solo para lo de Papá Noel. Detalles en dorado.
+- **Objetos que se lucen en la mesa o la repisa** (figuras, faroles con vela LED, centros de mesa, pesebres),
+  no piezas planas ni llaveros. Fotos en ambientes cálidos (luces, madera, mantas).
+- **No va**: carteles de letras, posavasos planos, galletitas o botas planas, figuras low-poly o de colores
+  chillones, pesebres de juguete. Esto es lo que el dueño llamó "trucho".
+- Escaneos de estatuas o figuras de otros artistas no van aunque digan CC-BY (el que lo escaneó no es dueño de
+  la obra). Para modelos top con licencia "Standard" (ej: SabreDesign vende licencia comercial por Patreon;
+  la "Familia Sagrada" de Victor Rangel en MakerWorld), proponé "comprar licencia" aparte.
+
 ## Diseños propios (Navidad y decoración)
 
 Objetivo: productos originales de Impronta 3D, sin depender de licencias de terceros.
