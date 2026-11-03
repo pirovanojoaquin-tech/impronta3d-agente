@@ -14,16 +14,16 @@ diseno: arbolito-tejido
 piezas:
 - archivo: cuerpo.stl
   ruta: disenos/arbolito-tejido/cuerpo.stl
-  gramos: 206.0
+  gramos: 114.1
 - archivo: acento.stl
   ruta: disenos/arbolito-tejido/acento.stl
   gramos: 2.7
   color: dorado
-gramos: 208.7
-tiempo_min: 605
-tiempo: 10 h 05 min
-costo_filamento: 8348
-precio: 25100
+gramos: 116.8
+tiempo_min: 358
+tiempo: 5 h 58 min
+costo_filamento: 4670
+precio: 14100
 material: PLA
 colores_render:
 - crema
