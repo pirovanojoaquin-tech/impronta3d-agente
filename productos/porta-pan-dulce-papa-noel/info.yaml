@@ -36,9 +36,9 @@ piezas:
   gramos: 35.3
   color: blanco
 medidas_mm:
-  largo: 168
-  ancho: 168
-  alto: 66
+  largo: 192
+  ancho: 179
+  alto: 81
 colores_png:
 - rojo
 - negro

@@ -368,5 +368,348 @@
       "contenido/media/2026-11-09/historia-3.jpg"
     ],
     "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-10-historia-1",
+    "fecha": "2026-11-10",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "porta-pan-dulce-papa-noel",
+    "imagenes": [
+      "contenido/media/2026-11-10/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-10-post",
+    "fecha": "2026-11-10",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "porta-pan-dulce-papa-noel",
+    "imagenes": [
+      "contenido/media/2026-11-10/post-1.jpg",
+      "contenido/media/2026-11-10/post-2.jpg",
+      "contenido/media/2026-11-10/post-3.jpg",
+      "contenido/media/2026-11-10/post-4.jpg",
+      "contenido/media/2026-11-10/post-5.jpg"
+    ],
+    "caption": "El pan dulce de Nochebuena, vestido de Papá Noel 🎅\n\nMetés el pan dulce adentro y queda con su saco rojo, cinturón negro, hebilla dorada, botas y borde de piel. Centro de mesa para las fiestas y un regalo empresarial distinto (pan dulce + porta).\n\nDiseño exclusivo Impronta 3D, impreso en 4 colores. Entra uno de 500 g ✨\n#pandulce #navidad2026 #mesanavideña #regaloempresarial\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-10-historia-2",
+    "fecha": "2026-11-10",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-10/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-10-historia-3",
+    "fecha": "2026-11-10",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-10/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-11-historia-1",
+    "fecha": "2026-11-11",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "reno-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-11/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-11-post",
+    "fecha": "2026-11-11",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "reno-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-11/post-1.jpg",
+      "contenido/media/2026-11-11/post-2.jpg",
+      "contenido/media/2026-11-11/post-3.jpg",
+      "contenido/media/2026-11-11/post-4.jpg",
+      "contenido/media/2026-11-11/post-5.jpg"
+    ],
+    "caption": "Un renito que parece tejido a mano 🦌\n\nTodo con textura de punto, como un muñeco de lana, pero impreso en 3D: no se apelmaza, no junta pelusa y dura para siempre. Para la repisa, la mesa de Navidad o para regalar.\n\nLo hacemos en crema, marrón o blanco.\n#renonavideño #decoracionnavideña #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-11-historia-2",
+    "fecha": "2026-11-11",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-11/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-11-historia-3",
+    "fecha": "2026-11-11",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-11/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-12-historia-1",
+    "fecha": "2026-11-12",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "farol-arbol-con-estrellas",
+    "imagenes": [
+      "contenido/media/2026-11-12/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-12-post",
+    "fecha": "2026-11-12",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "farol-arbol-con-estrellas",
+    "imagenes": [
+      "contenido/media/2026-11-12/post-1.jpg",
+      "contenido/media/2026-11-12/post-2.jpg",
+      "contenido/media/2026-11-12/post-3.jpg",
+      "contenido/media/2026-11-12/post-4.jpg",
+      "contenido/media/2026-11-12/post-5.jpg"
+    ],
+    "caption": "Prendé la vela y la mesa se llena de estrellas ✨\n\nArbolito farol de 3 pisos con estrellas caladas: le ponés una vela LED adentro y proyecta estrellitas de luz en la mesa y en la pared. Con su estrella dorada en la punta.\n\nDiseño exclusivo Impronta 3D.\n#farolnavideño #mesanavideña #navidad2026 #decoracionnavideña\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-12-historia-2",
+    "fecha": "2026-11-12",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-12/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-12-historia-3",
+    "fecha": "2026-11-12",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-12/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-13-historia-1",
+    "fecha": "2026-11-13",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "gnomo-tejido-con-regalo",
+    "imagenes": [
+      "contenido/media/2026-11-13/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-13-post",
+    "fecha": "2026-11-13",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "gnomo-tejido-con-regalo",
+    "imagenes": [
+      "contenido/media/2026-11-13/post-1.jpg",
+      "contenido/media/2026-11-13/post-2.jpg",
+      "contenido/media/2026-11-13/post-3.jpg",
+      "contenido/media/2026-11-13/post-4.jpg",
+      "contenido/media/2026-11-13/post-5.jpg"
+    ],
+    "caption": "Llegó el gnomo con su regalito 🎁\n\nGorro largo, barba y un paquete en las manos, todo con textura tejida. Decora la repisa, la mesa o el pie del arbolito y les encanta a grandes y chicos.\n\nEn rojo, crema o gris. ¿Cuál te llevás?\n#gnomonavideño #decoracionnavideña #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-13-historia-2",
+    "fecha": "2026-11-13",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-13/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-13-historia-3",
+    "fecha": "2026-11-13",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-13/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-14-historia-1",
+    "fecha": "2026-11-14",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "portavela-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-14/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-14-post",
+    "fecha": "2026-11-14",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "portavela-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-14/post-1.jpg",
+      "contenido/media/2026-11-14/post-2.jpg",
+      "contenido/media/2026-11-14/post-3.jpg",
+      "contenido/media/2026-11-14/post-4.jpg",
+      "contenido/media/2026-11-14/post-5.jpg"
+    ],
+    "caption": "Una luz cálida, con textura de sweater 🕯️\n\nPortavela de 9 cm con textura de punto y puño elastizado. Le ponés una vela LED y la mesa se vuelve acogedora al instante.\n\nDiseño exclusivo Impronta 3D. Queda hermoso en trío de colores.\n#portavelas #deconavidad #mesanavideña #navidad2026\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-14-historia-2",
+    "fecha": "2026-11-14",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-14/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-14-historia-3",
+    "fecha": "2026-11-14",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-14/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-15-historia-1",
+    "fecha": "2026-11-15",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "osito-tejido-navideno",
+    "imagenes": [
+      "contenido/media/2026-11-15/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-15-post",
+    "fecha": "2026-11-15",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "osito-tejido-navideno",
+    "imagenes": [
+      "contenido/media/2026-11-15/post-1.jpg",
+      "contenido/media/2026-11-15/post-2.jpg",
+      "contenido/media/2026-11-15/post-3.jpg",
+      "contenido/media/2026-11-15/post-4.jpg",
+      "contenido/media/2026-11-15/post-5.jpg"
+    ],
+    "caption": "El osito que todos quieren adoptar esta Navidad 🧸\n\nGorrito navideño, un regalito y textura tejida de pies a cabeza. Tiene argolla: va colgado en el arbolito o sentado en la repisa.\n\nTernura para regalar ✨\n#ositonavideño #adornonavideño #navidad2026 #regalonavideño\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-15-historia-2",
+    "fecha": "2026-11-15",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-15/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-15-historia-3",
+    "fecha": "2026-11-15",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-15/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-16-historia-1",
+    "fecha": "2026-11-16",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "arbolito-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-16/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-16-post",
+    "fecha": "2026-11-16",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "arbolito-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-16/post-1.jpg",
+      "contenido/media/2026-11-16/post-2.jpg",
+      "contenido/media/2026-11-16/post-3.jpg",
+      "contenido/media/2026-11-16/post-4.jpg",
+      "contenido/media/2026-11-16/post-5.jpg"
+    ],
+    "caption": "Un arbolito que parece de lana 🌲\n\n21 cm de textura de punto y una estrella dorada en la punta. Queda hermoso solo o en trío de colores (crema, blanco y verde) en la mesa, la repisa o al lado del pesebre.\n\nDiseño exclusivo Impronta 3D.\n#arbolitodenavidad #decoracionnavideña #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-16-historia-2",
+    "fecha": "2026-11-16",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-16/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-16-historia-3",
+    "fecha": "2026-11-16",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-16/historia-3.jpg"
+    ],
+    "estado": "pendiente"
   }
 ]

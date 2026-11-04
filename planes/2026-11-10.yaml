@@ -1,0 +1,149 @@
+# Semana del 10 al 16/11/2026: los 7 aprobados del 4/11 (estilo tejido y cálido), uno nuevo por día.
+# Cada carrusel abre con la imagen en uso (el producto en una mesa o repisa navideña real).
+dias:
+  - fecha: 2026-11-10
+    post:
+      producto: porta-pan-dulce-papa-noel
+      caption: |
+        El pan dulce de Nochebuena, vestido de Papá Noel 🎅
+
+        Metés el pan dulce adentro y queda con su saco rojo, cinturón negro, hebilla dorada, botas y borde de piel. Centro de mesa para las fiestas y un regalo empresarial distinto (pan dulce + porta).
+
+        Diseño exclusivo Impronta 3D, impreso en 4 colores. Entra uno de 500 g ✨
+        #pandulce #navidad2026 #mesanavideña #regaloempresarial
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Papá Noel en la mesa", subtitulo: "Porta pan dulce", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "El pan dulce, vestido de fiesta", subtitulo: "Porta pan dulce Papá Noel", etiqueta: "Diseño propio", sellos: ["4 colores", "Pan dulce de 500 g", "A pedido"]}
+        - {tipo: "pasos", titulo: "Así se usa", pasos: ["Poné el pan dulce adentro", "Llevalo a la mesa", "Después se guarda para el año que viene"], tono: "crema"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el porta pan dulce"}
+    historias:
+      - {tipo: "hero", producto: "porta-pan-dulce-papa-noel", etiqueta: "Nuevo", titulo: "Papá Noel en la mesa", subtitulo: "Porta pan dulce"}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Regalo empresarial", texto: "Pan dulce + porta de Papá Noel: un regalo de fin de año que se usa y se guarda. Pedidos por cantidad por DM."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Hecho a pedido", texto: "Cada pieza se imprime en 3D para vos. Escribinos por DM y te contamos los tiempos."}
+
+  - fecha: 2026-11-11
+    post:
+      producto: reno-tejido
+      caption: |
+        Un renito que parece tejido a mano 🦌
+
+        Todo con textura de punto, como un muñeco de lana, pero impreso en 3D: no se apelmaza, no junta pelusa y dura para siempre. Para la repisa, la mesa de Navidad o para regalar.
+
+        Lo hacemos en crema, marrón o blanco.
+        #renonavideño #decoracionnavideña #navidad2026 #deconavidad
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Navidad tejida", subtitulo: "Reno de 12 cm", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Parece de lana", subtitulo: "Reno tejido", etiqueta: "Nuevo", sellos: ["Textura tejida", "3 colores", "A pedido"]}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el reno tejido"}
+    historias:
+      - {tipo: "hero", producto: "reno-tejido", etiqueta: "Nuevo", titulo: "Navidad tejida", subtitulo: "Reno de 12 cm"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Armá un rincón", texto: "Una bandeja de madera, piñas, una velita y el renito: un rincón navideño cálido en cinco minutos."}
+      - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "Impreso, no tejido", texto: "La textura de punto sale de la impresora 3D capa por capa. Por eso no se deforma ni junta polvo como la lana."}
+
+  - fecha: 2026-11-12
+    post:
+      producto: farol-arbol-con-estrellas
+      caption: |
+        Prendé la vela y la mesa se llena de estrellas ✨
+
+        Arbolito farol de 3 pisos con estrellas caladas: le ponés una vela LED adentro y proyecta estrellitas de luz en la mesa y en la pared. Con su estrella dorada en la punta.
+
+        Diseño exclusivo Impronta 3D.
+        #farolnavideño #mesanavideña #navidad2026 #decoracionnavideña
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Estrellas en la mesa", subtitulo: "Farol árbol con vela LED", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Un árbol que ilumina", subtitulo: "Farol árbol con estrellas", etiqueta: "Diseño propio", sellos: ["Vela LED", "2 colores", "A pedido"]}
+        - {tipo: "pasos", titulo: "Así se usa", pasos: ["Prendé una vela LED", "Tapala con el arbolito", "Apagá la luz y mirá las estrellas"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "cta_producto", nombre_corto: "el farol árbol"}
+    historias:
+      - {tipo: "hero", producto: "farol-arbol-con-estrellas", etiqueta: "Nuevo", titulo: "Luz de estrellas", subtitulo: "Farol árbol"}
+      - {tipo: "texto", etiqueta: "Seguridad", titulo: "Siempre con LED", texto: "Nuestros faroles y portavelas van con velas LED: dan la misma luz cálida y no hay riesgo con el plástico."}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Para la Nochebuena", texto: "Apagá las luces de la casa y dejá prendidos los faroles: la mesa queda mágica para la cena."}
+
+  - fecha: 2026-11-13
+    post:
+      producto: gnomo-tejido-con-regalo
+      caption: |
+        Llegó el gnomo con su regalito 🎁
+
+        Gorro largo, barba y un paquete en las manos, todo con textura tejida. Decora la repisa, la mesa o el pie del arbolito y les encanta a grandes y chicos.
+
+        En rojo, crema o gris. ¿Cuál te llevás?
+        #gnomonavideño #decoracionnavideña #navidad2026 #deconavidad
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Llegó el gnomo", subtitulo: "Con su regalito", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Un gnomo tejido", subtitulo: "Gnomo con regalo · 13 cm", etiqueta: "Nuevo", sellos: ["Textura tejida", "3 colores", "A pedido"]}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el gnomo tejido"}
+    historias:
+      - {tipo: "hero", producto: "gnomo-tejido-con-regalo", etiqueta: "Nuevo", titulo: "Gnomo con regalo", subtitulo: "Textura tejida"}
+      - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "Los gnomos navideños", texto: "En los países nórdicos, el gnomo de Navidad cuida la casa y trae los regalos. Por eso no puede faltar en la deco."}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Amigo invisible", texto: "¿No sabés qué regalar? Un gnomo o un renito tejido siempre quedan bien. Escribinos por DM."}
+
+  - fecha: 2026-11-14
+    post:
+      producto: portavela-tejido
+      caption: |
+        Una luz cálida, con textura de sweater 🕯️
+
+        Portavela de 9 cm con textura de punto y puño elastizado. Le ponés una vela LED y la mesa se vuelve acogedora al instante.
+
+        Diseño exclusivo Impronta 3D. Queda hermoso en trío de colores.
+        #portavelas #deconavidad #mesanavideña #navidad2026
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Luz de sweater", subtitulo: "Portavela tejido", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Cálido como un sweater", subtitulo: "Portavela tejido", etiqueta: "Diseño propio", sellos: ["Vela LED", "3 colores", "A pedido"]}
+        - {tipo: "pasos", titulo: "Armalo en trío", pasos: ["Elegí 3 colores (rojo, crema y verde)", "Poné una vela LED en cada uno", "Centro de mesa listo"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "cta_producto", nombre_corto: "el portavela tejido"}
+    historias:
+      - {tipo: "hero", producto: "portavela-tejido", etiqueta: "Nuevo", titulo: "Luz cálida", subtitulo: "Portavela tejido"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Centro de mesa en 1 minuto", texto: "Tres portavelas de distintos colores sobre un camino de mesa con ramitas de pino. Simple y precioso."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Hecho a pedido", texto: "Elegís los colores y lo imprimimos para vos. Escribinos por DM."}
+
+  - fecha: 2026-11-15
+    post:
+      producto: osito-tejido-navideno
+      caption: |
+        El osito que todos quieren adoptar esta Navidad 🧸
+
+        Gorrito navideño, un regalito y textura tejida de pies a cabeza. Tiene argolla: va colgado en el arbolito o sentado en la repisa.
+
+        Ternura para regalar ✨
+        #ositonavideño #adornonavideño #navidad2026 #regalonavideño
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Ternura tejida", subtitulo: "Osito navideño", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Un osito para el árbol", subtitulo: "Osito tejido navideño · 12 cm", etiqueta: "Nuevo", sellos: ["Textura tejida", "Con argolla", "A pedido"]}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el osito tejido"}
+    historias:
+      - {tipo: "hero", producto: "osito-tejido-navideno", etiqueta: "Nuevo", titulo: "Osito navideño", subtitulo: "Para el árbol o la repisa"}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Para los más chicos", texto: "Un osito para colgar en el arbolito es el primer adorno ideal para un bebé o un nene. Se guarda de recuerdo."}
+      - {tipo: "texto", etiqueta: "Envíos", titulo: "Pedí con tiempo", texto: "Imprimimos a pedido: encargá tus regalos de Navidad con anticipación. Escribinos por DM."}
+
+  - fecha: 2026-11-16
+    post:
+      producto: arbolito-tejido
+      caption: |
+        Un arbolito que parece de lana 🌲
+
+        21 cm de textura de punto y una estrella dorada en la punta. Queda hermoso solo o en trío de colores (crema, blanco y verde) en la mesa, la repisa o al lado del pesebre.
+
+        Diseño exclusivo Impronta 3D.
+        #arbolitodenavidad #decoracionnavideña #navidad2026 #deconavidad
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Navidad de lana", subtitulo: "Arbolito tejido", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Un arbolito tejido", subtitulo: "Arbolito con estrella dorada · 21 cm", etiqueta: "Diseño propio", sellos: ["Textura tejida", "Estrella dorada", "A pedido"]}
+        - {tipo: "pasos", titulo: "Armá tu bosquecito", pasos: ["Elegí 2 o 3 colores", "Juntalos en la mesa o la repisa", "Sumá piñas y una velita LED"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "cta_producto", nombre_corto: "el arbolito tejido"}
+    historias:
+      - {tipo: "hero", producto: "arbolito-tejido", etiqueta: "Nuevo", titulo: "Arbolito tejido", subtitulo: "Con estrella dorada"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Estilo nórdico", texto: "Colores crema, madera y luces cálidas: la deco navideña nórdica es tendencia y se arma con poco."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "¿Tenés una idea?", texto: "Diseñamos e imprimimos adornos a pedido, con nombres o en tus colores. Escribinos por DM."}

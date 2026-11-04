@@ -24,9 +24,9 @@ piezas:
   gramos: 90.1
 escala: 61.8656
 medidas_mm:
-  largo: 2
-  ancho: 1
-  alto: 2
+  largo: 99
+  ancho: 81
+  alto: 120
 colores_png:
 - crema
 - marroncito

@@ -24,9 +24,9 @@ piezas:
   gramos: 77.2
 escala: 67.6261
 medidas_mm:
-  largo: 1
-  ancho: 1
-  alto: 2
+  largo: 74
+  ancho: 66
+  alto: 130
 colores_png:
 - crema
 - rojo
