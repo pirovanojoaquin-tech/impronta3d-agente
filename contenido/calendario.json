@@ -123,7 +123,9 @@
     "imagenes": [
       "contenido/media/2026-11-04/historia-3.jpg"
     ],
-    "estado": "pendiente"
+    "estado": "publicado",
+    "ig_media_id": "18072444989663511",
+    "publicado_en": "2026-11-04T20:43:00-03:00"
   },
   {
     "id": "2026-11-05-historia-1",
