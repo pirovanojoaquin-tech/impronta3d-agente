@@ -46,3 +46,26 @@ colores_png:
 - azul
 - verde
 - amarillo
+en_uso:
+  foto:
+    id: o3iZvGZtDng
+    nombre: madera-guirnalda
+  escena: apoyado
+  margen: 1.1
+  params:
+    relleno: pan_dulce
+    radio: 76
+    alto: 95
+    base: 3
+  color: rojo
+  angulo: 28
+  giro: 0
+  punto:
+  - 1760
+  - 1200
+  escala: 0.85
+  recorte:
+  - 1120
+  - 0
+  - 2400
+  - 1600

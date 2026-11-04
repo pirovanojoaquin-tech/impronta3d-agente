@@ -34,3 +34,21 @@ colores_png:
 - negro
 - blanco
 - azul
+en_uso:
+  foto:
+    id: OMkXQ4Gp-F0
+    nombre: repisa-blanca-luces
+  escena: apoyado
+  margen: 1.1
+  color: rojo
+  angulo: 10
+  giro: -60
+  punto:
+  - 820
+  - 2420
+  escala: 0.95
+  recorte:
+  - 100
+  - 200
+  - 2340
+  - 3000

@@ -34,3 +34,21 @@ colores_png:
 - negro
 - rojo
 - azul
+en_uso:
+  foto:
+    id: 1L4q_S1atmc
+    nombre: mesa-gris-navidad
+  escena: apoyado
+  margen: 1.1
+  color: crema
+  angulo: 8
+  giro: -60
+  punto:
+  - 650
+  - 1300
+  escala: 0.6
+  recorte:
+  - 0
+  - 0
+  - 1280
+  - 1600

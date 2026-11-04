@@ -38,3 +38,26 @@ colores_png:
 - rojo
 - azul
 - verde
+en_uso:
+  foto:
+    id: _ne6O9qqhhg
+    nombre: mesa-oscura-arbol
+  escena: apoyado
+  margen: 1.1
+  params:
+    relleno: vela
+    radio: 18
+    alto: 38
+    base: 0
+  color: blanco
+  angulo: 10
+  giro: 30
+  punto:
+  - 1850
+  - 3400
+  escala: 0.85
+  recorte:
+  - 400
+  - 1100
+  - 2400
+  - 3600

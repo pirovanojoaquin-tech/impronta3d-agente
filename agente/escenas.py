@@ -191,14 +191,62 @@ def gorra(obj, color_gorra="#1F2A44", color_tee="#E2C9A0", ranura_z=5.6, ranura_
     return [obj, t], [obj, t, visera, copa, boton] + costuras
 
 
-def apoyado(obj, ancho=4.0, para_foto=True):
+def apoyado(obj, ancho=14.0, para_foto=True, relleno=None, radio=0, alto=0, base=0):
     """Producto apoyado sobre una superficie (green, mesa, repisa): el piso es invisible y solo recibe
-    la sombra. El ancla es el centro de la base (va en `punto` de la receta)."""
+    la sombra. El ancla es el centro de la base (va en `punto` de la receta).
+
+    relleno: lo que va adentro para que se vea en uso (medidas en mm del modelo):
+      "pan_dulce" (domo dorado con frutas, radio/alto) o "vela" (vela LED con llama que brilla, radio/alto),
+      apoyado a `base` mm del piso."""
     bpy.ops.mesh.primitive_plane_add(size=ancho, location=(0, 0, 0))
     piso = bpy.context.active_object
     piso.is_shadow_catcher = True
     obj["ancla"] = (0, 0, 0)
-    return [obj], [obj, piso]
+    extra = []
+    mm = obj["escala"]
+    if relleno == "pan_dulce":
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=64, ring_count=32, radius=radio * mm,
+                                             location=(0, 0, base * mm))
+        pan = bpy.context.active_object
+        pan.scale = (1, 1, alto / radio)
+        bpy.ops.object.transform_apply(scale=True)
+        bpy.ops.object.mode_set(mode="EDIT")
+        bpy.ops.mesh.select_all(action="SELECT")
+        bpy.ops.mesh.bisect(plane_co=(0, 0, base * mm), plane_no=(0, 0, 1), clear_inner=True)
+        bpy.ops.object.mode_set(mode="OBJECT")
+        bpy.ops.object.shade_smooth()
+        pan.data.materials.append(liso("#9A5A22", 0.7))
+        extra.append(pan)
+        for i in range(14):  # frutas abrillantadas y pasas arriba
+            a, r = i * 2.4, radio * (0.15 + 0.6 * ((i * 0.37) % 1))
+            z = base + alto * math.sqrt(max(0, 1 - (r / radio) ** 2))
+            bpy.ops.mesh.primitive_uv_sphere_add(radius=4 * mm, location=(r * math.cos(a) * mm, r * math.sin(a) * mm, z * mm))
+            f = bpy.context.active_object
+            f.data.materials.append(liso(["#7A1F1F", "#2E1A10", "#C7861E"][i % 3], 0.3))
+            extra.append(f)
+    elif relleno == "vela":
+        bpy.ops.mesh.primitive_cylinder_add(vertices=48, radius=radio * mm, depth=alto * mm,
+                                            location=(0, 0, (base + alto / 2) * mm))
+        vela = bpy.context.active_object
+        vela.data.materials.append(liso("#F3EBDD", 0.6))
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=3.2 * mm, location=(0, 0, (base + alto + 5) * mm))
+        llama = bpy.context.active_object
+        llama.scale = (1, 1, 1.9)
+        m = bpy.data.materials.new("Llama")
+        m.use_nodes = True
+        n = m.node_tree.nodes
+        em = n.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = (1.0, 0.55, 0.15, 1)
+        em.inputs["Strength"].default_value = 40
+        m.node_tree.links.new(em.outputs[0], n["Material Output"].inputs[0])
+        llama.data.materials.append(m)
+        bpy.ops.object.light_add(type="POINT", location=(0, 0, (base + alto + 6) * mm))
+        luz = bpy.context.active_object
+        luz.data.energy = 6
+        luz.data.color = (1.0, 0.6, 0.25)
+        luz.data.shadow_soft_size = 0.01
+        extra += [vela, llama]
+    return [obj] + extra, [obj, piso] + extra
 
 
 ESCENAS = {"gorra": gorra, "apoyado": apoyado}
