@@ -55,5 +55,61 @@
     "propuesto": "2026-11-02",
     "estado": "aprobado",
     "respondido": "2026-11-02"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Arbolito tejido",
+    "slug": "arbolito-tejido",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Farol árbol con estrellas",
+    "slug": "farol-arbol-con-estrellas",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": "1487973",
+    "nombre": "Gnomo tejido con regalo",
+    "slug": "gnomo-tejido-con-regalo",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": "1493834",
+    "nombre": "Osito tejido navideño",
+    "slug": "osito-tejido-navideno",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Porta pan dulce Papá Noel",
+    "slug": "porta-pan-dulce-papa-noel",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Portavela tejido",
+    "slug": "portavela-tejido",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": "1479711",
+    "nombre": "Reno tejido",
+    "slug": "reno-tejido",
+    "propuesto": "2026-11-04",
+    "estado": "aprobado",
+    "respondido": "2026-11-04"
   }
 ]

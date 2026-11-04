@@ -1,0 +1,24 @@
+nombre: Reno tejido
+descripcion: I created some cute holiday Reindeer that each have their own knitted
+  textured style.
+personalizable: Color a elección (10 colores de PLA)
+precio: 10900
+gramos: 90.1
+tiempo: 6 h 04 min
+colores:
+- crema
+- marroncito
+- blanco
+destacado: false
+notas: null
+origen: printables
+diseno: null
+inspiracion: null
+printables_id: '1479711'
+url: https://www.printables.com/model/1479711-winter-reindeer-christmas-holiday-decoration-4-kni
+autor: Spearman Workshop
+licencia: CC-BY
+piezas:
+- archivo: Rainedeer Knitted.stl
+  printables_file_id: '6225564'
+  gramos: 90.1

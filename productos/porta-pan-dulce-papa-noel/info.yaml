@@ -1,0 +1,37 @@
+nombre: Porta pan dulce Papá Noel
+descripcion: Metés el pan dulce adentro y queda vestido de Papá Noel, con cinturón,
+  hebilla dorada, botas y borde de piel. El centro de mesa de Nochebuena y el regalo
+  empresarial ideal (pan dulce + porta). Entra un pan dulce de 500 g o un panettone
+  de hasta 16 cm.
+personalizable: Color a elección (10 colores de PLA)
+precio: 20700
+gramos: 171.7
+tiempo: 5 h 34 min
+colores:
+- rojo
+destacado: false
+notas: null
+origen: propio
+diseno: porta-pan-dulce-papa-noel
+inspiracion: Los porta panettone de Papá Noel que se venden en Europa para regalar
+  en las fiestas. Diseño propio en 4 colores (AMS).
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/porta-pan-dulce-papa-noel/cuerpo.stl
+  gramos: 108.3
+- archivo: acento.stl
+  ruta: disenos/porta-pan-dulce-papa-noel/acento.stl
+  gramos: 27.4
+  color: negro
+- archivo: acento2.stl
+  ruta: disenos/porta-pan-dulce-papa-noel/acento2.stl
+  gramos: 0.7
+  color: dorado
+- archivo: acento3.stl
+  ruta: disenos/porta-pan-dulce-papa-noel/acento3.stl
+  gramos: 35.3
+  color: blanco

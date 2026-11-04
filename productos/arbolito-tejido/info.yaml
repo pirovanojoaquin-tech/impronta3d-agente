@@ -1,0 +1,30 @@
+nombre: Arbolito tejido
+descripcion: Arbolito de 20 cm con textura de punto, como si fuera de lana tejida,
+  y estrella dorada en la punta. Se ve cálido y artesanal en la mesa, la repisa o
+  al lado del pesebre. Queda hermoso en trío de alturas.
+personalizable: Color a elección (10 colores de PLA)
+precio: 14100
+gramos: 116.8
+tiempo: 5 h 58 min
+colores:
+- crema
+- blanco
+- verde
+destacado: false
+notas: null
+origen: propio
+diseno: arbolito-tejido
+inspiracion: La tendencia "cozy" de decoración navideña tejida (renos, gnomos y árboles
+  con textura de sweater). Diseño propio en 2 colores (AMS).
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/arbolito-tejido/cuerpo.stl
+  gramos: 114.1
+- archivo: acento.stl
+  ruta: disenos/arbolito-tejido/acento.stl
+  gramos: 2.7
+  color: dorado

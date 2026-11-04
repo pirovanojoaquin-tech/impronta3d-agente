@@ -1,0 +1,23 @@
+nombre: Gnomo tejido con regalo
+descripcion: I created 3 little Holiday Gnomes ready for Christmas
+personalizable: Color a elección (10 colores de PLA)
+precio: 9300
+gramos: 77.2
+tiempo: 5 h 46 min
+colores:
+- crema
+- rojo
+- gris
+destacado: false
+notas: null
+origen: printables
+diseno: null
+inspiracion: null
+printables_id: '1487973'
+url: https://www.printables.com/model/1487973-gnome-christmas-present-figures-knitted-textures-3
+autor: Spearman Workshop
+licencia: CC-BY
+piezas:
+- archivo: Knitted Gnome.stl
+  printables_file_id: '6262294'
+  gramos: 77.2

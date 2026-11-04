@@ -1,0 +1,25 @@
+nombre: Portavela tejido
+descripcion: Portavela de 9 cm con textura de punto y puño elastizado, como un sweater.
+  Lleva una vela LED (o de té dentro de un vasito de vidrio) y da una luz cálida en
+  la mesa de Navidad. Se vende de a uno o en trío de colores.
+personalizable: Color a elección (10 colores de PLA)
+precio: 8900
+gramos: 73.9
+tiempo: 3 h 53 min
+colores:
+- rojo
+- crema
+- verde
+destacado: false
+notas: null
+origen: propio
+diseno: portavela-tejido
+inspiracion: La tendencia "cozy" de decoración navideña tejida. Diseño propio.
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/portavela-tejido/cuerpo.stl
+  gramos: 73.9

@@ -1,0 +1,23 @@
+nombre: Osito tejido navideño
+descripcion: Leave a comment and let me know which one is your favorite!
+personalizable: Color a elección (10 colores de PLA)
+precio: 9700
+gramos: 80.3
+tiempo: 5 h 36 min
+colores:
+- crema
+- marroncito
+- blanco
+destacado: false
+notas: null
+origen: printables
+diseno: null
+inspiracion: null
+printables_id: '1493834'
+url: https://www.printables.com/model/1493834-holiday-bear-christmas-ornaments-4-knitted-styles
+autor: Spearman Workshop
+licencia: CC-BY
+piezas:
+- archivo: Full knitt 1.stl
+  printables_file_id: '6285712'
+  gramos: 80.3
