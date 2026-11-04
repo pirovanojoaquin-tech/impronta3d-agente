@@ -7,15 +7,16 @@ url: https://www.printables.com/model/1487973-gnome-christmas-present-figures-kn
 autor: Spearman Workshop
 licencia: CC-BY
 licencia_nombre: Creative Commons — Attribution
+escala: 67.6261
 piezas:
 - archivo: Knitted Gnome.stl
   printables_file_id: '6262294'
-  gramos: 0.0
-gramos: 0.0
-tiempo_min: 0
-tiempo: 0 min
-costo_filamento: 0
-precio: 0
+  gramos: 77.2
+gramos: 77.2
+tiempo_min: 346
+tiempo: 5 h 46 min
+costo_filamento: 3089
+precio: 9300
 material: PLA
 colores_render:
 - crema
@@ -30,3 +31,6 @@ fotos:
   color: gris
 estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
   perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
+descripcion_es: 'Gnomo de 13 cm con gorro largo y un regalito en las manos, todo con
+  textura tejida. Por qué sí: mismo estilo tejido y el gnomo es de lo más vendido
+  en deco navideña; Printables CC-BY (Spearman Workshop).'

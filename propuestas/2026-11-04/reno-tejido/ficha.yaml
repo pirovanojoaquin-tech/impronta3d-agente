@@ -12,12 +12,12 @@ escala: 61.8656
 piezas:
 - archivo: Rainedeer Knitted.stl
   printables_file_id: '6225564'
-  gramos: 0.0
-gramos: 0.0
-tiempo_min: 0
-tiempo: 0 min
-costo_filamento: 0
-precio: 0
+  gramos: 90.1
+gramos: 90.1
+tiempo_min: 364
+tiempo: 6 h 04 min
+costo_filamento: 3604
+precio: 10900
 material: PLA
 colores_render:
 - crema
@@ -32,3 +32,6 @@ fotos:
   color: blanco
 estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
   perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
+descripcion_es: 'Renito de 12 cm sentado, todo con textura de punto (como un muñeco
+  tejido a mano). Por qué sí: es el reno tejido de tu primera referencia; Printables
+  CC-BY (se puede vender citando al autor, Spearman Workshop).'
