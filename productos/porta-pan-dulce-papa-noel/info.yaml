@@ -35,3 +35,14 @@ piezas:
   ruta: disenos/porta-pan-dulce-papa-noel/acento3.stl
   gramos: 35.3
   color: blanco
+medidas_mm:
+  largo: 168
+  ancho: 168
+  alto: 66
+colores_png:
+- rojo
+- negro
+- blanco
+- azul
+- verde
+- amarillo

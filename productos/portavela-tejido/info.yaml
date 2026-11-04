@@ -23,3 +23,14 @@ piezas:
 - archivo: cuerpo.stl
   ruta: disenos/portavela-tejido/cuerpo.stl
   gramos: 73.9
+medidas_mm:
+  largo: 80
+  ancho: 80
+  alto: 88
+colores_png:
+- rojo
+- crema
+- verde
+- negro
+- blanco
+- azul

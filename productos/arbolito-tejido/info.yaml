@@ -28,3 +28,14 @@ piezas:
   ruta: disenos/arbolito-tejido/acento.stl
   gramos: 2.7
   color: dorado
+medidas_mm:
+  largo: 132
+  ancho: 132
+  alto: 188
+colores_png:
+- crema
+- blanco
+- verde
+- negro
+- rojo
+- azul

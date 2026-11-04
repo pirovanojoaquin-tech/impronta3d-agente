@@ -23,3 +23,14 @@ piezas:
   printables_file_id: '6262294'
   gramos: 77.2
 escala: 67.6261
+medidas_mm:
+  largo: 1
+  ancho: 1
+  alto: 2
+colores_png:
+- crema
+- rojo
+- gris
+- negro
+- blanco
+- azul

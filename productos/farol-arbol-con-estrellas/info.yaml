@@ -27,3 +27,14 @@ piezas:
   ruta: disenos/farol-arbol-con-estrellas/acento.stl
   gramos: 2.6
   color: dorado
+medidas_mm:
+  largo: 156
+  ancho: 156
+  alto: 174
+colores_png:
+- blanco
+- crema
+- negro
+- rojo
+- azul
+- verde
