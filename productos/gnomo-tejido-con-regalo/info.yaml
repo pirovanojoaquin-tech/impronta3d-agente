@@ -1,5 +1,6 @@
 nombre: Gnomo tejido con regalo
-descripcion: I created 3 little Holiday Gnomes ready for Christmas
+descripcion: Gnomo de 13 cm con gorro largo y un regalito en las manos, todo con textura
+  tejida. Decora la mesa, la repisa o el pie del árbol.
 personalizable: Color a elección (10 colores de PLA)
 precio: 9300
 gramos: 77.2
@@ -21,3 +22,4 @@ piezas:
 - archivo: Knitted Gnome.stl
   printables_file_id: '6262294'
   gramos: 77.2
+escala: 67.6261

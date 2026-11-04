@@ -1,5 +1,6 @@
 nombre: Osito tejido navideño
-descripcion: Leave a comment and let me know which one is your favorite!
+descripcion: 'Osito de 12 cm con gorrito de Navidad y un regalito, todo con textura
+  tejida. Tiene argolla: va colgado en el árbol o sentado en la repisa.'
 personalizable: Color a elección (10 colores de PLA)
 precio: 9700
 gramos: 80.3
@@ -21,3 +22,4 @@ piezas:
 - archivo: Full knitt 1.stl
   printables_file_id: '6285712'
   gramos: 80.3
+escala: 59.4653

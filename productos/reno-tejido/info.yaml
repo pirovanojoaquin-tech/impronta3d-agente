@@ -1,6 +1,6 @@
 nombre: Reno tejido
-descripcion: I created some cute holiday Reindeer that each have their own knitted
-  textured style.
+descripcion: Renito de 12 cm sentado, todo con textura de punto, como un muñeco tejido
+  a mano. Para la repisa, la mesa de Navidad o para regalar.
 personalizable: Color a elección (10 colores de PLA)
 precio: 10900
 gramos: 90.1
@@ -22,3 +22,4 @@ piezas:
 - archivo: Rainedeer Knitted.stl
   printables_file_id: '6225564'
   gramos: 90.1
+escala: 61.8656
