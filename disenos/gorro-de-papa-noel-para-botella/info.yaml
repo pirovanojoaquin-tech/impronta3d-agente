@@ -1,0 +1,6 @@
+nombre: Gorro de Papá Noel para botella
+descripcion: Gorro tejido rojo con borde de piel y pompón blancos que se calza en el pico de una botella de vino o sidra. Viste la mesa de Navidad y convierte cualquier botella en un regalo.
+inspiracion: Los gorritos navideños para botellas que se usan en regalos y cenas de fin de año. Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: blanco}

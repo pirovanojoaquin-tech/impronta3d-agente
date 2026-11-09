@@ -1,0 +1,6 @@
+nombre: Bola tejida para el árbol
+descripcion: Adorno de 8 cm con textura de punto, como si fuera de lana, y capuchón dorado con argolla. Para un arbolito cálido y nórdico; queda hermoso en set de colores (crema, rojo y verde).
+inspiracion: Los adornos de punto tejido, tendencia "cozy" de la Navidad 2026. Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: dorado}

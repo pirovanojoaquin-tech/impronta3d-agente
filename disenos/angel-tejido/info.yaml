@@ -1,0 +1,6 @@
+nombre: Ángel tejido
+descripcion: Angelito de 13 cm con vestido de textura tejida y alas y aureola doradas. Para el pesebre, la repisa o la punta del arbolito de mesa.
+inspiracion: Los ángeles navideños tradicionales, en versión tejida y cálida. Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: dorado}

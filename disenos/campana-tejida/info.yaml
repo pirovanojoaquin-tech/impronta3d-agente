@@ -1,0 +1,6 @@
+nombre: Campana tejida
+descripcion: Campana de 10 cm con textura de punto, badajo y argolla dorados. Para colgar en la puerta, el árbol o una guirnalda; en rojo, crema o verde.
+inspiracion: Las campanas navideñas tradicionales en versión "tejida". Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: dorado}
