@@ -1,0 +1,33 @@
+nombre: Casitas de jengibre
+nombre_original: Gingerbread House
+descripcion: The little house has been adapted to a 1:6 scale , and for best results
+  as shown in the photo , it is recommended to use a 0.2 mm print nozzle . (If you
+  wish to print it at full size, a standard 0.4 mm nozzle will work fine.) &nbsp;
+  The house was scaled down based on an original 1:1 model — a decorative tabletop
+  house.
+origen: makerworld
+printables_id: null
+makerworld_id: 1923215
+url: https://makerworld.com/es/models/1923215-gingerbread-house
+autor: DnAle
+licencia: BY
+licencia_nombre: BY
+piezas: []
+archivo_pendiente: true
+gramos: 6.0
+tiempo_min: 75
+tiempo: 1 h 15 min
+costo_filamento: 240
+precio: 800
+material: PLA
+colores_render:
+- marroncito
+- crema
+fotos:
+- archivo: 1.jpg
+  color: marroncito
+- archivo: 2.jpg
+  color: crema
+estimacion: 'Gramos y tiempo del perfil publicado en MakerWorld (0.2mm nozzle). Las
+  fotos son del autor: si se aprueba, se rehacen con nuestros renders cuando llegue
+  el archivo.'

@@ -1,0 +1,39 @@
+nombre: Campana tejida
+descripcion: Campana de 10 cm con textura de punto, badajo y argolla dorados. Para
+  colgar en la puerta, el árbol o una guirnalda; en rojo, crema o verde.
+inspiracion: Las campanas navideñas tradicionales en versión "tejida". Diseño propio
+  en 2 colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: campana-tejida
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/campana-tejida/cuerpo.stl
+  gramos: 56.0
+- archivo: acento.stl
+  ruta: disenos/campana-tejida/acento.stl
+  gramos: 3.6
+  color: dorado
+gramos: 59.6
+tiempo_min: 223
+tiempo: 3 h 43 min
+costo_filamento: 2384
+precio: 7200
+material: PLA
+colores_render:
+- rojo
+- crema
+- verde
+fotos:
+- archivo: 1.jpg
+  color: rojo
+- archivo: 2.jpg
+  color: crema
+- archivo: 3.jpg
+  color: verde
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

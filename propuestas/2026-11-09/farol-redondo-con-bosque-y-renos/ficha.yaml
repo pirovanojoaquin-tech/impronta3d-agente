@@ -1,0 +1,38 @@
+nombre: Farol redondo con bosque y renos
+nombre_original: Christmas Scene Round Lantern
+descripcion: 'Warning!! This takes patience to put together. Christmas Scene Lantern
+  with 3 thin layers that fit into a base. The layers have tabs on the bottom that
+  fit into the slits on the base. The front layer with the squirrel and mailbox is
+  printed in two parts, you will need to put those two layers together to make one.
+  The layers are printed very thin at 0.2mm. Be careful when taking them off the heat
+  bed. Slide the tabs on the end into the slits on the opposite end. You can size
+  up or down. For best results size up. I recommend a dab of glue on a couple tabs
+  per section to hold the round layers to '
+origen: makerworld
+printables_id: null
+makerworld_id: 64680
+url: https://makerworld.com/es/models/64680-christmas-scene-round-lantern
+autor: lindnjoe
+licencia: BY
+licencia_nombre: BY
+piezas: []
+archivo_pendiente: true
+gramos: 51.0
+tiempo_min: 121
+tiempo: 2 h 01 min
+costo_filamento: 2040
+precio: 6200
+material: PLA
+colores_render:
+- blanco
+- crema
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: crema
+- archivo: 3.jpg
+  color: blanco
+estimacion: 'Gramos y tiempo del perfil publicado en MakerWorld (0.2mm layer, 3 walls,
+  15% infill). Las fotos son del autor: si se aprueba, se rehacen con nuestros renders
+  cuando llegue el archivo.'

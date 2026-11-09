@@ -1,0 +1,34 @@
+nombre: Bandeja navideña para golosinas
+nombre_original: Christmas Tray | Festive Candy & Chocolate Holder
+descripcion: Bring a little Christmas magic into your home with this charming 3D printable
+  Christmas Village Tray! Boost Me
+origen: makerworld
+printables_id: null
+makerworld_id: 3537527
+url: https://makerworld.com/es/models/3537527-christmas-tray-festive-candy-chocolate-holder
+autor: astavr
+licencia: CC0
+licencia_nombre: CC0
+piezas: []
+archivo_pendiente: true
+gramos: 127.0
+tiempo_min: 260
+tiempo: 4 h 20 min
+costo_filamento: 5080
+precio: 15300
+material: PLA
+colores_render:
+- blanco
+- crema
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: crema
+- archivo: 3.jpg
+  color: blanco
+- archivo: 4.jpg
+  color: crema
+estimacion: 'Gramos y tiempo del perfil publicado en MakerWorld (Optimierte Druckparameter
+  ). Las fotos son del autor: si se aprueba, se rehacen con nuestros renders cuando
+  llegue el archivo.'

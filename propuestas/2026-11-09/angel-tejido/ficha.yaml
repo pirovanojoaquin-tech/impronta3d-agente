@@ -1,0 +1,36 @@
+nombre: Ángel tejido
+descripcion: Angelito de 13 cm con vestido de textura tejida y alas y aureola doradas.
+  Para el pesebre, la repisa o la punta del arbolito de mesa.
+inspiracion: Los ángeles navideños tradicionales, en versión tejida y cálida. Diseño
+  propio en 2 colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: angel-tejido
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/angel-tejido/cuerpo.stl
+  gramos: 67.7
+- archivo: acento.stl
+  ruta: disenos/angel-tejido/acento.stl
+  gramos: 23.1
+  color: dorado
+gramos: 90.9
+tiempo_min: 272
+tiempo: 4 h 32 min
+costo_filamento: 3635
+precio: 11000
+material: PLA
+colores_render:
+- crema
+- blanco
+fotos:
+- archivo: 1.jpg
+  color: crema
+- archivo: 2.jpg
+  color: blanco
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
