@@ -1,4 +1,4 @@
-nombre: Casitas de jengibre
+nombre: Casitas de jengibre (x3)
 nombre_original: Gingerbread House
 descripcion: The little house has been adapted to a 1:6 scale , and for best results
   as shown in the photo , it is recommended to use a 0.2 mm print nozzle . (If you
@@ -14,11 +14,11 @@ licencia: BY
 licencia_nombre: BY
 piezas: []
 archivo_pendiente: true
-gramos: 6.0
-tiempo_min: 75
-tiempo: 1 h 15 min
-costo_filamento: 240
-precio: 800
+gramos: 18.0
+tiempo_min: 225
+tiempo: 3 h 45 min
+costo_filamento: 720
+precio: 2200
 material: PLA
 colores_render:
 - marroncito
@@ -31,3 +31,6 @@ fotos:
 estimacion: 'Gramos y tiempo del perfil publicado en MakerWorld (0.2mm nozzle). Las
   fotos son del autor: si se aprueba, se rehacen con nuestros renders cuando llegue
   el archivo.'
+descripcion_es: 'Casitas de jengibre en miniatura con techo nevado, para armar un
+  pueblito en la mesa o colgar del árbol (se venden en set de 3). Por qué sí: estilo
+  cálido, 1499 likes en MakerWorld (BY). Si lo aprobás, mandale el archivo al bot.'
