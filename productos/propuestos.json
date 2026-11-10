@@ -111,5 +111,64 @@
     "propuesto": "2026-11-04",
     "estado": "aprobado",
     "respondido": "2026-11-04"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Ángel tejido",
+    "slug": "angel-tejido",
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Bandeja navideña para golosinas",
+    "slug": "bandeja-navidena-para-golosinas",
+    "makerworld_id": 3537527,
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Bola tejida para el árbol",
+    "slug": "bola-tejida-para-el-arbol",
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Campana tejida",
+    "slug": "campana-tejida",
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Casitas de jengibre (x3)",
+    "slug": "casitas-de-jengibre",
+    "makerworld_id": 1923215,
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Farol redondo con bosque y renos",
+    "slug": "farol-redondo-con-bosque-y-renos",
+    "makerworld_id": 64680,
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
+  },
+  {
+    "printables_id": null,
+    "nombre": "Gorro de Papá Noel para botella",
+    "slug": "gorro-de-papa-noel-para-botella",
+    "propuesto": "2026-11-09",
+    "estado": "aprobado",
+    "respondido": "2026-11-10"
   }
 ]

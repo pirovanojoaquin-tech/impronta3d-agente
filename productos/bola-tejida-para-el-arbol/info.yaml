@@ -1,0 +1,31 @@
+nombre: Bola tejida para el árbol
+descripcion: Adorno de 8 cm con textura de punto, como si fuera de lana, y capuchón
+  dorado con argolla. Para un arbolito cálido y nórdico; queda hermoso en set de colores
+  (crema, rojo y verde).
+personalizable: Color a elección (10 colores de PLA)
+precio: 9200
+gramos: 76.6
+tiempo: 3 h 55 min
+colores:
+- crema
+- rojo
+- verde
+destacado: false
+notas: null
+origen: propio
+diseno: bola-tejida-para-el-arbol
+inspiracion: Los adornos de punto tejido, tendencia "cozy" de la Navidad 2026. Diseño
+  propio en 2 colores (AMS).
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/bola-tejida-para-el-arbol/cuerpo.stl
+  gramos: 75.0
+- archivo: acento.stl
+  ruta: disenos/bola-tejida-para-el-arbol/acento.stl
+  gramos: 1.5
+  color: dorado
+escala: null

@@ -1,0 +1,29 @@
+nombre: Gorro de Papá Noel para botella
+descripcion: Gorro tejido rojo con borde de piel y pompón blancos que se calza en
+  el pico de una botella de vino o sidra. Viste la mesa de Navidad y convierte cualquier
+  botella en un regalo.
+personalizable: Color a elección (10 colores de PLA)
+precio: 5500
+gramos: 45.8
+tiempo: 2 h 31 min
+colores:
+- rojo
+destacado: false
+notas: null
+origen: propio
+diseno: gorro-de-papa-noel-para-botella
+inspiracion: Los gorritos navideños para botellas que se usan en regalos y cenas de
+  fin de año. Diseño propio en 2 colores (AMS).
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/gorro-de-papa-noel-para-botella/cuerpo.stl
+  gramos: 30.3
+- archivo: acento.stl
+  ruta: disenos/gorro-de-papa-noel-para-botella/acento.stl
+  gramos: 15.5
+  color: blanco
+escala: null
