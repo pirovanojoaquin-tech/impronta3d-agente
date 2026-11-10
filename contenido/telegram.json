@@ -1,6 +1,6 @@
 {
   "chat_id": 7710125800,
-  "offset": 96023085,
+  "offset": 96023088,
   "mensajes": [
     {
       "fecha": "2026-11-02T19:18:59+00:00",
@@ -26,6 +26,36 @@
       "fecha": "2026-11-10T00:30:01+00:00",
       "texto": "SI 1,2,3,4,5,6,7",
       "procesado": true
+    },
+    {
+      "fecha": "2026-11-10T17:35:28+00:00",
+      "texto": "bandeja",
+      "procesado": true,
+      "archivo": {
+        "file_id": "BQACAgEAAxkBAAMvavNV3-hZ5h-lK2xIHen1VAuynVwAAoEHAAJ2E6FHYAykw488-fs9BA",
+        "nombre": "reduced_color (6).3mf",
+        "tamanio": 6466054
+      }
+    },
+    {
+      "fecha": "2026-11-10T17:36:40+00:00",
+      "texto": "casitas",
+      "procesado": true,
+      "archivo": {
+        "file_id": "BQACAgEAAxkBAAMwavNWKGM6ciPtJ1YDS7ufvzmpansAAoMHAAJ2E6FHYtjzTMyaT6U9BA",
+        "nombre": "gingerbread_house.3mf",
+        "tamanio": 12930508
+      }
+    },
+    {
+      "fecha": "2026-11-10T17:37:01+00:00",
+      "texto": "farol redondo",
+      "procesado": true,
+      "archivo": {
+        "file_id": "BQACAgEAAxkBAAMxavNWPeIMyOPTiqte9MQct2717KQAAoQHAAJ2E6FHWvIeiHSde5M9BA",
+        "nombre": "christmas+round+lantern+3+v0.3mf",
+        "tamanio": 3459021
+      }
     }
   ]
 }

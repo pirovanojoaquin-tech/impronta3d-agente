@@ -18,6 +18,8 @@ makerworld_id: 1923215
 url: https://makerworld.com/es/models/1923215-gingerbread-house
 autor: DnAle
 licencia: BY
-piezas: []
-archivo_pendiente: true
+piezas:
+- archivo: gingerbread_house.3mf
+  telegram_file_id: BQACAgEAAxkBAAMwavNWKGM6ciPtJ1YDS7ufvzmpansAAoMHAAJ2E6FHYtjzTMyaT6U9BA
+archivo_pendiente: false
 escala: null

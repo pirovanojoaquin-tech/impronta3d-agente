@@ -18,6 +18,8 @@ makerworld_id: 3537527
 url: https://makerworld.com/es/models/3537527-christmas-tray-festive-candy-chocolate-holder
 autor: astavr
 licencia: CC0
-piezas: []
-archivo_pendiente: true
+piezas:
+- archivo: reduced_color (6).3mf
+  telegram_file_id: BQACAgEAAxkBAAMvavNV3-hZ5h-lK2xIHen1VAuynVwAAoEHAAJ2E6FHYAykw488-fs9BA
+archivo_pendiente: false
 escala: null

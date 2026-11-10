@@ -18,6 +18,8 @@ makerworld_id: 64680
 url: https://makerworld.com/es/models/64680-christmas-scene-round-lantern
 autor: lindnjoe
 licencia: BY
-piezas: []
-archivo_pendiente: true
+piezas:
+- archivo: christmas+round+lantern+3+v0.3mf
+  telegram_file_id: BQACAgEAAxkBAAMxavNWPeIMyOPTiqte9MQct2717KQAAoQHAAJ2E6FHWvIeiHSde5M9BA
+archivo_pendiente: false
 escala: null
