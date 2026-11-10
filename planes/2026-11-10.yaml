@@ -44,6 +44,7 @@ dias:
       - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "Impreso, no tejido", texto: "La textura de punto sale de la impresora 3D capa por capa. Por eso no se deforma ni junta polvo como la lana."}
 
   - fecha: 2026-11-12
+    reel: {"gancho": "Prendé la vela y la mesa se llena de estrellas", "beneficios": ["Con vela LED adentro", "Estrella dorada en la punta", "Diseño propio Impronta 3D"], "color": "blanco", "angulo": 14}
     post:
       producto: farol-arbol-con-estrellas
       caption: |
@@ -128,6 +129,7 @@ dias:
       - {tipo: "texto", etiqueta: "Envíos", titulo: "Pedí con tiempo", texto: "Imprimimos a pedido: encargá tus regalos de Navidad con anticipación. Escribinos por DM."}
 
   - fecha: 2026-11-16
+    reel: {"gancho": "Un arbolito que parece de lana", "beneficios": ["Textura tejida, impreso en 3D", "Estrella dorada en la punta", "Hermoso en trío de colores"], "color": "crema", "angulo": 14}
     post:
       producto: arbolito-tejido
       caption: |

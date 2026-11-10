@@ -548,6 +548,18 @@
     "estado": "pendiente"
   },
   {
+    "id": "2026-11-12-reel",
+    "fecha": "2026-11-12",
+    "hora": "19:00",
+    "tipo": "REEL",
+    "producto": "farol-arbol-con-estrellas",
+    "imagenes": [
+      "contenido/media/2026-11-12/reel.mp4"
+    ],
+    "caption": "Prendé la vela y la mesa se llena de estrellas ✨\n\nArbolito farol de 3 pisos con estrellas caladas: le ponés una vela LED adentro y proyecta estrellitas de luz en la mesa y en la pared. Con su estrella dorada en la punta.\n\nDiseño exclusivo Impronta 3D.\n#farolnavideño #mesanavideña #navidad2026 #decoracionnavideña\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
     "id": "2026-11-12-historia-3",
     "fecha": "2026-11-12",
     "hora": "20:30",
@@ -741,6 +753,18 @@
     "imagenes": [
       "contenido/media/2026-11-16/historia-2.jpg"
     ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-16-reel",
+    "fecha": "2026-11-16",
+    "hora": "19:00",
+    "tipo": "REEL",
+    "producto": "arbolito-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-16/reel.mp4"
+    ],
+    "caption": "Un arbolito que parece de lana 🌲\n\n21 cm de textura de punto y una estrella dorada en la punta. Queda hermoso solo o en trío de colores (crema, blanco y verde) en la mesa, la repisa o al lado del pesebre.\n\nDiseño exclusivo Impronta 3D.\n#arbolitodenavidad #decoracionnavideña #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
     "estado": "pendiente"
   },
   {
