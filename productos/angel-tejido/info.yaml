@@ -27,3 +27,14 @@ piezas:
   gramos: 23.1
   color: dorado
 escala: null
+medidas_mm:
+  largo: 91
+  ancho: 81
+  alto: 126
+colores_png:
+- crema
+- blanco
+- negro
+- rojo
+- azul
+- verde
