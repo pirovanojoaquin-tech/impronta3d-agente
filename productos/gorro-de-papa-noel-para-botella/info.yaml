@@ -38,3 +38,21 @@ colores_png:
 - azul
 - verde
 - amarillo
+en_uso:
+  foto:
+    id: _ne6O9qqhhg
+    nombre: mesa-oscura-arbol
+  escena: apoyado
+  margen: 1.1
+  color: rojo
+  angulo: 12
+  giro: 30
+  punto:
+  - 1300
+  - 3330
+  escala: 0.75
+  recorte:
+  - 550
+  - 1100
+  - 2400
+  - 3412

@@ -39,3 +39,21 @@ colores_png:
 - azul
 - verde
 reel: true
+en_uso:
+  foto:
+    id: EzOu9bwwKkM
+    nombre: repisa-casita
+  escena: apoyado
+  margen: 1.1
+  color: crema
+  angulo: 10
+  giro: 20
+  punto:
+  - 650
+  - 1225
+  escala: 0.75
+  recorte:
+  - 100
+  - 0
+  - 1380
+  - 1600

@@ -3,8 +3,8 @@ descripcion: Set de 3 casitas de jengibre en miniatura con techo nevado, para ar
   un pueblito en la mesa o colgar del arbolito.
 personalizable: Color a elección (10 colores de PLA)
 precio: 2200
-gramos: 18.0
-tiempo: 3 h 45 min
+gramos: 1.8
+tiempo: 7 min
 colores:
 - marroncito
 - crema
@@ -21,5 +21,18 @@ licencia: BY
 piezas:
 - archivo: gingerbread_house.3mf
   telegram_file_id: BQACAgEAAxkBAAMwavNWKGM6ciPtJ1YDS7ufvzmpansAAoMHAAJ2E6FHYtjzTMyaT6U9BA
+  gramos: 1.8
 archivo_pendiente: false
 escala: null
+gramos_verificados: true
+medidas_mm:
+  largo: 21
+  ancho: 20
+  alto: 12
+colores_png:
+- marroncito
+- crema
+- negro
+- blanco
+- rojo
+- azul

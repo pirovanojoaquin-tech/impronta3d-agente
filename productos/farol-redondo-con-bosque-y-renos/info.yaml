@@ -3,8 +3,8 @@ descripcion: Farol redondo calado con un bosque nevado, renos y una casita. Con 
   vela LED adentro, proyecta la escena en la mesa.
 personalizable: Color a elección (10 colores de PLA)
 precio: 6200
-gramos: 51.0
-tiempo: 2 h 01 min
+gramos: 42.7
+tiempo: 2 h 04 min
 colores:
 - blanco
 - crema
@@ -21,5 +21,18 @@ licencia: BY
 piezas:
 - archivo: christmas+round+lantern+3+v0.3mf
   telegram_file_id: BQACAgEAAxkBAAMxavNWPeIMyOPTiqte9MQct2717KQAAoQHAAJ2E6FHWvIeiHSde5M9BA
+  gramos: 42.7
 archivo_pendiente: false
 escala: null
+gramos_verificados: true
+medidas_mm:
+  largo: 527
+  ancho: 487
+  alto: 10
+colores_png:
+- blanco
+- crema
+- negro
+- rojo
+- azul
+- verde

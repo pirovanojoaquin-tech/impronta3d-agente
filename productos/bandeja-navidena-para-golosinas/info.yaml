@@ -3,8 +3,8 @@ descripcion: Bandeja con un pueblito navideño en relieve (arbolitos, casita, re
   y bastón de caramelo) para golosinas o bombones. Centro de mesa para las fiestas.
 personalizable: Color a elección (10 colores de PLA)
 precio: 15300
-gramos: 127.0
-tiempo: 4 h 20 min
+gramos: 122.1
+tiempo: 4 h 17 min
 colores:
 - blanco
 - crema
@@ -21,6 +21,37 @@ licencia: CC0
 piezas:
 - archivo: reduced_color (6).3mf
   telegram_file_id: BQACAgEAAxkBAAMvavNV3-hZ5h-lK2xIHen1VAuynVwAAoEHAAJ2E6FHYAykw488-fs9BA
+  gramos: 122.1
 archivo_pendiente: false
 escala: null
+gramos_verificados: true
+medidas_mm:
+  largo: 210
+  ancho: 100
+  alto: 96
+colores_png:
+- blanco
+- crema
+- negro
+- rojo
+- azul
+- verde
 reel: true
+en_uso:
+  foto:
+    id: o3iZvGZtDng
+    nombre: madera-guirnalda
+  escena: apoyado
+  margen: 1.1
+  color: blanco
+  angulo: 32
+  giro: 0
+  punto:
+  - 1760
+  - 1150
+  escala: 0.9
+  recorte:
+  - 1120
+  - 0
+  - 2400
+  - 1600
