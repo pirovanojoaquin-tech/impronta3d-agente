@@ -1,0 +1,152 @@
+# Semana del 17 al 23/11/2026: 5 productos nuevos (aprobados el 10/11) con imagen en uso, 2 reels elegidos por el
+# dueño (ángel y bandeja) y 2 posts generales. Casitas y farol redondo esperan una foto real (ver Pendientes).
+dias:
+  - fecha: 2026-11-17
+    reel: {gancho: "Un ángel que parece tejido a mano", beneficios: ["Vestido con textura de lana", "Alas y aureola doradas", "Diseño propio Impronta 3D"], color: "crema", angulo: 12}
+    post:
+      producto: angel-tejido
+      caption: |
+        Un angelito para cuidar la casa en las fiestas 👼
+
+        Vestido con textura tejida, como de lana, y alas y aureola doradas. Queda precioso en el pesebre, en la repisa o al lado del arbolito.
+
+        Diseño exclusivo Impronta 3D ✨
+        #angelnavideño #pesebre #decoracionnavideña #navidad2026
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Un ángel tejido", subtitulo: "Con alas doradas", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Parece de lana", subtitulo: "Ángel tejido · 13 cm", etiqueta: "Diseño propio", sellos: ["Textura tejida", "Alas doradas", "A pedido"]}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el ángel tejido"}
+    historias:
+      - {tipo: "hero", producto: "angel-tejido", etiqueta: "Nuevo", titulo: "Ángel tejido", subtitulo: "Con alas doradas"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Para el pesebre", texto: "Sumá un ángel al lado del pesebre o colgalo arriba con un hilo: le da altura y luz a la escena."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "Hecho a pedido", texto: "Cada pieza se imprime en 3D para vos. Escribinos por DM y te contamos los tiempos."}
+
+  - fecha: 2026-11-18
+    post:
+      producto: bola-tejida-para-el-arbol
+      caption: |
+        Bolas de Navidad que parecen de lana 🧶
+
+        Textura de punto de arriba a abajo y capuchón dorado. No se rompen si se caen, así que son ideales si hay chicos o mascotas en casa.
+
+        Armá tu set: crema, rojo y verde.
+        #adornonavideño #arbolitodenavidad #navidad2026 #deconavidad
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Navidad de lana", subtitulo: "Bola tejida para el árbol", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "No se rompen", subtitulo: "Bola tejida · 8 cm", etiqueta: "Diseño propio", sellos: ["Textura tejida", "Irrompible", "A pedido"]}
+        - {tipo: "pasos", titulo: "Armá tu set", pasos: ["Elegí 3 colores", "Combinalas con luces cálidas", "Se guardan sin miedo a que se rompan"], tono: "crema"}
+        - {tipo: "colores"}
+        - {tipo: "cta_producto", nombre_corto: "las bolas tejidas"}
+    historias:
+      - {tipo: "hero", producto: "bola-tejida-para-el-arbol", etiqueta: "Nuevo", titulo: "Bola tejida", subtitulo: "Para el arbolito"}
+      - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "A prueba de gatos", texto: "Las bolas impresas en 3D no se rompen al caer. Si tu gato ama el arbolito, son para vos."}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Set de 3", texto: "Un set de tres bolas tejidas en una cajita es un regalo lindo y distinto. Escribinos por DM."}
+
+  - fecha: 2026-11-19
+    reel: {gancho: "La bandeja que viste tu mesa de Navidad", beneficios: ["Pueblito navideño en relieve", "Para golosinas o bombones", "Centro de mesa para las fiestas"], color: "blanco", angulo: 28}
+    post:
+      producto: bandeja-navidena-para-golosinas
+      caption: |
+        El centro de mesa más dulce de las fiestas 🍬
+
+        Bandeja con un pueblito navideño en relieve: arbolitos, casita, regalos y bastón de caramelo. La llenás de bombones o golosinas y la mesa queda lista.
+
+        También es un lindo regalo, llena de cosas ricas.
+        #mesanavideña #centrodemesa #navidad2026 #decoracionnavideña
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Dulce Navidad", subtitulo: "Bandeja para golosinas", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Un pueblito en tu mesa", subtitulo: "Bandeja navideña para golosinas", etiqueta: "Nuevo"}
+        - {tipo: "pasos", titulo: "Ideas para usarla", pasos: ["Con bombones en la mesa dulce", "Con turrones y garrapiñadas", "Llena de golosinas, para regalar"], tono: "crema"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "la bandeja navideña"}
+    historias:
+      - {tipo: "hero", producto: "bandeja-navidena-para-golosinas", etiqueta: "Nuevo", titulo: "Mesa dulce", subtitulo: "Bandeja navideña"}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Bandeja + bombones", texto: "Llenala de bombones, envolvela en celofán con un moño y tenés un regalo que se usa todos los años."}
+      - {tipo: "texto", etiqueta: "Cuidados", titulo: "Solo envueltos", texto: "Usala con golosinas y bombones envueltos, y limpiala con un paño húmedo."}
+
+  - fecha: 2026-11-20
+    post:
+      caption: |
+        3 ideas para una mesa de Navidad cálida 🎄
+
+        1️⃣ Un color base: crema o blanco, con toques de rojo o verde.
+        2️⃣ Luz baja: velas LED en faroles y portavelas, y las luces grandes apagadas.
+        3️⃣ Alturas distintas: un arbolito alto, figuras medianas y adornos chicos.
+
+        Guardalo para cuando armes la tuya 📌
+        #mesanavideña #decoracionnavideña #navidad2026 #ideasnavidad
+      slides:
+        - {tipo: "info", titulo: "3 ideas para una mesa de Navidad cálida", items: ["Un color base", "Luz baja con velas LED", "Alturas distintas"]}
+        - {tipo: "info", titulo: "1. Un color base", items: ["Crema o blanco de fondo", "Rojo o verde en los detalles", "Un toque dorado"]}
+        - {tipo: "info", titulo: "2. Luz baja", items: ["Faroles y portavelas con LED", "Guirnalda de luces cálidas", "Luces grandes apagadas"]}
+        - {tipo: "info", titulo: "3. Alturas distintas", items: ["Un arbolito alto en el centro", "Figuras medianas a los lados", "Adornos chicos entre los platos"]}
+        - {tipo: "cta", nombre_corto: "armar tu mesa de Navidad"}
+    historias:
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "Menos es más", texto: "Tres piezas bien elegidas visten más que diez amontonadas. Dejá aire entre los adornos."}
+      - {tipo: "texto", etiqueta: "Envíos", titulo: "Pedí con tiempo", texto: "Imprimimos a pedido: encargá tu deco de Navidad con anticipación. Escribinos por DM."}
+      - {tipo: "texto", etiqueta: "Impronta 3D", titulo: "¿Tenés una idea?", texto: "Diseñamos e imprimimos adornos a pedido, con nombres o en tus colores. Escribinos por DM."}
+
+  - fecha: 2026-11-21
+    post:
+      producto: campana-tejida
+      caption: |
+        Suena a Navidad 🔔
+
+        Campana de 10 cm con textura tejida, badajo y argolla dorados. Colgala en la puerta, en el arbolito o armá una guirnalda con varias.
+
+        En rojo, crema o verde. Diseño exclusivo Impronta 3D.
+        #campananavideña #adornonavideño #navidad2026 #deconavidad
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "Suena a Navidad", subtitulo: "Campana tejida", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "Una campana tejida", subtitulo: "Campana con badajo dorado · 10 cm", etiqueta: "Diseño propio", sellos: ["Textura tejida", "Detalles dorados", "A pedido"]}
+        - {tipo: "colores"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "la campana tejida"}
+    historias:
+      - {tipo: "hero", producto: "campana-tejida", etiqueta: "Nuevo", titulo: "Campana tejida", subtitulo: "Con badajo dorado"}
+      - {tipo: "texto", etiqueta: "Idea de deco", titulo: "En la puerta", texto: "Dos o tres campanas atadas con una cinta roja y una rama de pino: tu puerta ya está lista para las fiestas."}
+      - {tipo: "texto", etiqueta: "¿Sabías que...?", titulo: "Las campanas de Navidad", texto: "Por tradición, las campanas anuncian la Nochebuena. Por eso son uno de los adornos más antiguos."}
+
+  - fecha: 2026-11-22
+    post:
+      producto: gorro-de-papa-noel-para-botella
+      caption: |
+        Hasta la botella se viste para brindar 🥂
+
+        Gorro de Papá Noel tejido, con borde de piel y pompón blancos, que se calza en el pico de una botella de vino, sidra o espumante. Viste la mesa y convierte cualquier botella en un regalo.
+
+        Diseño exclusivo Impronta 3D.
+        #brindis #mesanavideña #regalonavideño #navidad2026
+      slides:
+        - {tipo: "portada", foto: "en-uso.jpg", titulo: "A brindar con gorro", subtitulo: "Gorro para botella", etiqueta: "Nuevo"}
+        - {tipo: "hero", titulo: "La botella, de fiesta", subtitulo: "Gorro de Papá Noel para botella", etiqueta: "Diseño propio", sellos: ["2 colores", "Vino, sidra o espumante", "A pedido"]}
+        - {tipo: "pasos", titulo: "Ideas para usarlo", pasos: ["En la botella del brindis", "Para regalar un vino", "Regalo empresarial con tu botella"], tono: "crema"}
+        - {tipo: "medidas"}
+        - {tipo: "cta_producto", nombre_corto: "el gorro para botella"}
+    historias:
+      - {tipo: "hero", producto: "gorro-de-papa-noel-para-botella", etiqueta: "Nuevo", titulo: "Gorro para botella", subtitulo: "Para el brindis"}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Vino + gorro", texto: "¿Llevás un vino a la cena? Con el gorrito puesto ya es un regalo de Navidad."}
+      - {tipo: "texto", etiqueta: "Empresas", titulo: "Regalos de fin de año", texto: "Hacemos gorros para botellas por cantidad para regalos empresariales. Escribinos por DM."}
+
+  - fecha: 2026-11-23
+    post:
+      caption: |
+        ¿Cómo pedir en Impronta 3D? 🎁
+
+        1️⃣ Elegí lo que te gusta en nuestra tienda (link en la bio) o en el perfil.
+        2️⃣ Escribinos por DM con el producto y el color.
+        3️⃣ Lo imprimimos para vos y coordinamos la entrega.
+
+        Falta un mes para Navidad: es el momento ideal para encargar ✨
+        #navidad2026 #decoracionnavideña #regalosnavideños #impresion3d
+      slides:
+        - {tipo: "info", titulo: "Cómo pedir", items: ["Elegí el producto", "Escribinos por DM con el color", "Lo imprimimos y coordinamos la entrega"]}
+        - {tipo: "info", titulo: "Hecho para vos", items: ["Impreso a pedido", "En tus colores", "Con nombres si querés"]}
+        - {tipo: "info", titulo: "Falta un mes para Navidad", items: ["Encargá con tiempo", "Regalos para toda la familia", "Pedidos por cantidad para empresas"]}
+        - {tipo: "cta", nombre_corto: "tu deco de Navidad"}
+    historias:
+      - {tipo: "texto", etiqueta: "Falta un mes", titulo: "Cuenta regresiva", texto: "En un mes es Nochebuena. Encargá ahora y recibí tu deco con tiempo para armar la casa."}
+      - {tipo: "texto", etiqueta: "Tienda online", titulo: "Todo en un lugar", texto: "Mirá todos los productos con fotos y precios en impronta3d.github.io (link en la bio)."}
+      - {tipo: "texto", etiqueta: "Idea de regalo", titulo: "Amigo invisible", texto: "Adornos tejidos, faroles y portavelas: regalos lindos para cualquier presupuesto. Escribinos por DM."}
