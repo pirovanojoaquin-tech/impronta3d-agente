@@ -650,7 +650,9 @@
     "imagenes": [
       "contenido/media/2026-11-13/historia-3.jpg"
     ],
-    "estado": "pendiente"
+    "estado": "publicado",
+    "ig_media_id": "18360509578172052",
+    "publicado_en": "2026-11-13T20:43:06-03:00"
   },
   {
     "id": "2026-11-14-historia-1",
