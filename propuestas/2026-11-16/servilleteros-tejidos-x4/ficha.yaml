@@ -18,11 +18,11 @@ piezas:
   ruta: disenos/servilleteros-tejidos-x4/acento.stl
   gramos: 0.6
   color: dorado
-gramos: 16.5
-tiempo_min: 51
-tiempo: 51 min
-costo_filamento: 659
-precio: 2000
+gramos: 66.0
+tiempo_min: 204
+tiempo: 3 h 24 min
+costo_filamento: 2640
+precio: 8000
 material: PLA
 colores_render:
 - rojo
@@ -37,3 +37,7 @@ fotos:
   color: verde
 estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
   perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
+descripcion_es: 'Pack de 4 servilleteros con textura de punto y estrella dorada. Por
+  qué sí: útiles en la mesa de Nochebuena, baratos de hacer (17 g cada uno) y combinan
+  con el resto de la línea tejida.'
+notas: 'Pack de 4: gramos, tiempo y precio del pack.'
