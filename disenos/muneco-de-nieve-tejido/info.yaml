@@ -1,0 +1,7 @@
+nombre: Muñeco de nieve tejido
+descripcion: Muñeco de nieve de 14 cm con textura tejida, galera negra, bufanda y nariz rojas. Para la repisa, la mesa o la entrada de casa; a los chicos les encanta.
+inspiracion: Los muñecos de nieve tejidos de la deco navideña nórdica. Diseño propio en 3 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: negro}
+  - {archivo: acento2.scad, color: rojo}

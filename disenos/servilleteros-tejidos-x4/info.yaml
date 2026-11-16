@@ -1,0 +1,6 @@
+nombre: Servilleteros tejidos (x4)
+descripcion: Pack de 4 servilleteros con textura de punto y una estrella dorada. Visten cada plato de la mesa de Nochebuena y se guardan para el año que viene.
+inspiracion: Los servilleteros navideños de las mesas de fiestas. Diseño propio en 2 colores (AMS).
+piezas:
+  - cuerpo.scad
+  - {archivo: acento.scad, color: dorado}
