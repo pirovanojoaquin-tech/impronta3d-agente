@@ -828,5 +828,371 @@
       "contenido/media/2026-11-16/historia-3.jpg"
     ],
     "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-17-historia-1",
+    "fecha": "2026-11-17",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "angel-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-17/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-17-post",
+    "fecha": "2026-11-17",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "angel-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-17/post-1.jpg",
+      "contenido/media/2026-11-17/post-2.jpg",
+      "contenido/media/2026-11-17/post-3.jpg",
+      "contenido/media/2026-11-17/post-4.jpg",
+      "contenido/media/2026-11-17/post-5.jpg"
+    ],
+    "caption": "Un angelito para cuidar la casa en las fiestas 👼\n\nVestido con textura tejida, como de lana, y alas y aureola doradas. Queda precioso en el pesebre, en la repisa o al lado del arbolito.\n\nDiseño exclusivo Impronta 3D ✨\n#angelnavideño #pesebre #decoracionnavideña #navidad2026\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-17-historia-2",
+    "fecha": "2026-11-17",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-17/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-17-reel",
+    "fecha": "2026-11-17",
+    "hora": "19:00",
+    "tipo": "REEL",
+    "producto": "angel-tejido",
+    "imagenes": [
+      "contenido/media/2026-11-17/reel.mp4"
+    ],
+    "caption": "Un angelito para cuidar la casa en las fiestas 👼\n\nVestido con textura tejida, como de lana, y alas y aureola doradas. Queda precioso en el pesebre, en la repisa o al lado del arbolito.\n\nDiseño exclusivo Impronta 3D ✨\n#angelnavideño #pesebre #decoracionnavideña #navidad2026\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-17-historia-3",
+    "fecha": "2026-11-17",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-17/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-18-historia-1",
+    "fecha": "2026-11-18",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "bola-tejida-para-el-arbol",
+    "imagenes": [
+      "contenido/media/2026-11-18/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-18-post",
+    "fecha": "2026-11-18",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "bola-tejida-para-el-arbol",
+    "imagenes": [
+      "contenido/media/2026-11-18/post-1.jpg",
+      "contenido/media/2026-11-18/post-2.jpg",
+      "contenido/media/2026-11-18/post-3.jpg",
+      "contenido/media/2026-11-18/post-4.jpg",
+      "contenido/media/2026-11-18/post-5.jpg"
+    ],
+    "caption": "Bolas de Navidad que parecen de lana 🧶\n\nTextura de punto de arriba a abajo y capuchón dorado. No se rompen si se caen, así que son ideales si hay chicos o mascotas en casa.\n\nArmá tu set: crema, rojo y verde.\n#adornonavideño #arbolitodenavidad #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-18-historia-2",
+    "fecha": "2026-11-18",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-18/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-18-historia-3",
+    "fecha": "2026-11-18",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-18/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-19-historia-1",
+    "fecha": "2026-11-19",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "bandeja-navidena-para-golosinas",
+    "imagenes": [
+      "contenido/media/2026-11-19/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-19-post",
+    "fecha": "2026-11-19",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "bandeja-navidena-para-golosinas",
+    "imagenes": [
+      "contenido/media/2026-11-19/post-1.jpg",
+      "contenido/media/2026-11-19/post-2.jpg",
+      "contenido/media/2026-11-19/post-3.jpg",
+      "contenido/media/2026-11-19/post-4.jpg",
+      "contenido/media/2026-11-19/post-5.jpg"
+    ],
+    "caption": "El centro de mesa más dulce de las fiestas 🍬\n\nBandeja con un pueblito navideño en relieve: arbolitos, casita, regalos y bastón de caramelo. La llenás de bombones o golosinas y la mesa queda lista.\n\nTambién es un lindo regalo, llena de cosas ricas.\n#mesanavideña #centrodemesa #navidad2026 #decoracionnavideña\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-19-historia-2",
+    "fecha": "2026-11-19",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-19/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-19-reel",
+    "fecha": "2026-11-19",
+    "hora": "19:00",
+    "tipo": "REEL",
+    "producto": "bandeja-navidena-para-golosinas",
+    "imagenes": [
+      "contenido/media/2026-11-19/reel.mp4"
+    ],
+    "caption": "El centro de mesa más dulce de las fiestas 🍬\n\nBandeja con un pueblito navideño en relieve: arbolitos, casita, regalos y bastón de caramelo. La llenás de bombones o golosinas y la mesa queda lista.\n\nTambién es un lindo regalo, llena de cosas ricas.\n#mesanavideña #centrodemesa #navidad2026 #decoracionnavideña\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-19-historia-3",
+    "fecha": "2026-11-19",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-19/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-20-historia-1",
+    "fecha": "2026-11-20",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-20/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-20-post",
+    "fecha": "2026-11-20",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-20/post-1.jpg",
+      "contenido/media/2026-11-20/post-2.jpg",
+      "contenido/media/2026-11-20/post-3.jpg",
+      "contenido/media/2026-11-20/post-4.jpg",
+      "contenido/media/2026-11-20/post-5.jpg"
+    ],
+    "caption": "3 ideas para una mesa de Navidad cálida 🎄\n\n1️⃣ Un color base: crema o blanco, con toques de rojo o verde.\n2️⃣ Luz baja: velas LED en faroles y portavelas, y las luces grandes apagadas.\n3️⃣ Alturas distintas: un arbolito alto, figuras medianas y adornos chicos.\n\nGuardalo para cuando armes la tuya 📌\n#mesanavideña #decoracionnavideña #navidad2026 #ideasnavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-20-historia-2",
+    "fecha": "2026-11-20",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-20/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-20-historia-3",
+    "fecha": "2026-11-20",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-20/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-21-historia-1",
+    "fecha": "2026-11-21",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "campana-tejida",
+    "imagenes": [
+      "contenido/media/2026-11-21/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-21-post",
+    "fecha": "2026-11-21",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "campana-tejida",
+    "imagenes": [
+      "contenido/media/2026-11-21/post-1.jpg",
+      "contenido/media/2026-11-21/post-2.jpg",
+      "contenido/media/2026-11-21/post-3.jpg",
+      "contenido/media/2026-11-21/post-4.jpg",
+      "contenido/media/2026-11-21/post-5.jpg"
+    ],
+    "caption": "Suena a Navidad 🔔\n\nCampana de 10 cm con textura tejida, badajo y argolla dorados. Colgala en la puerta, en el arbolito o armá una guirnalda con varias.\n\nEn rojo, crema o verde. Diseño exclusivo Impronta 3D.\n#campananavideña #adornonavideño #navidad2026 #deconavidad\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-21-historia-2",
+    "fecha": "2026-11-21",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-21/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-21-historia-3",
+    "fecha": "2026-11-21",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-21/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-22-historia-1",
+    "fecha": "2026-11-22",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": "gorro-de-papa-noel-para-botella",
+    "imagenes": [
+      "contenido/media/2026-11-22/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-22-post",
+    "fecha": "2026-11-22",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": "gorro-de-papa-noel-para-botella",
+    "imagenes": [
+      "contenido/media/2026-11-22/post-1.jpg",
+      "contenido/media/2026-11-22/post-2.jpg",
+      "contenido/media/2026-11-22/post-3.jpg",
+      "contenido/media/2026-11-22/post-4.jpg",
+      "contenido/media/2026-11-22/post-5.jpg"
+    ],
+    "caption": "Hasta la botella se viste para brindar 🥂\n\nGorro de Papá Noel tejido, con borde de piel y pompón blancos, que se calza en el pico de una botella de vino, sidra o espumante. Viste la mesa y convierte cualquier botella en un regalo.\n\nDiseño exclusivo Impronta 3D.\n#brindis #mesanavideña #regalonavideño #navidad2026\n#navidad #decoracion #impresion3d #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-22-historia-2",
+    "fecha": "2026-11-22",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-22/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-22-historia-3",
+    "fecha": "2026-11-22",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-22/historia-3.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-23-historia-1",
+    "fecha": "2026-11-23",
+    "hora": "10:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-23/historia-1.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-23-post",
+    "fecha": "2026-11-23",
+    "hora": "12:30",
+    "tipo": "CAROUSEL",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-23/post-1.jpg",
+      "contenido/media/2026-11-23/post-2.jpg",
+      "contenido/media/2026-11-23/post-3.jpg",
+      "contenido/media/2026-11-23/post-4.jpg"
+    ],
+    "caption": "¿Cómo pedir en Impronta 3D? 🎁\n\n1️⃣ Elegí lo que te gusta en nuestra tienda (link en la bio) o en el perfil.\n2️⃣ Escribinos por DM con el producto y el color.\n3️⃣ Lo imprimimos para vos y coordinamos la entrega.\n\nFalta un mes para Navidad: es el momento ideal para encargar ✨\n#navidad2026 #decoracionnavideña #regalosnavideños #impresion3d\n#navidad #decoracion #impronta3d",
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-23-historia-2",
+    "fecha": "2026-11-23",
+    "hora": "16:00",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-23/historia-2.jpg"
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "id": "2026-11-23-historia-3",
+    "fecha": "2026-11-23",
+    "hora": "20:30",
+    "tipo": "STORY",
+    "producto": null,
+    "imagenes": [
+      "contenido/media/2026-11-23/historia-3.jpg"
+    ],
+    "estado": "pendiente"
   }
 ]
