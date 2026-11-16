@@ -1,0 +1,34 @@
+nombre: Duende tejido para el árbol
+nombre_original: Christmas Elves - Christmas Holiday Ornaments - 3 Knitted Styles
+descripcion: I created some cute holiday Elf Ornaments that each have their own knitted
+  textured style.
+origen: printables
+printables_id: '1491538'
+url: https://www.printables.com/model/1491538-christmas-elves-christmas-holiday-ornaments-3-knit
+autor: Spearman Workshop
+licencia: CC-BY
+licencia_nombre: Creative Commons — Attribution
+escala: 46.8514
+piezas:
+- archivo: Elf Full Knit orn.stl
+  printables_file_id: '6276806'
+  gramos: 43.5
+gramos: 43.5
+tiempo_min: 198
+tiempo: 3 h 18 min
+costo_filamento: 1739
+precio: 5300
+material: PLA
+colores_render:
+- verde
+- rojo
+- crema
+fotos:
+- archivo: 1.jpg
+  color: verde
+- archivo: 2.jpg
+  color: rojo
+- archivo: 3.jpg
+  color: crema
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

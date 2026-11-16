@@ -1,0 +1,40 @@
+nombre: Muñeco de nieve tejido
+descripcion: Muñeco de nieve de 14 cm con textura tejida, galera negra, bufanda y
+  nariz rojas. Para la repisa, la mesa o la entrada de casa; a los chicos les encanta.
+inspiracion: Los muñecos de nieve tejidos de la deco navideña nórdica. Diseño propio
+  en 3 colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: muneco-de-nieve-tejido
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/muneco-de-nieve-tejido/cuerpo.stl
+  gramos: 109.0
+- archivo: acento.stl
+  ruta: disenos/muneco-de-nieve-tejido/acento.stl
+  gramos: 10.9
+  color: negro
+- archivo: acento2.stl
+  ruta: disenos/muneco-de-nieve-tejido/acento2.stl
+  gramos: 8.8
+  color: rojo
+gramos: 128.8
+tiempo_min: 383
+tiempo: 6 h 23 min
+costo_filamento: 5150
+precio: 15500
+material: PLA
+colores_render:
+- blanco
+- crema
+fotos:
+- archivo: 1.jpg
+  color: blanco
+- archivo: 2.jpg
+  color: crema
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

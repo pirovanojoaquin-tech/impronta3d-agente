@@ -1,0 +1,40 @@
+nombre: Casita farol nevada
+descripcion: Casita de 8 cm con techo nevado y ventanas caladas. Con una vela LED
+  adentro, la luz sale por las ventanas y la puerta. Armá un pueblito con varias en
+  la repisa o la mesa.
+inspiracion: Las casitas iluminadas de los pueblitos navideños. Diseño propio en 2
+  colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: casita-farol-nevada
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/casita-farol-nevada/cuerpo.stl
+  gramos: 46.6
+- archivo: acento.stl
+  ruta: disenos/casita-farol-nevada/acento.stl
+  gramos: 22.2
+  color: blanco
+gramos: 68.9
+tiempo_min: 117
+tiempo: 1 h 57 min
+costo_filamento: 2755
+precio: 8300
+material: PLA
+colores_render:
+- rojo
+- crema
+- verde
+fotos:
+- archivo: 1.jpg
+  color: rojo
+- archivo: 2.jpg
+  color: crema
+- archivo: 3.jpg
+  color: verde
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.

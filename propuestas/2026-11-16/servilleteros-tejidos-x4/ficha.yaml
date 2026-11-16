@@ -1,0 +1,39 @@
+nombre: Servilleteros tejidos (x4)
+descripcion: Pack de 4 servilleteros con textura de punto y una estrella dorada. Visten
+  cada plato de la mesa de Nochebuena y se guardan para el año que viene.
+inspiracion: Los servilleteros navideños de las mesas de fiestas. Diseño propio en
+  2 colores (AMS).
+origen: propio
+printables_id: null
+url: null
+autor: Impronta 3D
+licencia: Diseño propio
+licencia_nombre: Diseño propio de Impronta 3D (sin restricciones)
+diseno: servilleteros-tejidos-x4
+piezas:
+- archivo: cuerpo.stl
+  ruta: disenos/servilleteros-tejidos-x4/cuerpo.stl
+  gramos: 15.9
+- archivo: acento.stl
+  ruta: disenos/servilleteros-tejidos-x4/acento.stl
+  gramos: 0.6
+  color: dorado
+gramos: 16.5
+tiempo_min: 51
+tiempo: 51 min
+costo_filamento: 659
+precio: 2000
+material: PLA
+colores_render:
+- rojo
+- crema
+- verde
+fotos:
+- archivo: 1.jpg
+  color: rojo
+- archivo: 2.jpg
+  color: crema
+- archivo: 3.jpg
+  color: verde
+estimacion: Gramos y tiempo estimados con perfil genérico (0,2 mm, 15 % relleno, 2
+  perímetros). Verificar en Bambu Studio antes de cotizar piezas grandes.
