@@ -1,6 +1,6 @@
 {
   "chat_id": 7710125800,
-  "offset": 96023088,
+  "offset": 96023089,
   "mensajes": [
     {
       "fecha": "2026-11-02T19:18:59+00:00",
@@ -56,6 +56,11 @@
         "nombre": "christmas+round+lantern+3+v0.3mf",
         "tamanio": 3459021
       }
+    },
+    {
+      "fecha": "2026-11-17T00:33:40+00:00",
+      "texto": "SI 1,2,3,4,5 REEL 3,5",
+      "procesado": false
     }
   ]
 }
